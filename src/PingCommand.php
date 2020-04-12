@@ -7,68 +7,68 @@ class PingCommand
     /**
      * Stop after sending count ECHO_REQUEST packets.
      *
-     * @var  integer
+     * @var  int
      */
     protected $count = 4;
 
     /**
-     * The IP address of the host
+     * The IP address of the host.
      *
      * @var  string
      */
     private $host;
 
     /**
-     * Wait interval seconds between sending each packet. The default is to 
-     * wait for one second between each packet normally, or not to wait in 
-     * flood mode. 
+     * Wait interval seconds between sending each packet. The default is to
+     * wait for one second between each packet normally, or not to wait in
+     * flood mode.
      * Only super-user may set interval to values less than 0.2 seconds.
      *
-     * @var  integer
+     * @var  int
      */
     protected $interval = 1;
 
     /**
-     * Specifies the number of data bytes to be sent. 
-     * The default is 56, which translates into 64 ICMP data bytes when 
+     * Specifies the number of data bytes to be sent.
+     * The default is 56, which translates into 64 ICMP data bytes when
      * combined with the 8 bytes of ICMP header data.
      *
-     * @var  integer
+     * @var  int
      */
     protected $packet_size = 64;
 
     /**
-     * Time to wait for a response, in seconds. The option affects only 
+     * Time to wait for a response, in seconds. The option affects only
      * timeout in absence of any responses, otherwise ping waits for two RTTs.
      *
-     * @var  integer
+     * @var  int
      */
     protected $timeout = 5;
 
     /**
-     * The TTL value of an IP packet represents the maximum number of IP 
-     * routers that the packet can go through before being thrown away.  
-     * In current practice you can expect each router in the Internet to 
+     * The TTL value of an IP packet represents the maximum number of IP
+     * routers that the packet can go through before being thrown away.
+     * In current practice you can expect each router in the Internet to
      * decrement the TTL field by exactly one.
      *
-     * @var  integer
+     * @var  int
      */
     protected $time_to_live = 128;
 
-    function __construct($host)
+    public function __construct($host)
     {
-    	$this->host = $host;
+        $this->host = $host;
     }
 
     public static function Create($host)
     {
-    	return new static($host);
+        return new static($host);
     }
 
     /**
-     * Set the total of packets to sent
+     * Set the total of packets to sent.
      *
-     * @param  integer  $count
+     * @param  int  $count
      * @return  Acamposm\PingCommand
      */
     public function Count(int $count)
@@ -81,7 +81,7 @@ class PingCommand
     /**
      * Set interval in seconds between each packet.
      *
-     * @param  integer  $interval
+     * @param  int  $interval
      * @return  Acamposm\PingCommand
      */
     public function Interval(float $interval)
@@ -92,9 +92,9 @@ class PingCommand
     }
 
     /**
-     * Set the packet size
+     * Set the packet size.
      *
-     * @param  integer  $size
+     * @param  int  $size
      * @return  Acamposm\PingCommand
      */
     public function PacketSize(int $size)
@@ -105,9 +105,9 @@ class PingCommand
     }
 
     /**
-     * Set the time to wait for a response
+     * Set the time to wait for a response.
      *
-     * @param  integer  $seconds 
+     * @param  int  $seconds
      * @return  Acamposm\PingCommand
      */
     public function Timeout(int $seconds)
@@ -118,9 +118,9 @@ class PingCommand
     }
 
     /**
-     * Set the TTL value of the IP packet
+     * Set the TTL value of the IP packet.
      *
-     * @param  integer  $ttl
+     * @param  int  $ttl
      * @return  Acamposm\PingCommand
      */
     public function TimeToLive(int $ttl)
@@ -131,7 +131,7 @@ class PingCommand
     }
 
     /**
-     * Returns the Ping Command to be Used
+     * Returns the Ping Command to be Used.
      *
      * @return  string
      */
@@ -139,12 +139,12 @@ class PingCommand
     {
         $command = [
             'ping -4 -n',
-            '-c ' . escapeshellcmd($this->count),
-            '-i ' . escapeshellcmd($this->interval),
-            '-s ' . escapeshellcmd($this->packet_size),
-            '-t ' . escapeshellcmd($this->time_to_live),
-            '-W ' . escapeshellcmd($this->timeout),
-            escapeshellcmd($this->host)
+            '-c '.escapeshellcmd($this->count),
+            '-i '.escapeshellcmd($this->interval),
+            '-s '.escapeshellcmd($this->packet_size),
+            '-t '.escapeshellcmd($this->time_to_live),
+            '-W '.escapeshellcmd($this->timeout),
+            escapeshellcmd($this->host),
         ];
 
         return implode(' ', $command);
