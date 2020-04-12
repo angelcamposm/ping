@@ -19,6 +19,7 @@ At this moment, only IPv4 is supported but i plan to add IPv6 support to this pa
 	- [Change Packet Size](#change-packet-size)
 	- [Change Timeout](#change-timeout)
 	- [Change Time To Live](#change-time-to-live)
+	- [Sample output](#sample-output)
 - [Testing](#testing)
 - [Changelog](#changelog)
 - [Contributing](#contributing)
@@ -89,7 +90,7 @@ ping only. Set the IP Time to Live.
 $ping = Ping::Create('192.168.1.1')->TimeToLive(128)->Run();
 ```
 
-## Sample response
+## Sample output
 
 Here you can see a sample of an exit of the command.
 
