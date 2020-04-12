@@ -3,6 +3,7 @@
 [![License](https://poser.pugx.org/acamposm/ping/license)](https://packagist.org/packages/acamposm/ping)
 [![Latest Stable Version](https://poser.pugx.org/acamposm/ping/v/stable)](https://packagist.org/packages/acamposm/ping)
 [![Latest Unstable Version](https://poser.pugx.org/acamposm/ping/v/unstable)](https://packagist.org/packages/acamposm/ping)
+[![StyleCI](https://github.styleci.io/repos/255138468/shield?branch=master)](https://github.styleci.io/repos/255138468)
 [![Total Downloads](https://poser.pugx.org/acamposm/ping/downloads)](https://packagist.org/packages/acamposm/ping)
 
 This ping class allow to make ping request from Laravel aplications, it is based on PING command from the linux iputils package.
