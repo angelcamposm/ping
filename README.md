@@ -1,8 +1,8 @@
-# Very short description of the package
+# PING for Laravel
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/acamposm/ping.svg?style=flat-square)](https://packagist.org/packages/acamposm/ping#v0.0.1)
-[![Build Status](https://img.shields.io/travis/acamposm/ping/master.svg?style=flat-square)](https://travis-ci.org/acamposm/ping)
-[![Quality Score](https://img.shields.io/scrutinizer/g/acamposm/ping.svg?style=flat-square)](https://scrutinizer-ci.com/g/acamposm/ping)
+[![License](https://poser.pugx.org/acamposm/ping/license)](https://packagist.org/packages/acamposm/ping)
+[![Latest Stable Version](https://poser.pugx.org/acamposm/ping/v/stable)](https://packagist.org/packages/acamposm/ping)
+[![Latest Unstable Version](https://poser.pugx.org/acamposm/ping/v/unstable)](https://packagist.org/packages/acamposm/ping)
 [![Total Downloads](https://img.shields.io/packagist/dt/acamposm/ping.svg?style=flat-square)](https://packagist.org/packages/acamposm/ping)
 
 This ping class allow to make ping request from Laravel aplications, it is based on PING command from the linux iputils package.
@@ -10,6 +10,8 @@ This ping class allow to make ping request from Laravel aplications, it is based
 ping uses the ICMP protocol's mandatory ECHO_REQUEST datagram to elicit an ICMP ECHO_RESPONSE from a host or gateway. ECHO_REQUEST datagrams (pings) have an IP and ICMP header, followed by a struct timeval and then an arbitrary number ofpadbytes used to fill out the packet.
 
 At this moment, only IPv4 is supported but i plan to add IPv6 support to this package.
+
+
 
 ## Installation
 
