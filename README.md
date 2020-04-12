@@ -11,7 +11,20 @@ ping uses the ICMP protocol's mandatory ECHO_REQUEST datagram to elicit an ICMP 
 
 At this moment, only IPv4 is supported but i plan to add IPv6 support to this package.
 
-
+- [Installation](#installation)
+- [Usage](#usage)
+	- [Change Count](#change-count)
+	- [Change Interval](#change-interval)
+	- [Change Packet Size](#change-packet-size)
+	- [Change Timeout](#change-timeout)
+	- [Change Time To Live](#change-time-to-live)
+- [Testing](#testing)
+- [Changelog](#changelog)
+- [Contributing](#contributing)
+- [Security](#security)
+- [Credits](#credits)
+- [License](#license)
+- [Laravel Package Boilerplate](#laravel-package-boilerplate)
 
 ## Installation
 
@@ -138,15 +151,15 @@ $ping = Ping::Create('192.168.1.1')->TimeToLive(128)->Run();
 composer test
 ```
 
-### Changelog
+## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
-## Contributing
+# Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
-### Security
+## Security
 
 If you discover any security related issues, please email angel.campos.m@outlook.com instead of using the issue tracker.
 
