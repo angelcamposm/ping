@@ -5,7 +5,11 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/acamposm/ping.svg?style=flat-square)](https://scrutinizer-ci.com/g/acamposm/ping)
 [![Total Downloads](https://img.shields.io/packagist/dt/acamposm/ping.svg?style=flat-square)](https://packagist.org/packages/acamposm/ping)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+This ping class allow to make ping request from Laravel aplications, it is based on PING command from the linux iputils package.
+
+ping uses the ICMP protocol's mandatory ECHO_REQUEST datagram to elicit an ICMP ECHO_RESPONSE from a host or gateway. ECHO_REQUEST datagrams (pings) have an IP and ICMP header, followed by a struct timeval and then an arbitrary number ofpadbytes used to fill out the packet.
+
+At this moment, only IPv4 is supported but i plan to add IPv6 support to this package.
 
 ## Installation
 
@@ -18,6 +22,7 @@ composer require acamposm/ping
 ## Usage
 
 ``` php
+// Basic usage with options by default 
 $ping = Ping::Create('192.168.1.1')->Run();
 
 var_dump($ping);
@@ -81,7 +86,49 @@ var_dump($ping);
    }
 ```
 
-Change
+### Change Count
+
+Stop after sending count ECHO_REQUEST packets. With deadline option, ping waits for count ECHO_REPLY packets, until the timeout expires.
+
+``` php
+// Change the number of packets to send to 10
+$ping = Ping::Create('192.168.1.1')->Count(10)->Run();
+```
+
+### Change Interval
+
+Wait interval seconds between sending each packet. The default is to wait for one second between each packet normally, or not to wait in flood mode. Only super-user may set interval to values less than 0.2 seconds.
+
+``` php
+// Change interval to 0.5 seconds between each packet
+$ping = Ping::Create('192.168.1.1')->Interval(0.5)->Run();
+```
+
+### Change Packet Size
+
+Specifies the number of data bytes to be sent. The default is 56, which translates into 64 ICMP data bytes when combined with the 8 bytes of ICMP header data.
+
+``` php
+// Change packet size to 128
+$ping = Ping::Create('192.168.1.1')->PacketSize(128)->Run();
+```
+
+### Change Timeout
+
+Time to wait for a response, in seconds. The option affects only timeout in absence of any responses, otherwise ping waits for two RTTs.
+
+``` php
+//
+$ping = Ping::Create('')->Timeout(10)->Run();
+```
+
+### Change Time To Live
+
+ping only. Set the IP Time to Live.
+
+``` php
+$ping = Ping::Create('192.168.1.1')->TimeToLive(128)->Run();
+```
 
 ### Testing
 
