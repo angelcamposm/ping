@@ -1,0 +1,54 @@
+{
+    "name": "acamposm/ping",
+    "description": "Ping uses the ICMP protocol's mandatory ECHO_REQUEST datagram to elicit an ICMP ECHO_RESPONSE from a host or gateway.",
+    "keywords": [
+        "acamposm",
+        "ping"
+    ],
+    "homepage": "https://github.com/angelcamposm/ping",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Angel Campos",
+            "email": "angel.campos.m@outlook.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Acamposm\\Ping\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Acamposm\\Ping\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Acamposm\\Ping\\PingServiceProvider"
+            ],
+            "aliases": {
+                "Ping": "Acamposm\\Ping\\PingFacade"
+            }
+        }
+    }
+}
