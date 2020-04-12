@@ -36,69 +36,11 @@ composer require acamposm/ping
 
 ## Usage
 
+For basic usage you only need to create with an ip address as a first argument and run...
+
 ``` php
 // Basic usage with options by default 
 $ping = Ping::Create('192.168.1.1')->Run();
-
-var_dump($ping);
-=> {#1586
-     +"latency": 37.464,
-     +"round_trip_time": [
-       "min" => 36.988,
-       "avg" => 37.464,
-       "max" => 38.19,
-       "mdev" => 0.304,
-     ],
-     +"sequence": [
-       2 => 37.4,
-       3 => 37.4,
-       4 => 37.4,
-       5 => 37.4,
-       6 => 37.6,
-       7 => 38.2,
-       8 => 37.4,
-       9 => 37.6,
-       10 => 37.6,
-       12 => 37.3,
-       13 => 36.1,
-     ],
-     +"statistics": [
-       "packets_transmitted" => 13,
-       "packets_received" => 11,
-       "packet_loss" => 15.3846,
-       "time" => 93,
-     ],
-     +"raw": [
-       "PING www.witigos.es (217.160.0.129) 128(156) bytes of data.",
-       "36 bytes from 217.160.0.129: icmp_seq=2 ttl=53 time=37.4 ms",
-       "36 bytes from 217.160.0.129: icmp_seq=3 ttl=53 time=37.4 ms",
-       "36 bytes from 217.160.0.129: icmp_seq=4 ttl=53 time=37.4 ms",
-       "36 bytes from 217.160.0.129: icmp_seq=5 ttl=53 time=37.4 ms",
-       "36 bytes from 217.160.0.129: icmp_seq=6 ttl=53 time=37.6 ms",
-       "36 bytes from 217.160.0.129: icmp_seq=7 ttl=53 time=38.2 ms",
-       "36 bytes from 217.160.0.129: icmp_seq=8 ttl=53 time=37.4 ms",
-       "36 bytes from 217.160.0.129: icmp_seq=9 ttl=53 time=37.6 ms",
-       "36 bytes from 217.160.0.129: icmp_seq=10 ttl=53 time=37.6 ms",
-       "36 bytes from 217.160.0.129: icmp_seq=12 ttl=53 time=37.3 ms",
-       "36 bytes from 217.160.0.129: icmp_seq=13 ttl=53 time=36.10 ms",
-       "",
-       "-- www.witigos.es ping statistics ---",
-       "13 packets transmitted, 11 received, 15.3846% packet loss, time 93ms",
-       "rtt min/avg/max/mdev = 36.988/37.464/38.190/0.304 ms",
-     ],
-     +"options": {#1587
-       +"count": 13,
-       +"interval": 1,
-       +"packet_size": 128,
-       +"timeout": 5,
-       +"time_to_live": 128,
-     },
-     +"time_taken": [
-       "start" => "12-04-2020 16:52:54.387000",
-       "stop" => "12-04-2020 16:52:54.387000",
-       "time" => 1.1920928955078E-5,
-     ],
-   }
 ```
 
 ### Change Count
@@ -133,8 +75,8 @@ $ping = Ping::Create('192.168.1.1')->PacketSize(128)->Run();
 Time to wait for a response, in seconds. The option affects only timeout in absence of any responses, otherwise ping waits for two RTTs.
 
 ``` php
-//
-$ping = Ping::Create('')->Timeout(10)->Run();
+// Change timeout to 10 seconds
+$ping = Ping::Create('192.168.1.1')->Timeout(10)->Run();
 ```
 
 ### Change Time To Live
@@ -142,7 +84,76 @@ $ping = Ping::Create('')->Timeout(10)->Run();
 ping only. Set the IP Time to Live.
 
 ``` php
+// Change Time To Live to 128
 $ping = Ping::Create('192.168.1.1')->TimeToLive(128)->Run();
+```
+
+## Sample response
+
+Here you can see a sample of an exit of the command.
+
+``` php
+// Ping to our gateway
+$ping = Ping::Create('192.168.1.1')->Run();
+var_dump($ping);
+=> {#1586
+    +"latency": 37.464,
+    +"round_trip_time": [
+		"min" => 36.988,
+		"avg" => 37.464,
+		"max" => 38.19,
+		"mdev" => 0.304,
+	],
+	+"sequence": [
+		2 => 37.4,
+		3 => 37.4,
+		4 => 37.4,
+		5 => 37.4,
+		6 => 37.6,
+		7 => 38.2,
+		8 => 37.4,
+		9 => 37.6,
+		10 => 37.6,
+		12 => 37.3,
+		13 => 36.1,
+    ],
+    +"statistics": [
+		"packets_transmitted" => 13,
+		"packets_received" => 11,
+		"packet_loss" => 15.3846,
+		"time" => 93,
+    ],
+    +"raw": [
+		"PING www.witigos.es (217.160.0.129) 128(156) bytes of data.",
+		"36 bytes from 217.160.0.129: icmp_seq=2 ttl=53 time=37.4 ms",
+		"36 bytes from 217.160.0.129: icmp_seq=3 ttl=53 time=37.4 ms",
+		"36 bytes from 217.160.0.129: icmp_seq=4 ttl=53 time=37.4 ms",
+		"36 bytes from 217.160.0.129: icmp_seq=5 ttl=53 time=37.4 ms",
+		"36 bytes from 217.160.0.129: icmp_seq=6 ttl=53 time=37.6 ms",
+		"36 bytes from 217.160.0.129: icmp_seq=7 ttl=53 time=38.2 ms",
+		"36 bytes from 217.160.0.129: icmp_seq=8 ttl=53 time=37.4 ms",
+		"36 bytes from 217.160.0.129: icmp_seq=9 ttl=53 time=37.6 ms",
+		"36 bytes from 217.160.0.129: icmp_seq=10 ttl=53 time=37.6 ms",
+		"36 bytes from 217.160.0.129: icmp_seq=12 ttl=53 time=37.3 ms",
+		"36 bytes from 217.160.0.129: icmp_seq=13 ttl=53 time=36.10 ms",
+		"",
+		"-- www.witigos.es ping statistics ---",
+		"13 packets transmitted, 11 received, 15.3846% packet loss, time 93ms",
+		"rtt min/avg/max/mdev = 36.988/37.464/38.190/0.304 ms",
+    ],
+    +"options": {#1587
+		+"count": 13,
+		+"interval": 1,
+		+"packet_size": 128,
+		+"timeout": 5,
+		+"time_to_live": 128,
+    },
+    +"time_taken": [
+		"start" => "12-04-2020 16:52:54.387000",
+		"stop" => "12-04-2020 16:52:54.387000",
+		"time" => 1.1920928955078E-5,
+	],
+}
 ```
 
 ### Testing
