@@ -1,6 +1,6 @@
 # Very short description of the package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/acamposm/ping.svg?style=flat-square)](https://packagist.org/packages/acamposm/ping)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/acamposm/ping.svg?style=flat-square)](https://packagist.org/packages/acamposm/ping#v0.0.1)
 [![Build Status](https://img.shields.io/travis/acamposm/ping/master.svg?style=flat-square)](https://travis-ci.org/acamposm/ping)
 [![Quality Score](https://img.shields.io/scrutinizer/g/acamposm/ping.svg?style=flat-square)](https://scrutinizer-ci.com/g/acamposm/ping)
 [![Total Downloads](https://img.shields.io/packagist/dt/acamposm/ping.svg?style=flat-square)](https://packagist.org/packages/acamposm/ping)
