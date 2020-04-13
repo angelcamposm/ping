@@ -98,14 +98,14 @@ class Ping
      */
     public function GetPingOptions()
     {
-        $options = new stdClass();
-        $options->count = $this->count;
-        $options->interval = $this->interval;
-        $options->packet_size = $this->packet_size;
-        $options->timeout = $this->timeout;
-        $options->time_to_live = $this->time_to_live;
-
-        return $options;
+        return [
+            'count' => $this->count,
+            'interval' => $this->interval,
+            'packet_size' => $this->packet_size,
+            'target_ip' => $this->host,
+            'timeout' => $this->timeout,
+            'time_to_live' => $this->time_to_live,
+        ];
     }
 
     /**

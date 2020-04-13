@@ -5,6 +5,13 @@ namespace Acamposm\Ping;
 class PingParser
 {
     /**
+     * Determine if is a Windows based Operating System
+     * 
+     * @var boolean
+     */
+    protected $is_windows_os = false;
+
+    /**
      * Latency.
      *
      * @var  float
@@ -41,6 +48,11 @@ class PingParser
 
     public function __construct($ping)
     {
+        // Determine if is a Windows based Operating System
+        if (in_array(PHP_OS, array('WIN32', 'WINNT', 'Windows'))) {
+            $this->is_windows_os = true;
+        }
+
         $this->round_trip_time = $this->GetRoundTripTimeStatistics($ping);
         // requires $this->round_trip_time
         $this->latency = $this->GetLatency();
@@ -81,6 +93,24 @@ class PingParser
     {
         $lines = count($ping);
 
+        if ($this->is_windows_os) {
+
+            $ping_statistics = explode(', ', explode(':', $ping[$lines - 4])[1]);
+
+            $transmitted = (int) explode(' = ', $ping_statistics[0])[1];
+
+            $received = (int) explode(' = ', $ping_statistics[1])[1];
+
+            $lost = (int) explode(' = ', $ping_statistics[2])[1];
+
+            return [
+                'packets_transmitted' => $transmitted,
+                'packets_received' => $received,
+                'packet_loss' => $lost,
+                'packet_loss' => (int) (100 - (($received * 100) / $transmitted))
+            ];
+        }
+
         $search = [
             'packets transmitted',
             'received',
@@ -110,6 +140,21 @@ class PingParser
     {
         $lines = count($ping);
 
+        if ($this->is_windows_os) {
+            
+            $rtt = explode(',', str_replace('ms', '', $ping[$lines - 1]));
+
+            $min = (float) explode(' = ', $rtt[0])[1] / 1000;
+            $max = (float) explode(' = ', $rtt[1])[1] / 1000;
+            $avg = (float) explode(' = ', $rtt[2])[1] / 1000;
+
+            return [
+                'avg' => $avg,
+                'min' => $min,
+                'max' => $max,
+            ];
+        }
+
         $search = ['rtt', 'ms'];
 
         $result = trim(str_replace($search, '', $ping[$lines - 1]));
@@ -135,6 +180,35 @@ class PingParser
     private function GetSequence($ping): array
     {
         $items_count = count($ping);
+
+        if ($this->is_windows_os) {
+
+            // First remove items from final of the array
+            unset($ping[$items_count - 6]);
+            unset($ping[$items_count - 5]);
+            unset($ping[$items_count - 4]);
+            unset($ping[$items_count - 3]);
+            unset($ping[$items_count - 2]);
+            unset($ping[$items_count - 1]);
+
+            // Then remove first items
+            unset($ping[1]);
+            unset($ping[0]);
+
+            $key = 0;
+          
+            foreach ($ping as $row) {
+                if (strpos(':', $row) === false) {
+                    $sequence[$key] = $row;
+                } else {
+                    $sequence[$key] = explode(': ', $row)[1];
+                }
+
+                $key++;
+            }
+
+            return $sequence;
+        }
 
         // Remove unnecesary index
         unset($ping[0]);
