@@ -29,9 +29,9 @@ class PingCommand
     protected $interval = 1;
 
     /**
-     * Determine if is a Windows based Operating System
-     * 
-     * @var boolean
+     * Determine if is a Windows based Operating System.
+     *
+     * @var bool
      */
     protected $is_windows_os = false;
 
@@ -67,7 +67,7 @@ class PingCommand
         $this->host = $host;
 
         // Determine if is a Windows based Operating System
-        if (in_array(PHP_OS, array('WIN32', 'WINNT', 'Windows'))) {
+        if (in_array(PHP_OS, ['WIN32', 'WINNT', 'Windows'])) {
             $this->is_windows_os = true;
         }
     }
@@ -152,22 +152,22 @@ class PingCommand
         if ($this->is_windows_os) {
             return implode(' ', [
                 'ping',
-                '-n ' . escapeshellcmd($this->count),
-                '-l ' . escapeshellcmd($this->packet_size),
-                '-i ' . escapeshellcmd($this->time_to_live),
-                '-w ' . escapeshellcmd($this->timeout),
-                escapeshellcmd($this->host)
+                '-n '.escapeshellcmd($this->count),
+                '-l '.escapeshellcmd($this->packet_size),
+                '-i '.escapeshellcmd($this->time_to_live),
+                '-w '.escapeshellcmd($this->timeout),
+                escapeshellcmd($this->host),
             ]);
         }
 
         return implode(' ', [
             'ping -4 -n',
-            '-c ' . escapeshellcmd($this->count),
-            '-i ' . escapeshellcmd($this->interval),
-            '-s ' . escapeshellcmd($this->packet_size),
-            '-t ' . escapeshellcmd($this->time_to_live),
-            '-W ' . escapeshellcmd($this->timeout),
-            escapeshellcmd($this->host)
+            '-c '.escapeshellcmd($this->count),
+            '-i '.escapeshellcmd($this->interval),
+            '-s '.escapeshellcmd($this->packet_size),
+            '-t '.escapeshellcmd($this->time_to_live),
+            '-W '.escapeshellcmd($this->timeout),
+            escapeshellcmd($this->host),
         ]);
     }
 }

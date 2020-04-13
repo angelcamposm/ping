@@ -5,9 +5,9 @@ namespace Acamposm\Ping;
 class PingParser
 {
     /**
-     * Determine if is a Windows based Operating System
-     * 
-     * @var boolean
+     * Determine if is a Windows based Operating System.
+     *
+     * @var bool
      */
     protected $is_windows_os = false;
 
@@ -49,7 +49,7 @@ class PingParser
     public function __construct($ping)
     {
         // Determine if is a Windows based Operating System
-        if (in_array(PHP_OS, array('WIN32', 'WINNT', 'Windows'))) {
+        if (in_array(PHP_OS, ['WIN32', 'WINNT', 'Windows'])) {
             $this->is_windows_os = true;
         }
 
@@ -94,7 +94,6 @@ class PingParser
         $lines = count($ping);
 
         if ($this->is_windows_os) {
-
             $ping_statistics = explode(', ', explode(':', $ping[$lines - 4])[1]);
 
             $transmitted = (int) explode(' = ', $ping_statistics[0])[1];
@@ -107,7 +106,7 @@ class PingParser
                 'packets_transmitted' => $transmitted,
                 'packets_received' => $received,
                 'packet_loss' => $lost,
-                'packet_loss' => (int) (100 - (($received * 100) / $transmitted))
+                'packet_loss' => (int) (100 - (($received * 100) / $transmitted)),
             ];
         }
 
@@ -141,7 +140,6 @@ class PingParser
         $lines = count($ping);
 
         if ($this->is_windows_os) {
-            
             $rtt = explode(',', str_replace('ms', '', $ping[$lines - 1]));
 
             $min = (float) explode(' = ', $rtt[0])[1] / 1000;
@@ -196,7 +194,7 @@ class PingParser
             unset($ping[0]);
 
             $key = 0;
-          
+
             foreach ($ping as $row) {
                 if (strpos(':', $row) === false) {
                     $sequence[$key] = $row;
