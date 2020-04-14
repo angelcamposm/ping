@@ -30,11 +30,13 @@ At this moment, only IPv4 is supported but i plan to add IPv6 support to this pa
 
 ## Installation
 
-You can install the package via composer:
+You can install the package via [composer](https://getcomposer.org/):
 
 ```bash
 composer require acamposm/ping
 ```
+
+***Note:*** I follow [semver](https://semver.org/) for the releases.
 
 ## Usage
 
@@ -94,10 +96,13 @@ $ping = Ping::Create('192.168.1.1')->TimeToLive(128)->Run();
 
 Here you can see a sample of an exit of the command.
 
+### Sample output on Linux based servers
+
 ``` php
-// Ping to our gateway
+// Sample output from Linux based server
 $ping = Ping::Create('192.168.1.1')->Run();
-var_dump($ping);
+
+dd($ping);
 => {#1586
     +"latency": 37.464,
     +"round_trip_time": [
@@ -158,6 +163,61 @@ var_dump($ping);
 }
 ```
 
+### Sample output on Windows based servers.
+
+``` php
+// Sample output from Windows Based Server
+$ping = Ping::Create('192.168.1.1')->Run();
+
+dd($ping);
+{#251 ▼
+  +"latency": 0.001
+  +"round_trip_time": array:3 [▼
+    "avg" => 0.001
+    "min" => 0.001
+    "max" => 0.001
+  ]
+  +"sequence": array:4 [▼
+    0 => "Respuesta desde 192.168.1.1: bytes=64 tiempo=1ms TTL=63"
+    1 => "Respuesta desde 192.168.1.1: bytes=64 tiempo=1ms TTL=63"
+    2 => "Respuesta desde 192.168.1.1: bytes=64 tiempo=1ms TTL=63"
+    3 => "Respuesta desde 192.168.1.1: bytes=64 tiempo=1ms TTL=63"
+  ]
+  +"statistics": array:3 [▼
+    "packets_transmitted" => 4
+    "packets_received" => 4
+    "packet_loss" => 0
+  ]
+  +"raw": array:12 [▼
+    0 => ""
+    1 => "Haciendo ping a 192.168.1.1 con 64 bytes de datos:"
+    2 => "Respuesta desde 192.168.1.1: bytes=64 tiempo=1ms TTL=63"
+    3 => "Respuesta desde 192.168.1.1: bytes=64 tiempo=1ms TTL=63"
+    4 => "Respuesta desde 192.168.1.1: bytes=64 tiempo=1ms TTL=63"
+    5 => "Respuesta desde 192.168.1.1: bytes=64 tiempo=1ms TTL=63"
+    6 => ""
+    7 => b"Estad¡sticas de ping para 192.168.1.1:"
+    8 => "    Paquetes: enviados = 4, recibidos = 4, perdidos = 0"
+    9 => "    (0% perdidos),"
+    10 => "Tiempos aproximados de ida y vuelta en milisegundos:"
+    11 => b"    M¡nimo = 1ms, M ximo = 1ms, Media = 1ms"
+  ]
+  +"options": array:6 [▼
+    "count" => 4
+    "interval" => 1
+    "packet_size" => 64
+    "target_ip" => "192.168.1.1"
+    "timeout" => 5
+    "time_to_live" => 128
+  ]
+  +"time_taken": array:3 [▼
+    "start" => "13-04-2020 11:49:38.765600"
+    "stop" => "13-04-2020 11:49:41.822600"
+    "time" => 3.0569541454315
+  ]
+}
+```
+
 ### Testing
 
 ``` bash
@@ -170,11 +230,11 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 # Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+Thank you for considering to contribute to the improvement of the package. Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
-## Security
+## Security Vulnerabilities
 
-If you discover any security related issues, please email angel.campos.m@outlook.com instead of using the issue tracker.
+If you discover any security related issues, please send an e-mail to Angel Campos via angel.campos.m@outlook.com instead of using the issue tracker. All security vulnerabilities will be promptly addressed.
 
 ## Credits
 
@@ -183,7 +243,7 @@ If you discover any security related issues, please email angel.campos.m@outlook
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The package Ping is open-source package and is licensed under The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
 ## Laravel Package Boilerplate
 
