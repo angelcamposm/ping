@@ -36,7 +36,7 @@ You can install the package via [composer](https://getcomposer.org/):
 composer require acamposm/ping
 ```
 
-***Note:*** I follow [semver](https://semver.org/) for the releases.
+***Note:*** We try to follow [SemVer v2.0.0](https://semver.org/).
 
 ## Usage
 
