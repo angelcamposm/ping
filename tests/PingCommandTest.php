@@ -22,7 +22,7 @@ class PingCommandTest extends TestCase
 	/** @test */
 	public function isPingCommandClass()
 	{
-		$command = PingCommand::Create(Self::HOST);
+		$command = PingCommand::Create(PingCommandTest::HOST);
 
 		$this->assertInstanceOf(PingCommand::class, $command);
 	}
@@ -30,28 +30,28 @@ class PingCommandTest extends TestCase
 	/** @test */
 	public function canGetLinuxCommand()
 	{
-		$command = PingCommand::Create(Self::HOST)->LinuxCommand();
+		$command = PingCommand::Create(PingCommandTest::HOST)->CommandForLinux();
 
-		$this->assertStringContainsString(Self::HOST, $command);
+		$this->assertStringContainsString(PingCommandTest::HOST, $command);
 	}
 
 	/** @test */
 	public function canGetWindowsCommand()
 	{
-		$command = PingCommand::Create(Self::HOST)->WindowsCommand();
+		$command = PingCommand::Create(PingCommandTest::HOST)->CommandForWindows();
 
-		$this->assertStringContainsString(Self::HOST, $command);
+		$this->assertStringContainsString(PingCommandTest::HOST, $command);
 	}
 
 	/** @test */
 	public function canChangeCount()
 	{
-		$command = PingCommand::Create(Self::HOST)->Count(Self::COUNT);
+		$command = PingCommand::Create(PingCommandTest::HOST)->Count(PingCommandTest::COUNT);
 
         if (in_array(PHP_OS, ['WIN32', 'WINNT', 'Windows'])) {
-			$this->assertStringContainsString('-n '.Self::COUNT, $command->WindowsCommand());
+			$this->assertStringContainsString('-n '.PingCommandTest::COUNT, $command->CommandForWindows());
         } else {
-			$this->assertStringContainsString('-c '.Self::COUNT, $command->LinuxCommand());
+			$this->assertStringContainsString('-c '.PingCommandTest::COUNT, $command->CommandForLinux());
         }
 
 	}
@@ -59,25 +59,25 @@ class PingCommandTest extends TestCase
 	/** @test */
 	public function canChangeInterval()
 	{
-		$command = PingCommand::Create(Self::HOST)->Interval(Self::INTERVAL);
+		$command = PingCommand::Create(PingCommandTest::HOST)->Interval(PingCommandTest::INTERVAL);
 
         if (in_array(PHP_OS, ['WIN32', 'WINNT', 'Windows'])) {
         	// AssertTrue because no interval can defined in windows ping
         	$this->assertTrue(true);
         } else {
-			$this->assertStringContainsString('-i '.Self::INTERVAL, $command->LinuxCommand());
+			$this->assertStringContainsString('-i '.PingCommandTest::INTERVAL, $command->CommandForLinux());
         }
 	}
 
 	/** @test */
 	public function canChangePacketSize()
 	{
-		$command = PingCommand::Create(Self::HOST)->PacketSize(Self::SIZE);
+		$command = PingCommand::Create(PingCommandTest::HOST)->PacketSize(PingCommandTest::SIZE);
 
         if (in_array(PHP_OS, ['WIN32', 'WINNT', 'Windows'])) {
-			$this->assertStringContainsString('-l '.Self::SIZE, $command->WindowsCommand());
+			$this->assertStringContainsString('-l '.PingCommandTest::SIZE, $command->CommandForWindows());
         } else {
-			$this->assertStringContainsString('-s '.Self::SIZE, $command->LinuxCommand());
+			$this->assertStringContainsString('-s '.PingCommandTest::SIZE, $command->CommandForLinux());
         }
 
 	}
@@ -85,12 +85,12 @@ class PingCommandTest extends TestCase
 	/** @test */
 	public function canChangeTimeout()
 	{
-		$command = PingCommand::Create(Self::HOST)->Timeout(Self::TIMEOUT);
+		$command = PingCommand::Create(PingCommandTest::HOST)->Timeout(PingCommandTest::TIMEOUT);
 
         if (in_array(PHP_OS, ['WIN32', 'WINNT', 'Windows'])) {
-			$this->assertStringContainsString('-w '.Self::TIMEOUT, $command->WindowsCommand());
+			$this->assertStringContainsString('-w '.PingCommandTest::TIMEOUT, $command->CommandForWindows());
         } else {
-			$this->assertStringContainsString('-W '.Self::TIMEOUT, $command->LinuxCommand());
+			$this->assertStringContainsString('-W '.PingCommandTest::TIMEOUT, $command->CommandForLinux());
         }
 
 	}
@@ -98,12 +98,12 @@ class PingCommandTest extends TestCase
 	/** @test */
 	public function canChangeTimeToLive()
 	{
-		$command = PingCommand::Create(Self::HOST)->TimeToLive(Self::TTL);
+		$command = PingCommand::Create(PingCommandTest::HOST)->TimeToLive(PingCommandTest::TTL);
 
         if (in_array(PHP_OS, ['WIN32', 'WINNT', 'Windows'])) {
-			$this->assertStringContainsString('-i '.Self::TTL, $command->WindowsCommand());
+			$this->assertStringContainsString('-i '.PingCommandTest::TTL, $command->CommandForWindows());
         } else {
-			$this->assertStringContainsString('-t '.Self::TTL, $command->LinuxCommand());
+			$this->assertStringContainsString('-t '.PingCommandTest::TTL, $command->CommandForLinux());
         }
 	}
 }

@@ -13,6 +13,9 @@
 
 namespace Acamposm\Ping;
 
+use \Exception;
+use \stdClass;
+
 class Ping
 {
     /**
@@ -83,7 +86,7 @@ class Ping
     /**
      * An object to allow us to control the total execution time.
      *
-     * @var  stdClass
+     * @var  Timer
      */
     private $timer;
 
@@ -106,11 +109,11 @@ class Ping
     /**
      * Return an object with the options configured for the Ping (for debug purposes).
      *
-     * @return  stdClass
+     * @return  object
      */
-    public function GetPingOptions()
+    public function GetPingOptions(): stdClass
     {
-        return [
+        return (object) [
             'count' => $this->count,
             'interval' => $this->interval,
             'packet_size' => $this->packet_size,
@@ -124,9 +127,9 @@ class Ping
      * Set the total of packets to sent.
      *
      * @param  int  $count
-     * @return  $this
+     * @return  Ping
      */
-    public function Count(int $count)
+    public function Count(int $count): Ping
     {
         $this->count = $count;
 
@@ -136,10 +139,10 @@ class Ping
     /**
      * Set interval in seconds between each packet.
      *
-     * @param  int  $interval
-     * @return  $this
+     * @param  float  $interval
+     * @return  Ping
      */
-    public function Interval(float $interval)
+    public function Interval(float $interval): Ping
     {
         $this->interval = $interval;
 
@@ -150,9 +153,9 @@ class Ping
      * Set the packet size.
      *
      * @param  int  $size
-     * @return  $this
+     * @return  Ping
      */
-    public function PacketSize(int $size)
+    public function PacketSize(int $size): Ping
     {
         $this->packet_size = $size;
 
@@ -163,9 +166,9 @@ class Ping
      * Set the time to wait for a response.
      *
      * @param  int  $seconds
-     * @return  $this
+     * @return  Ping
      */
-    public function Timeout(int $seconds)
+    public function Timeout(int $seconds): Ping
     {
         $this->timeout = $seconds;
 
@@ -176,9 +179,9 @@ class Ping
      * Set the TTL value of the IP packet.
      *
      * @param  int  $ttl
-     * @return $this
+     * @return Ping
      */
-    public function TimeToLive(int $ttl)
+    public function TimeToLive(int $ttl): Ping
     {
         $this->time_to_live = $ttl;
 
@@ -199,22 +202,23 @@ class Ping
                                 ->Timeout($this->timeout)
                                 ->TimeToLive($this->time_to_live);
 
-        if ($is_windows_os) {
-            return $command->WindowsCommand();
+        if ($this->is_windows_os) {
+            return $command->CommandForWindows();
         }
 
-        return $command->LinuxCommand();
+        return $command->CommandForLinux();
     }
 
     /**
      * Call to specific parser based on operating system
      *
-     * @param  array  $ping
+     * @param array $ping
+     * @return  stdClass
      */
-    private function ParseResults(array $ping): object
+    private function ParseResults(array $ping): stdClass
     {
-        if ($is_windows_os) {
-            return PingParserForWindows::Create($exec_result)->Parse();
+        if ($this->is_windows_os) {
+            return PingParserForWindows::Create($ping)->Parse();
         }
 
         return PingParserForLinux::Create($ping)->Parse();
@@ -223,21 +227,22 @@ class Ping
     /**
      * Ping a host.
      *
-     * @return  void
+     * @throws Exception
+     * @return  stdClass
      */
-    public function Run()
+    public function Run(): stdClass
     {
         $command = $this->GetPingCommand();
 
         exec($command, $exec_result);
 
-        $this->timer->stop();
+        $this->timer->Stop();
 
-        $results = $this->ParseResults();
+        $results = $this->ParseResults($exec_result);
 
         // Append to the parsed data
         $results->options = $this->GetPingOptions();
-        $results->time_taken = $this->timer->Results();
+        $results->time_taken = $this->timer->GetResults();
 
         return $results;
     }

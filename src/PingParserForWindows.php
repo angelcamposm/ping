@@ -2,6 +2,8 @@
 
 namespace Acamposm\Ping;
 
+use \stdClass;
+
 class PingParserForWindows extends PingParser
 {
     public function __construct(array $ping)
@@ -23,9 +25,9 @@ class PingParserForWindows extends PingParser
      * Return an array with the PING statistics.
      *
      * @param  array  $ping
-     * @return  array
+     * @return  stdClass
      */
-    private function GetPingStatistics($ping): object
+    private function GetPingStatistics($ping): stdClass
     {
         $lines = count($ping);
 
@@ -40,7 +42,7 @@ class PingParserForWindows extends PingParser
         return (object) [
             'packets_transmitted' => $transmitted,
             'packets_received' => $received,
-            'packet_loss' => $lost,
+            'packets_lost' => $lost,
             'packet_loss' => (int) (100 - (($received * 100) / $transmitted)),
         ];
     }
@@ -91,12 +93,10 @@ class PingParserForWindows extends PingParser
 
         $key = 0;
 
+        $sequence = [];
+
         foreach ($ping as $row) {
-            if (strpos(':', $row) === false) {
-                $sequence[$key] = $row;
-            } else {
-                $sequence[$key] = explode(': ', $row)[1];
-            }
+            $sequence[$key] = $row;
 
             $key++;
         }

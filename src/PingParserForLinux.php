@@ -2,6 +2,8 @@
 
 namespace Acamposm\Ping;
 
+use \stdClass;
+
 class PingParserForLinux extends PingParser
 {
     public function __construct(array $ping)
@@ -25,10 +27,14 @@ class PingParserForLinux extends PingParser
      * @param  array  $ping
      * @return  stdClass
      */
-    private function GetPingStatistics($ping): object
+    private function GetPingStatistics(array $ping): stdClass
     {
         $lines = count($ping);
 
+        /**
+         * Text to be removed from the strings
+         * @var array $search
+         */
         $search = [
             'packets transmitted',
             'received',
@@ -40,10 +46,19 @@ class PingParserForLinux extends PingParser
 
         $statistics = explode(', ', str_replace($search, '', $ping[$lines - 2]));
 
+        $transmitted = (int) trim($statistics[0]);
+
+        $received = (int) trim($statistics[1]);
+
+        $lost = $transmitted - $received;
+
+        $packet_loss = $statistics[2];
+
         return (object) [
-            'packets_transmitted' => (int) $statistics[0],
-            'packets_received' => (int) $statistics[1],
-            'packet_loss' => (float) $statistics[2],
+            'packets_transmitted' => $transmitted,
+            'packets_received' => $received,
+            'packets_lost' => $lost,
+            'packet_loss' => (float) $packet_loss,
             'time' => (int) $statistics[3],
         ];
     }
@@ -54,17 +69,13 @@ class PingParserForLinux extends PingParser
      * @param  array  $ping
      * @return  stdClass
      */
-    private function GetRoundTripTimeStatistics($ping): object
+    private function GetRoundTripTimeStatistics(array $ping): stdClass
     {
         $lines = count($ping);
 
         $search = ['rtt', 'ms'];
 
         $result = trim(str_replace($search, '', $ping[$lines - 1]));
-
-        if (strlen($result) === 0) {
-            return [];
-        }
 
         $rtt = explode(' = ', $result);
 
@@ -78,13 +89,14 @@ class PingParserForLinux extends PingParser
     /**
      * Returns an array with de packet sequence and his latency.
      *
+     * @param  array  $ping
      * @return  array
      */
-    private function GetSequence($ping): array
+    private function GetSequence(array $ping): array
     {
         $items_count = count($ping);
 
-        // Remove unnecesary index
+        // Remove unnecessary index
         unset($ping[0]);
         unset($ping[$items_count - 4]);
         unset($ping[$items_count - 3]);

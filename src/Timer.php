@@ -3,6 +3,8 @@
 namespace Acamposm\Ping;
 
 use \DateTime;
+use \Exception;
+use \stdClass;
 
 /**
  * Utility Class to control time elapsed in commands.
@@ -28,7 +30,7 @@ class Timer
      *
      * @var  float
      */
-    protected $end;
+    protected $stop;
 
     public function __construct()
     {
@@ -37,30 +39,35 @@ class Timer
 
     /**
      * Start the Timer.
+     *
+     * @return  float
      */
-    public function Start()
+    public function Start(): float
     {
-        $this->start = microtime(true);
-
-        return $this->start;
+        return $this->start = microtime(true);
     }
 
     /**
      * Stop the Timer.
+     *
+     * @throws Exception
+     * @retun  float
      */
-    public function Stop()
+    public function Stop(): float
     {
-        $this->stop = microtime(true);
+        if (! isset($this->start)) {
+            throw new Exception('Timer not started.');
+        }
 
-        return $this->stop;
+        return $this->stop = microtime(true);
     }
 
     /**
      * Returns an array with the Timer details.
      *
-     * @return  array
+     * @return  stdClass
      */
-    public function GetResults(): array
+    public function GetResults(): stdClass
     {
         if (! isset($this->stop)) {
             $this->stop = microtime(true);
@@ -72,10 +79,16 @@ class Timer
 
         $time_elapsed = $this->stop - $this->start;
 
-        return [
-            'start' => $start->format($this->format),
-            'stop' => $stop->format($this->format),
-            'time' => $time_elapsed,
+        return (object) [
+            'start' => (object) [
+                'as_float' => $this->start,
+                'human_readable' => $start->format($this->format)
+            ],
+            'stop' => (object) [
+                'as_float' => $this->stop,
+                'human_readable' => $stop->format($this->format)
+            ],
+            'time' => (float) round($time_elapsed, 3, PHP_ROUND_HALF_DOWN),
         ];
     }
 }

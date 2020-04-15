@@ -28,11 +28,13 @@ class TimerTest extends TestCase
 	{
 		$timer = New Timer();
 
+		$timer->Start();
+
 		$this->assertIsFloat($timer->Stop());
 	}
 
 	/** @test */
-	public function getTimerGreatherThan()
+	public function getTimerGreaterThan()
 	{
 		$timer = New Timer();
 
@@ -54,7 +56,7 @@ class TimerTest extends TestCase
 
 		$stop = $timer->Stop();
 
-		$this->assertIsArray($timer->GetResults());
+		$this->assertIsObject($timer->GetResults());
 	}
 
     /** @test */
@@ -64,6 +66,6 @@ class TimerTest extends TestCase
 
 		$start = $timer->Start();
 
-		$this->assertIsArray($timer->GetResults());
+		$this->assertIsObject($timer->GetResults());
     }
 }

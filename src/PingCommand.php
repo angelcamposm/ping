@@ -71,9 +71,9 @@ class PingCommand
      * Set the total of packets to sent.
      *
      * @param  int  $count
-     * @return  Acamposm\PingCommand
+     * @return  PingCommand
      */
-    public function Count(int $count)
+    public function Count(int $count): PingCommand
     {
         $this->count = $count;
 
@@ -83,10 +83,10 @@ class PingCommand
     /**
      * Set interval in seconds between each packet.
      *
-     * @param  int  $interval
-     * @return  Acamposm\PingCommand
+     * @param  float  $interval
+     * @return  PingCommand
      */
-    public function Interval(float $interval)
+    public function Interval(float $interval): PingCommand
     {
         $this->interval = $interval;
 
@@ -97,9 +97,9 @@ class PingCommand
      * Set the packet size.
      *
      * @param  int  $size
-     * @return  Acamposm\PingCommand
+     * @return  PingCommand
      */
-    public function PacketSize(int $size)
+    public function PacketSize(int $size): PingCommand
     {
         $this->packet_size = $size;
 
@@ -110,9 +110,9 @@ class PingCommand
      * Set the time to wait for a response.
      *
      * @param  int  $seconds
-     * @return  Acamposm\PingCommand
+     * @return  PingCommand
      */
-    public function Timeout(int $seconds)
+    public function Timeout(int $seconds): PingCommand
     {
         $this->timeout = $seconds;
 
@@ -123,9 +123,9 @@ class PingCommand
      * Set the TTL value of the IP packet.
      *
      * @param  int  $ttl
-     * @return  Acamposm\PingCommand
+     * @return  PingCommand
      */
-    public function TimeToLive(int $ttl)
+    public function TimeToLive(int $ttl): PingCommand
     {
         $this->time_to_live = $ttl;
 
@@ -137,7 +137,7 @@ class PingCommand
      *
      * @return  string
      */
-    public function LinuxCommand(): string
+    public function CommandForLinux(): string
     {
         return implode(' ', [
             'ping',
@@ -154,7 +154,7 @@ class PingCommand
      *
      * @return  string
      */
-    public function WindowsCommand(): string
+    public function CommandForWindows(): string
     {
         return implode(' ', [
             'ping',

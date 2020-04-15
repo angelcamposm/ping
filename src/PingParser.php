@@ -2,6 +2,8 @@
 
 namespace Acamposm\Ping;
 
+use \stdClass;
+
 abstract class PingParser
 {
     /**
@@ -17,7 +19,7 @@ abstract class PingParser
      * @var  array
      */
     protected $round_trip_time = [];
-  
+
   	/**
      * Result of the PING
      *
@@ -49,7 +51,7 @@ abstract class PingParser
     public function __construct(array $ping)
     {
       	$this->raw = $ping;
-      
+
         return $this;
     }
 
@@ -76,24 +78,24 @@ abstract class PingParser
     /**
      * Returns the result of the Ping
      * Requires $this->statistics values.
-     * 
+     *
      *  @return  string
      */
     protected function GetResult(): string
     {
         if (empty($this->statistics)) {
-            return 'Unknown';  
+            return 'Unknown';
         }
-      
+
         return $this->statistics->packet_loss < 100 ? 'Ok' : 'Unreachable';
     }
 
     /**
      * Return a parsed object
      *
-     * @return  StdClass
+     * @return  stdClass
      */
-    public function Parse(): object
+    public function Parse(): stdClass
     {
         return (object) [
             'latency' => $this->latency,

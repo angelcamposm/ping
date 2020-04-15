@@ -18,7 +18,7 @@ class PingParserForLinuxTest extends TestCase
 	}
 
 	/** @test */
-	public function canParseWindowsPing()
+	public function canParseLinuxPing()
 	{
 		$ping = [
 			'PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.',
