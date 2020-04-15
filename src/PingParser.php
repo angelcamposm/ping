@@ -17,13 +17,13 @@ abstract class PingParser
      * @var  array
      */
     protected $round_trip_time = [];
-  
-  	/**
-     * Result of the PING
+
+    /**
+     * Result of the PING.
      *
      * @var  string
      */
-  	protected $result = '';
+    protected $result = '';
 
     /**
      * ICMP Sequence.
@@ -48,8 +48,8 @@ abstract class PingParser
 
     public function __construct(array $ping)
     {
-      	$this->raw = $ping;
-      
+        $this->raw = $ping;
+
         return $this;
     }
 
@@ -76,20 +76,20 @@ abstract class PingParser
     /**
      * Returns the result of the Ping
      * Requires $this->statistics values.
-     * 
+     *
      *  @return  string
      */
     protected function GetResult(): string
     {
         if (empty($this->statistics)) {
-            return 'Unknown';  
+            return 'Unknown';
         }
-      
+
         return $this->statistics->packet_loss < 100 ? 'Ok' : 'Unreachable';
     }
 
     /**
-     * Return a parsed object
+     * Return a parsed object.
      *
      * @return  StdClass
      */

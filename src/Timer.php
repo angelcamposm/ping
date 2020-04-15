@@ -2,7 +2,7 @@
 
 namespace Acamposm\Ping;
 
-use \DateTime;
+use DateTime;
 
 /**
  * Utility Class to control time elapsed in commands.
