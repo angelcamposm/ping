@@ -2,10 +2,13 @@
     "name": "acamposm/ping",
     "description": "Ping uses the ICMP protocol's mandatory ECHO_REQUEST datagram to elicit an ICMP ECHO_RESPONSE from a host or gateway.",
     "keywords": [
+        "icmp",
         "laravel",
+        "php",
         "ping"
     ],
     "homepage": "https://github.com/angelcamposm/ping",
+    "readme": "https://github.com/angelcamposm/ping/blob/master/README.md",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -13,6 +16,12 @@
             "name": "Angel Campos",
             "email": "angel.campos.m@outlook.com",
             "role": "Developer"
+        }
+    ],
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/angelcamposm/ping"
         }
     ],
     "require": {

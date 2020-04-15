@@ -2,6 +2,8 @@
 
 namespace Acamposm\Ping;
 
+use \DateTime;
+
 /**
  * Utility Class to control time elapsed in commands.
  */
@@ -30,7 +32,7 @@ class Timer
 
     public function __construct()
     {
-        $this->start = microtime(true);
+        return $this;
     }
 
     /**
@@ -39,6 +41,8 @@ class Timer
     public function Start()
     {
         $this->start = microtime(true);
+
+        return $this->start;
     }
 
     /**
@@ -47,6 +51,8 @@ class Timer
     public function Stop()
     {
         $this->stop = microtime(true);
+
+        return $this->stop;
     }
 
     /**
@@ -54,7 +60,7 @@ class Timer
      *
      * @return  array
      */
-    public function Results(): array
+    public function GetResults(): array
     {
         if (! isset($this->stop)) {
             $this->stop = microtime(true);

@@ -40,6 +40,13 @@ class Ping
     private $interval = 1;
 
     /**
+     * Determine if is a Windows based Operating System.
+     *
+     * @var bool
+     */
+    protected $is_windows_os = false;
+
+    /**
      * Specifies the number of data bytes to be sent.
      * The default is 56, which translates into 64 ICMP data bytes when
      * combined with the 8 bytes of ICMP header data.
@@ -82,6 +89,11 @@ class Ping
 
     public function __construct($host)
     {
+        // Determine if is a Windows based Operating System
+        if (in_array(PHP_OS, ['WIN32', 'WINNT', 'Windows'])) {
+            $this->is_windows_os = true;
+        }
+
         $this->host = $host;
         $this->timer = new Timer();
     }
@@ -174,35 +186,59 @@ class Ping
     }
 
     /**
-     * Ping a host.
+     * Returns the Ping command to be used
      *
-     * @return  void
+     * @return  string
      */
-    public function Run()
+    private function GetPingCommand(): string
     {
         $command = PingCommand::Create($this->host)
                                 ->Count($this->count)
                                 ->Interval($this->interval)
                                 ->PacketSize($this->packet_size)
                                 ->Timeout($this->timeout)
-                                ->TimeToLive($this->time_to_live)
-                                ->Command();
+                                ->TimeToLive($this->time_to_live);
+
+        if ($is_windows_os) {
+            return $command->WindowsCommand();
+        }
+
+        return $command->LinuxCommand();
+    }
+
+    /**
+     * Call to specific parser based on operating system
+     *
+     * @param  array  $ping
+     */
+    private function ParseResults(array $ping): object
+    {
+        if ($is_windows_os) {
+            return PingParserForWindows::Create($exec_result)->Parse();
+        }
+
+        return PingParserForLinux::Create($ping)->Parse();
+    }
+
+    /**
+     * Ping a host.
+     *
+     * @return  void
+     */
+    public function Run()
+    {
+        $command = $this->GetPingCommand();
 
         exec($command, $exec_result);
 
         $this->timer->stop();
 
-        // Process the results with the PingParser Class
-        $results = PingParser::Create($exec_result)->Parse();
+        $results = $this->ParseResults();
 
         // Append to the parsed data
         $results->options = $this->GetPingOptions();
         $results->time_taken = $this->timer->Results();
 
-        //if ($parser->IsUnreachable())
-        //{
-        //    $results->result = 'Host unreachable';
-        //}
         return $results;
     }
 }

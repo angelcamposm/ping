@@ -29,13 +29,6 @@ class PingCommand
     protected $interval = 1;
 
     /**
-     * Determine if is a Windows based Operating System.
-     *
-     * @var bool
-     */
-    protected $is_windows_os = false;
-
-    /**
      * Specifies the number of data bytes to be sent.
      * The default is 56, which translates into 64 ICMP data bytes when
      * combined with the 8 bytes of ICMP header data.
@@ -66,10 +59,7 @@ class PingCommand
     {
         $this->host = $host;
 
-        // Determine if is a Windows based Operating System
-        if (in_array(PHP_OS, ['WIN32', 'WINNT', 'Windows'])) {
-            $this->is_windows_os = true;
-        }
+        return $this;
     }
 
     public static function Create($host)
@@ -143,30 +133,35 @@ class PingCommand
     }
 
     /**
-     * Returns the Ping Command to be Used.
+     * Returns the Ping Command to be used in Linux based servers.
      *
      * @return  string
      */
-    public function Command(): string
+    public function LinuxCommand(): string
     {
-        if ($this->is_windows_os) {
-            return implode(' ', [
-                'ping',
-                '-n '.escapeshellcmd($this->count),
-                '-l '.escapeshellcmd($this->packet_size),
-                '-i '.escapeshellcmd($this->time_to_live),
-                '-w '.escapeshellcmd($this->timeout),
-                escapeshellcmd($this->host),
-            ]);
-        }
-
         return implode(' ', [
-            'ping -4 -n',
-            '-c '.escapeshellcmd($this->count),
-            '-i '.escapeshellcmd($this->interval),
-            '-s '.escapeshellcmd($this->packet_size),
-            '-t '.escapeshellcmd($this->time_to_live),
-            '-W '.escapeshellcmd($this->timeout),
+            'ping',
+            '-n '.escapeshellcmd($this->count),
+            '-l '.escapeshellcmd($this->packet_size),
+            '-i '.escapeshellcmd($this->time_to_live),
+            '-w '.escapeshellcmd($this->timeout),
+            escapeshellcmd($this->host),
+        ]);
+    }
+
+    /**
+     * Returns the Ping Command to be used in Windows based servers.
+     *
+     * @return  string
+     */
+    public function WindowsCommand(): string
+    {
+        return implode(' ', [
+            'ping',
+            '-n '.escapeshellcmd($this->count),
+            '-l '.escapeshellcmd($this->packet_size),
+            '-i '.escapeshellcmd($this->time_to_live),
+            '-w '.escapeshellcmd($this->timeout),
             escapeshellcmd($this->host),
         ]);
     }
