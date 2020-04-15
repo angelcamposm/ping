@@ -2,7 +2,7 @@
 
 namespace Acamposm\Ping;
 
-use \stdClass;
+use stdClass;
 
 abstract class PingParser
 {
@@ -20,12 +20,12 @@ abstract class PingParser
      */
     protected $round_trip_time = [];
 
-  	/**
-     * Result of the PING
+    /**
+     * Result of the PING.
      *
      * @var  string
      */
-  	protected $result = '';
+    protected $result = '';
 
     /**
      * ICMP Sequence.
@@ -50,7 +50,7 @@ abstract class PingParser
 
     public function __construct(array $ping)
     {
-      	$this->raw = $ping;
+        $this->raw = $ping;
 
         return $this;
     }

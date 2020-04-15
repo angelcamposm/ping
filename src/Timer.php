@@ -2,9 +2,9 @@
 
 namespace Acamposm\Ping;
 
-use \DateTime;
-use \Exception;
-use \stdClass;
+use DateTime;
+use Exception;
+use stdClass;
 
 /**
  * Utility Class to control time elapsed in commands.
@@ -82,11 +82,11 @@ class Timer
         return (object) [
             'start' => (object) [
                 'as_float' => $this->start,
-                'human_readable' => $start->format($this->format)
+                'human_readable' => $start->format($this->format),
             ],
             'stop' => (object) [
                 'as_float' => $this->stop,
-                'human_readable' => $stop->format($this->format)
+                'human_readable' => $stop->format($this->format),
             ],
             'time' => (float) round($time_elapsed, 3, PHP_ROUND_HALF_DOWN),
         ];
