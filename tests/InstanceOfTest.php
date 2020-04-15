@@ -12,37 +12,37 @@ use PHPUnit\Framework\TestCase;
 
 class InstanceOfTest extends TestCase
 {
-	/**
-	 * Use loopback IP for test as valid IP address
-	 *
-	 * @var  string
-	 */
-	protected $localhost = '127.0.0.1';
+    /**
+     * Use loopback IP for test as valid IP address.
+     *
+     * @var  string
+     */
+    protected $localhost = '127.0.0.1';
 
-	/** @test */
-	public function isPingClass()
-	{
-		$ping = new Ping($this->localhost);
+    /** @test */
+    public function isPingClass()
+    {
+        $ping = new Ping($this->localhost);
 
-		$this->assertInstanceOf(Ping::class, $ping);
-	}
+        $this->assertInstanceOf(Ping::class, $ping);
+    }
 
-	/** @test */
-	public function isPingCommandClass()
-	{
-		$command = new PingCommand($this->localhost);
+    /** @test */
+    public function isPingCommandClass()
+    {
+        $command = new PingCommand($this->localhost);
 
-		$this->assertInstanceOf(PingCommand::class, $command);
-	}
+        $this->assertInstanceOf(PingCommand::class, $command);
+    }
 
     /** @test */
     public function isPingParserForLinuxClass()
     {
-    	$ping = [];
+        $ping = [];
 
-    	$parser = new PingParserForLinux($ping);
+        $parser = new PingParserForLinux($ping);
 
-    	$this->assertInstanceOf(PingParserForLinux::class, $parser);
+        $this->assertInstanceOf(PingParserForLinux::class, $parser);
     }
 
     /** @test */
@@ -58,16 +58,16 @@ class InstanceOfTest extends TestCase
     /** @test */
     public function isPingFacadeClass()
     {
-    	$facade = new PingFacade();
+        $facade = new PingFacade();
 
-    	$this->assertInstanceOf(PingFacade::class, $facade);
+        $this->assertInstanceOf(PingFacade::class, $facade);
     }
 
     /** @test */
     public function isTimerClass()
     {
-    	$timer = new Timer();
+        $timer = new Timer();
 
-    	$this->assertInstanceOf(Timer::class, $timer);
+        $this->assertInstanceOf(Timer::class, $timer);
     }
 }

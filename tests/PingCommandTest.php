@@ -53,8 +53,7 @@ class PingCommandTest extends TestCase
         } else {
 			$this->assertStringContainsString('-c '.PingCommandTest::COUNT, $command->CommandForLinux());
         }
-
-	}
+    }
 
 	/** @test */
 	public function canChangeInterval()
@@ -79,8 +78,7 @@ class PingCommandTest extends TestCase
         } else {
 			$this->assertStringContainsString('-s '.PingCommandTest::SIZE, $command->CommandForLinux());
         }
-
-	}
+    }
 
 	/** @test */
 	public function canChangeTimeout()
@@ -92,8 +90,7 @@ class PingCommandTest extends TestCase
         } else {
 			$this->assertStringContainsString('-W '.PingCommandTest::TIMEOUT, $command->CommandForLinux());
         }
-
-	}
+    }
 
 	/** @test */
 	public function canChangeTimeToLive()

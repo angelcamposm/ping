@@ -91,7 +91,7 @@ abstract class PingParser
     }
 
     /**
-     * Return a parsed object
+     * Return a parsed object.
      *
      * @return  stdClass
      */

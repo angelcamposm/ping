@@ -189,7 +189,7 @@ class Ping
     }
 
     /**
-     * Returns the Ping command to be used
+     * Returns the Ping command to be used.
      *
      * @return  string
      */
@@ -210,7 +210,7 @@ class Ping
     }
 
     /**
-     * Call to specific parser based on operating system
+     * Call to specific parser based on operating system.
      *
      * @param array $ping
      * @return  stdClass
