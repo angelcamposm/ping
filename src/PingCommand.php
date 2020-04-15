@@ -73,7 +73,7 @@ class PingCommand
      * @param  int  $count
      * @return  PingCommand
      */
-    public function Count(int $count): PingCommand
+    public function Count(int $count): self
     {
         $this->count = $count;
 
@@ -86,7 +86,7 @@ class PingCommand
      * @param  float  $interval
      * @return  PingCommand
      */
-    public function Interval(float $interval): PingCommand
+    public function Interval(float $interval): self
     {
         $this->interval = $interval;
 
@@ -99,7 +99,7 @@ class PingCommand
      * @param  int  $size
      * @return  PingCommand
      */
-    public function PacketSize(int $size): PingCommand
+    public function PacketSize(int $size): self
     {
         $this->packet_size = $size;
 
@@ -112,7 +112,7 @@ class PingCommand
      * @param  int  $seconds
      * @return  PingCommand
      */
-    public function Timeout(int $seconds): PingCommand
+    public function Timeout(int $seconds): self
     {
         $this->timeout = $seconds;
 
@@ -125,7 +125,7 @@ class PingCommand
      * @param  int  $ttl
      * @return  PingCommand
      */
-    public function TimeToLive(int $ttl): PingCommand
+    public function TimeToLive(int $ttl): self
     {
         $this->time_to_live = $ttl;
 

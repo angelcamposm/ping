@@ -7,65 +7,65 @@ use PHPUnit\Framework\TestCase;
 
 class TimerTest extends TestCase
 {
-	/** @test */
-	public function isTimerClass()
-	{
-		$timer = New Timer();
+    /** @test */
+    public function isTimerClass()
+    {
+        $timer = new Timer();
 
-		$this->assertInstanceOf(Timer::class, $timer);
-	}
+        $this->assertInstanceOf(Timer::class, $timer);
+    }
 
-	/** @test */
-	public function canStartTimer()
-	{
-		$timer = New Timer();
+    /** @test */
+    public function canStartTimer()
+    {
+        $timer = new Timer();
 
-		$this->assertIsFloat($timer->Start());
-	}
+        $this->assertIsFloat($timer->Start());
+    }
 
-	/** @test */
-	public function canStopTimer()
-	{
-		$timer = New Timer();
+    /** @test */
+    public function canStopTimer()
+    {
+        $timer = new Timer();
 
-		$timer->Start();
+        $timer->Start();
 
-		$this->assertIsFloat($timer->Stop());
-	}
+        $this->assertIsFloat($timer->Stop());
+    }
 
-	/** @test */
-	public function getTimerGreaterThan()
-	{
-		$timer = New Timer();
+    /** @test */
+    public function getTimerGreaterThan()
+    {
+        $timer = new Timer();
 
-		$start = $timer->Start();
+        $start = $timer->Start();
 
-		usleep(500000);
+        usleep(500000);
 
-		$stop = $timer->Stop();
+        $stop = $timer->Stop();
 
-		$this->assertGreaterThan($start, $stop);
-	}
+        $this->assertGreaterThan($start, $stop);
+    }
 
-	/** @test */
-	public function getTimerResults()
-	{
-		$timer = New Timer();
+    /** @test */
+    public function getTimerResults()
+    {
+        $timer = new Timer();
 
-		$start = $timer->Start();
+        $start = $timer->Start();
 
-		$stop = $timer->Stop();
+        $stop = $timer->Stop();
 
-		$this->assertIsObject($timer->GetResults());
-	}
+        $this->assertIsObject($timer->GetResults());
+    }
 
     /** @test */
     public function GetResultsWithOutStoppingTimer()
     {
-		$timer = New Timer();
+        $timer = new Timer();
 
-		$start = $timer->Start();
+        $start = $timer->Start();
 
-		$this->assertIsObject($timer->GetResults());
+        $this->assertIsObject($timer->GetResults());
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Acamposm\Ping;
 
-use \stdClass;
+use stdClass;
 
 class PingParserForWindows extends PingParser
 {

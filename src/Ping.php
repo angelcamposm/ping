@@ -13,8 +13,8 @@
 
 namespace Acamposm\Ping;
 
-use \Exception;
-use \stdClass;
+use Exception;
+use stdClass;
 
 class Ping
 {
@@ -129,7 +129,7 @@ class Ping
      * @param  int  $count
      * @return  Ping
      */
-    public function Count(int $count): Ping
+    public function Count(int $count): self
     {
         $this->count = $count;
 
@@ -142,7 +142,7 @@ class Ping
      * @param  float  $interval
      * @return  Ping
      */
-    public function Interval(float $interval): Ping
+    public function Interval(float $interval): self
     {
         $this->interval = $interval;
 
@@ -155,7 +155,7 @@ class Ping
      * @param  int  $size
      * @return  Ping
      */
-    public function PacketSize(int $size): Ping
+    public function PacketSize(int $size): self
     {
         $this->packet_size = $size;
 
@@ -168,7 +168,7 @@ class Ping
      * @param  int  $seconds
      * @return  Ping
      */
-    public function Timeout(int $seconds): Ping
+    public function Timeout(int $seconds): self
     {
         $this->timeout = $seconds;
 
@@ -181,7 +181,7 @@ class Ping
      * @param  int  $ttl
      * @return Ping
      */
-    public function TimeToLive(int $ttl): Ping
+    public function TimeToLive(int $ttl): self
     {
         $this->time_to_live = $ttl;
 

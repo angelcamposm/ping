@@ -2,7 +2,7 @@
 
 namespace Acamposm\Ping;
 
-use \stdClass;
+use stdClass;
 
 class PingParserForLinux extends PingParser
 {
@@ -32,7 +32,7 @@ class PingParserForLinux extends PingParser
         $lines = count($ping);
 
         /**
-         * Text to be removed from the strings
+         * Text to be removed from the strings.
          * @var array $search
          */
         $search = [
