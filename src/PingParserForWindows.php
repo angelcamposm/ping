@@ -6,6 +6,11 @@ use stdClass;
 
 class PingParserForWindows extends PingParser
 {
+    /**
+     * PingParserForWindows constructor.
+     * @param array $ping
+     * @noinspection PhpMissingParentConstructorInspection
+     */
     public function __construct(array $ping)
     {
         if (empty($ping) === false) {
@@ -27,7 +32,7 @@ class PingParserForWindows extends PingParser
      * @param  array  $ping
      * @return  stdClass
      */
-    private function GetPingStatistics($ping): stdClass
+    private function GetPingStatistics(array $ping): stdClass
     {
         $lines = count($ping);
 
@@ -51,9 +56,9 @@ class PingParserForWindows extends PingParser
      * Returns an array with Round Trip Time Statistics.
      *
      * @param  array  $ping
-     * @return  array
+     * @return  stdClass
      */
-    private function GetRoundTripTimeStatistics($ping): object
+    private function GetRoundTripTimeStatistics(array $ping): stdClass
     {
         $lines = count($ping);
 
@@ -73,9 +78,10 @@ class PingParserForWindows extends PingParser
     /**
      * Returns an array with de packet sequence and his latency.
      *
+     * @param array $ping
      * @return  array
      */
-    private function GetSequence($ping): array
+    private function GetSequence(array $ping): array
     {
         $items_count = count($ping);
 

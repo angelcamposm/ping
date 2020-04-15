@@ -7,7 +7,7 @@
  *
  * Ping uses the ICMP protocol's mandatory ECHO_REQUEST datagram to elicit an ICMP ECHO_RESPONSE from a host or gateway.
  *
- * @version  1.0.0
+ * @version  0.1.0
  * @author  Angel Campos <angel.campos.m@outlook.com>
  */
 
@@ -114,12 +114,12 @@ class Ping
     public function GetPingOptions(): stdClass
     {
         return (object) [
-            'count' => $this->count,
-            'interval' => $this->interval,
-            'packet_size' => $this->packet_size,
-            'target_ip' => $this->host,
-            'timeout' => $this->timeout,
-            'time_to_live' => $this->time_to_live,
+            'count' => (int) $this->count,
+            'interval' => (float) $this->interval,
+            'packet_size' => (int) $this->packet_size,
+            'target_ip' => (string) $this->host,
+            'timeout' => (int) $this->timeout,
+            'time_to_live' => (int) $this->time_to_live,
         ];
     }
 
@@ -232,6 +232,8 @@ class Ping
      */
     public function Run(): stdClass
     {
+        $this->timer->Start();
+
         $command = $this->GetPingCommand();
 
         exec($command, $exec_result);

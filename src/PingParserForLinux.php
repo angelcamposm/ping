@@ -6,6 +6,10 @@ use stdClass;
 
 class PingParserForLinux extends PingParser
 {
+    /**
+     * PingParserForLinux constructor.
+     * @param array $ping
+     */
     public function __construct(array $ping)
     {
         if (empty($ping) === false) {
