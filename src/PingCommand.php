@@ -133,11 +133,11 @@ class PingCommand
     }
 
     /**
-     * Returns the Ping Command to be used in Linux based servers.
+     * Returns the Ping Command to be used in Windows based servers.
      *
      * @return  string
      */
-    public function CommandForLinux(): string
+    public function CommandForWindows(): string
     {
         return implode(' ', [
             'ping',
@@ -150,11 +150,11 @@ class PingCommand
     }
 
     /**
-     * Returns the Ping Command to be used in Windows based servers.
+     * Returns the Ping Command to be used in Linux based servers.
      *
      * @return  string
      */
-    public function CommandForWindows(): string
+    public function CommandForLinux(): string
     {
         return implode(' ', [
             'ping',
