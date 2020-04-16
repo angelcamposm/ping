@@ -4,7 +4,6 @@ namespace Acamposm\Ping\Tests;
 
 use Acamposm\Ping\Ping;
 use Acamposm\Ping\PingCommand;
-use Acamposm\Ping\PingFacade;
 use Acamposm\Ping\PingParserForLinux;
 use Acamposm\Ping\PingParserForWindows;
 use Acamposm\Ping\Timer;
@@ -53,14 +52,6 @@ class InstanceOfTest extends TestCase
         $parser = new PingParserForWindows($ping);
 
         $this->assertInstanceOf(PingParserForWindows::class, $parser);
-    }
-
-    /** @test */
-    public function isPingFacadeClass()
-    {
-        $facade = new PingFacade();
-
-        $this->assertInstanceOf(PingFacade::class, $facade);
     }
 
     /** @test */
