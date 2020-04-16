@@ -3,6 +3,7 @@
 [![License](https://poser.pugx.org/acamposm/ping/license?format=flat-square)](https://packagist.org/packages/acamposm/ping)
 [![Latest Stable Version](https://poser.pugx.org/acamposm/ping/v/stable?format=flat-square)](https://packagist.org/packages/acamposm/ping)
 [![Latest Unstable Version](https://poser.pugx.org/acamposm/ping/v/unstable?format=flat-square)](https://packagist.org/packages/acamposm/ping)
+[![Build Status](https://travis-ci.com/angelcamposm/ping.svg?branch=master&format=flat-square)](https://travis-ci.com/angelcamposm/ping)
 [![StyleCI](https://github.styleci.io/repos/255138468/shield?branch=master)](https://github.styleci.io/repos/255138468)
 [![Total Downloads](https://poser.pugx.org/acamposm/ping/downloads?format=flat-square)](https://packagist.org/packages/acamposm/ping)
 
@@ -23,7 +24,7 @@ At this moment, only IPv4 is supported but i plan to add IPv6 support to this pa
 - [Testing](#testing)
 - [Changelog](#changelog)
 - [Contributing](#contributing)
-- [Security](#security)
+- [Security](#security-vulnerabilities)
 - [Credits](#credits)
 - [License](#license)
 - [Laravel Package Boilerplate](#laravel-package-boilerplate)
@@ -239,7 +240,6 @@ If you discover any security related issues, please send an e-mail to Angel Camp
 ## Credits
 
 - [Angel Campos](https://github.com/acamposm)
-- [All Contributors](../../contributors)
 
 ## License
 
