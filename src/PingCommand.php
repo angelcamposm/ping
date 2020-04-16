@@ -140,12 +140,12 @@ class PingCommand
     public function CommandForWindows(): string
     {
         return implode(' ', [
-            'ping',
+            'ping -4 ',
             '-n '.escapeshellcmd($this->count),
             '-l '.escapeshellcmd($this->packet_size),
             '-i '.escapeshellcmd($this->time_to_live),
-            '-w '.escapeshellcmd($this->timeout),
-            escapeshellcmd($this->host),
+            '-w '.escapeshellcmd($this->timeout * 1000),
+            ' '.escapeshellcmd($this->host),
         ]);
     }
 
@@ -157,12 +157,13 @@ class PingCommand
     public function CommandForLinux(): string
     {
         return implode(' ', [
-            'ping',
-            '-n '.escapeshellcmd($this->count),
-            '-l '.escapeshellcmd($this->packet_size),
-            '-i '.escapeshellcmd($this->time_to_live),
-            '-w '.escapeshellcmd($this->timeout),
-            escapeshellcmd($this->host),
+            'ping -4 -n',
+            '-c '.escapeshellcmd($this->count),
+            '-i '.escapeshellcmd($this->interval),
+            '-s '.escapeshellcmd($this->packet_size),
+            '-t '.escapeshellcmd($this->time_to_live),
+            '-W '.escapeshellcmd($this->timeout),
+            ' '.escapeshellcmd($this->host),
         ]);
     }
 }
