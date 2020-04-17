@@ -15,6 +15,7 @@ namespace Acamposm\Ping;
 
 use Exception;
 use stdClass;
+use Illuminate\Config\Repository;
 
 class Ping
 {
@@ -91,11 +92,11 @@ class Ping
         }
 
         // Set default settings from config file
-        $this->count = Config('ping.count');
-        $this->interval = Config('ping.interval');
-        $this->packet_size = Config('ping.packet_size');
-        $this->timeout = Config('ping.timeout');
-        $this->time_to_live = Config('ping.time_to_live');
+        $this->count = Config('services.ping.count');
+        $this->interval = Config('services.ping.interval');
+        $this->packet_size = Config('services.ping.packet_size');
+        $this->timeout = Config('services.ping.timeout');
+        $this->time_to_live = Config('services.ping.time_to_live');
 
         $this->host = $host;
         $this->timer = new Timer();
