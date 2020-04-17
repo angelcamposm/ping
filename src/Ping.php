@@ -31,7 +31,7 @@ class Ping
      *
      * @var  int
      */
-    private $count = 4;
+    private $count;
 
     /**
      * Wait interval seconds between sending each packet. The default is to
@@ -41,7 +41,7 @@ class Ping
      *
      * @var  int
      */
-    private $interval = 1;
+    private $interval;
 
     /**
      * Determine if is a Windows based Operating System.
@@ -57,7 +57,7 @@ class Ping
      *
      * @var  int
      */
-    private $packet_size = 64;
+    private $packet_size;
 
     /**
      * Time to wait for a response, in seconds. The option affects only
@@ -65,7 +65,7 @@ class Ping
      *
      * @var  int
      */
-    private $timeout = 5;
+    private $timeout;
 
     /**
      * The TTL value of an IP packet represents the maximum number of IP
@@ -75,7 +75,7 @@ class Ping
      *
      * @var  int
      */
-    private $time_to_live = 128;
+    private $time_to_live;
 
     /**
      * An object to allow us to control the total execution time.
