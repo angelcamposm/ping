@@ -47,7 +47,7 @@ class Ping
      *
      * @var bool
      */
-    protected $is_windows_os = false;
+    private $is_windows_os = false;
 
     /**
      * Specifies the number of data bytes to be sent.
@@ -77,13 +77,6 @@ class Ping
     private $time_to_live = 128;
 
     /**
-     * The Exit from the exec command.
-     *
-     * @var  string[]
-     */
-    private $exec_result;
-
-    /**
      * An object to allow us to control the total execution time.
      *
      * @var  Timer
@@ -96,6 +89,13 @@ class Ping
         if (in_array(PHP_OS, ['WIN32', 'WINNT', 'Windows'])) {
             $this->is_windows_os = true;
         }
+
+        // Set default settings from config file
+        $this->count = Config('ping.count');
+        $this->interval = Config('ping.interval');
+        $this->packet_size = Config('ping.packet_size');
+        $this->timeout = Config('ping.timeout');
+        $this->time_to_live = Config('ping.time_to_live');
 
         $this->host = $host;
         $this->timer = new Timer();
