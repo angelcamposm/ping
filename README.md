@@ -44,6 +44,8 @@ composer require acamposm/ping
 For basic usage you only need to create with an ip address as a first argument and run...
 
 ``` php
+use Acampos\Ping\Ping;
+
 // Basic usage with options by default 
 $ping = Ping::Create('192.168.1.1')->Run();
 ```
