@@ -25,10 +25,10 @@
         }
     ],
     "require": {
-        "php": "^7.1"
+        "php": "^7.4"
     },
     "require-dev": {
-        "orchestral/testbench": "^5.0",
+        "orchestra/testbench": "^5.0",
         "phpunit/phpunit": "^9"
     },
     "autoload": {
