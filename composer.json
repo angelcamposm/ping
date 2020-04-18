@@ -28,6 +28,7 @@
         "php": "^7.1"
     },
     "require-dev": {
+        "orchestral/testbench": "^5.0",
         "phpunit/phpunit": "^9"
     },
     "autoload": {
