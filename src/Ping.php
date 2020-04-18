@@ -15,7 +15,6 @@ namespace Acamposm\Ping;
 
 use Exception;
 use stdClass;
-use Illuminate\Config\Repository;
 
 class Ping
 {
@@ -31,7 +30,7 @@ class Ping
      *
      * @var  int
      */
-    private $count;
+    private $count = 4;
 
     /**
      * Wait interval seconds between sending each packet. The default is to
@@ -41,7 +40,7 @@ class Ping
      *
      * @var  int
      */
-    private $interval;
+    private $interval = 1;
 
     /**
      * Determine if is a Windows based Operating System.
@@ -57,7 +56,7 @@ class Ping
      *
      * @var  int
      */
-    private $packet_size;
+    private $packet_size = 64;
 
     /**
      * Time to wait for a response, in seconds. The option affects only
@@ -65,7 +64,7 @@ class Ping
      *
      * @var  int
      */
-    private $timeout;
+    private $timeout = 5;
 
     /**
      * The TTL value of an IP packet represents the maximum number of IP
@@ -75,7 +74,7 @@ class Ping
      *
      * @var  int
      */
-    private $time_to_live;
+    private $time_to_live = 128;
 
     /**
      * An object to allow us to control the total execution time.
@@ -92,11 +91,11 @@ class Ping
         }
 
         // Set default settings from config file
-        $this->count = Config('services.ping.count');
-        $this->interval = Config('services.ping.interval');
-        $this->packet_size = Config('services.ping.packet_size');
-        $this->timeout = Config('services.ping.timeout');
-        $this->time_to_live = Config('services.ping.time_to_live');
+        //$this->count = Config('services.ping.count');
+        //$this->interval = Config('services.ping.interval');
+        //$this->packet_size = Config('services.ping.packet_size');
+        //$this->timeout = Config('services.ping.timeout');
+        //$this->time_to_live = Config('services.ping.time_to_live');
 
         $this->host = $host;
         $this->timer = new Timer();

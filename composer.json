@@ -18,12 +18,6 @@
             "role": "Developer"
         }
     ],
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/angelcamposm/ping"
-        }
-    ],
     "require": {
         "php": "^7.4"
     },
@@ -54,7 +48,7 @@
                 "Acamposm\\Ping\\PingServiceProvider"
             ],
             "aliases": {
-                "Ping": "Acamposm\\Ping\\PingFacade"
+                "Ping": "Acamposm\\Ping\\Facades\\Ping"
             }
         }
     }
