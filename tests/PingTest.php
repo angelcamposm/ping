@@ -24,14 +24,14 @@ class PingTest extends TestCase
     protected function getPackageProviders($app)
     {
         return [
-            'Acamposm\Ping\PingServiceProvider',
+            PingServiceProvider::class,
         ];
     }
 
     protected function getPackageAliases($app)
     {
         return [
-            'Ping' => 'Acamposm\Ping\PingFacade',
+            PingFacade::class,
         ];
     }
 
