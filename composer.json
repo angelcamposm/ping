@@ -48,7 +48,7 @@
                 "Acamposm\\Ping\\PingServiceProvider"
             ],
             "aliases": {
-                "Ping": "Acamposm\\Ping\\Facades\\Ping"
+                "Ping": "Acamposm\\Ping\\PingFacade"
             }
         }
     }

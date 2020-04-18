@@ -3,7 +3,9 @@
 namespace Acamposm\Ping\Tests;
 
 use Acamposm\Ping\Ping;
-use PHPUnit\Framework\TestCase;
+use Acamposm\Ping\PingFacade;
+use Acamposm\Ping\PingServiceProvider;
+use Orchestra\Testbench\TestCase;
 
 class PingTest extends TestCase
 {
@@ -19,10 +21,22 @@ class PingTest extends TestCase
 
     const TTL = 64;
 
+    protected function getPackageProviders($app)
+    {
+        return ['Acamposm\Ping\PingServiceProvider'];
+    }
+
+    protected function getPackageAliases($app)
+    {
+        return [
+            'Ping' => 'Acamposm\Ping\PingFacade'
+        ];
+    }
+
     /** @test */
     public function isPingClassTest()
     {
-        $ping = Ping::Create(Self::HOST);
+        $ping = Ping::Create(self::HOST);
 
         $this->assertInstanceOf(Ping::class, $ping);
     }
@@ -30,7 +44,7 @@ class PingTest extends TestCase
     /** @test */
     public function canGetPingOptions()
     {
-        $options = Ping::Create(Self::HOST);
+        $options = Ping::Create(self::HOST);
 
         $this->assertIsObject($options->GetPingOptions());
     }
@@ -38,11 +52,11 @@ class PingTest extends TestCase
     /** @test */
     public function canChangeCountOption()
     {
-        $ping = Ping::Create(Self::HOST);
+        $ping = Ping::Create(self::HOST);
 
         $options = $ping->GetPingOptions();
 
-        $ping->Count(Self::COUNT);
+        $ping->Count(self::COUNT);
 
         $new_options = $ping->GetPingOptions();
 
@@ -52,11 +66,11 @@ class PingTest extends TestCase
     /** @test */
     public function canChangeIntervalOption()
     {
-        $ping = Ping::Create(Self::HOST);
+        $ping = Ping::Create(self::HOST);
 
         $options = $ping->GetPingOptions();
 
-        $ping->Interval(Self::INTERVAL);
+        $ping->Interval(self::INTERVAL);
 
         if (in_array(PHP_OS, ['WIN32', 'WINNT', 'Windows'])) {
 
@@ -74,11 +88,11 @@ class PingTest extends TestCase
     /** @test */
     public function canChangePacketSizeOption()
     {
-        $ping = Ping::Create(Self::HOST);
+        $ping = Ping::Create(self::HOST);
 
         $options = $ping->GetPingOptions();
 
-        $ping->PacketSize(Self::SIZE);
+        $ping->PacketSize(self::SIZE);
 
         $new_options = $ping->GetPingOptions();
 
@@ -88,11 +102,11 @@ class PingTest extends TestCase
     /** @test */
     public function canChangeTimeoutOption()
     {
-        $ping = Ping::Create(Self::HOST);
+        $ping = Ping::Create(self::HOST);
 
         $options = $ping->GetPingOptions();
 
-        $ping->Timeout(Self::TIMEOUT);
+        $ping->Timeout(self::TIMEOUT);
 
         $new_options = $ping->GetPingOptions();
 
@@ -102,21 +116,24 @@ class PingTest extends TestCase
     /** @test */
     public function canChangeTTLOption()
     {
-        $ping = Ping::Create(Self::HOST);
+        $ping = Ping::Create(self::HOST);
 
         $options = $ping->GetPingOptions();
 
-        $ping->TimeToLive(Self::TTL);
+        $ping->TimeToLive(self::TTL);
 
         $new_options = $ping->GetPingOptions();
 
         $this->assertNotEquals($options, $new_options, 'Both are equals');
     }
 
-    /** @test */
+    /** @test
+     *
+     * @throws \Exception
+     */
     public function canRun()
     {
-        $ping = Ping::Create(Self::HOST);
+        $ping = Ping::Create(self::HOST);
 
         $this->assertIsObject($ping->Run());
     }

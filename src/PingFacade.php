@@ -1,11 +1,11 @@
 <?php
 
-namespace Acamposm\Ping\Facades;
+namespace Acamposm\Ping;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Acamposm\Ping\Facades\Skeleton\SkeletonClass
+ * @see \Acamposm\Ping\Skeleton\SkeletonClass
  */
 class PingFacade extends Facade
 {
