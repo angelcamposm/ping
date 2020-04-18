@@ -23,13 +23,15 @@ class PingTest extends TestCase
 
     protected function getPackageProviders($app)
     {
-        return ['Acamposm\Ping\PingServiceProvider'];
+        return [
+            'Acamposm\Ping\PingServiceProvider',
+        ];
     }
 
     protected function getPackageAliases($app)
     {
         return [
-            'Ping' => 'Acamposm\Ping\PingFacade'
+            'Ping' => 'Acamposm\Ping\PingFacade',
         ];
     }
 
@@ -76,9 +78,7 @@ class PingTest extends TestCase
 
             // Because in windows cant set interval option
             $this->assertTrue(true);
-
         } else {
-
             $new_options = $ping->GetPingOptions();
 
             $this->assertNotEquals($options, $new_options, 'Both are equals');
