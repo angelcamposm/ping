@@ -19,8 +19,7 @@
         }
     ],
     "require": {
-        "php": "^7.4",
-        "inetutils-ping": "*"
+        "php": "^7.4"
     },
     "require-dev": {
         "orchestra/testbench": "^5.0",
