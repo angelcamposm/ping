@@ -125,7 +125,10 @@ $ping = (new Ping($command)->run();
 
 ## Sample outputs
 
-Here you can see a sample of an exit of the command.
+Here you can see three output samples of the ping command...
+- The first with domain.
+- The second with an IPv4 Address
+- The third with an IPv6 Address
 
 ### Sample output on Windows based server to https://google.com
 
