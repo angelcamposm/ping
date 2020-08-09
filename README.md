@@ -1,17 +1,15 @@
 # PING for Laravel
 
 [![License](https://poser.pugx.org/acamposm/ping/license)](https://packagist.org/packages/acamposm/ping)
-[![Latest Stable Version](https://poser.pugx.org/acamposm/ping/v/stable)](https://packagist.org/packages/acamposm/ping)
+[![Latest Stable Version](https://poser.pugx.org/acamposm/ping/v/stable)](https://packagist.org/packages/acamposm/ping#1.0.0)
 [![Latest Unstable Version](https://poser.pugx.org/acamposm/ping/v/unstable)](https://packagist.org/packages/acamposm/ping)
 [![Build Status](https://travis-ci.com/angelcamposm/ping.svg?branch=master)](https://travis-ci.com/angelcamposm/ping)
 [![StyleCI](https://github.styleci.io/repos/255138468/shield?branch=master)](https://github.styleci.io/repos/255138468)
 [![Total Downloads](https://poser.pugx.org/acamposm/ping/downloads)](https://packagist.org/packages/acamposm/ping)
 
-This ping class allow to make ping request from Laravel aplications, it is based on PING command from the linux iputils package.
+This ping class allow making ping request from Laravel applications, it is based on PING command from the linux iputils package.
 
 ping uses the ICMP protocol's mandatory ECHO_REQUEST datagram to elicit an ICMP ECHO_RESPONSE from a host or gateway. ECHO_REQUEST datagrams (pings) have an IP and ICMP header, followed by a struct timeval and then an arbitrary number ofpadbytes used to fill out the packet.
-
-At this moment, only IPv4 is supported but i plan to add IPv6 support to this package.
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -20,7 +18,7 @@ At this moment, only IPv4 is supported but i plan to add IPv6 support to this pa
 	- [Change Packet Size](#change-packet-size)
 	- [Change Timeout](#change-timeout)
 	- [Change Time To Live](#change-time-to-live)
-	- [Sample output](#sample-output)
+- [Sample output](#sample-outputs)
 - [Testing](#testing)
 - [Changelog](#changelog)
 - [Contributing](#contributing)
@@ -34,7 +32,9 @@ At this moment, only IPv4 is supported but i plan to add IPv6 support to this pa
 You can install the package via [composer](https://getcomposer.org/):
 
 ```bash
+
 composer require acamposm/ping
+
 ```
 
 ***Note:*** We try to follow [SemVer v2.0.0](https://semver.org/).
@@ -44,10 +44,16 @@ composer require acamposm/ping
 For basic usage you only need to create with an ip address as a first argument and run...
 
 ``` php
-use Acampos\Ping\Ping;
 
-// Basic usage with options by default 
-$ping = Ping::Create('192.168.1.1')->Run();
+use Acampos\Ping\Ping;
+use Acampos\Ping\PingCommandBuilder;
+
+// Create an instance of PingCommand
+$command = (new PingCommandBuilder('192.168.1.1'));
+
+// Pass the PingCommand instance to Ping and run...
+$ping = (new Ping($command))->run();
+
 ```
 
 ### Change Count
@@ -55,8 +61,12 @@ $ping = Ping::Create('192.168.1.1')->Run();
 Stop after sending count ECHO_REQUEST packets. With deadline option, ping waits for count ECHO_REPLY packets, until the timeout expires.
 
 ``` php
+
 // Change the number of packets to send to 10
-$ping = Ping::Create('192.168.1.1')->Count(10)->Run();
+$command = (new PingCommandBuilder('192.168.1.1'))->count(10);
+
+$ping = (new Ping($command))->run();
+
 ```
 
 ### Change Interval
@@ -64,8 +74,12 @@ $ping = Ping::Create('192.168.1.1')->Count(10)->Run();
 Wait interval seconds between sending each packet. The default is to wait for one second between each packet normally, or not to wait in flood mode. Only super-user may set interval to values less than 0.2 seconds.
 
 ``` php
+
 // Change interval to 0.5 seconds between each packet
-$ping = Ping::Create('192.168.1.1')->Interval(0.5)->Run();
+$command = (new PingCommandBuilder('192.168.1.1'))->interval(0.5);
+
+$ping = (new Ping($command))->run();
+
 ```
 
 ### Change Packet Size
@@ -73,8 +87,12 @@ $ping = Ping::Create('192.168.1.1')->Interval(0.5)->Run();
 Specifies the number of data bytes to be sent. The default is 56, which translates into 64 ICMP data bytes when combined with the 8 bytes of ICMP header data.
 
 ``` php
+
 // Change packet size to 128
-$ping = Ping::Create('192.168.1.1')->PacketSize(128)->Run();
+$command = (new PingCommandBuilder('192.168.1.1'))->packetSize(128);
+
+$ping = (new Ping($command)->run();
+
 ```
 
 ### Change Timeout
@@ -82,8 +100,12 @@ $ping = Ping::Create('192.168.1.1')->PacketSize(128)->Run();
 Time to wait for a response, in seconds. The option affects only timeout in absence of any responses, otherwise ping waits for two RTTs.
 
 ``` php
+
 // Change timeout to 10 seconds
-$ping = Ping::Create('192.168.1.1')->Timeout(10)->Run();
+$command = (new PingCommandBuilder('192.168.1.1'))->timeout(10);
+
+$ping = (new Ping($command)->run();
+
 ```
 
 ### Change Time To Live
@@ -91,140 +113,257 @@ $ping = Ping::Create('192.168.1.1')->Timeout(10)->Run();
 ping only. Set the IP Time to Live.
 
 ``` php
+
 // Change Time To Live to 128
-$ping = Ping::Create('192.168.1.1')->TimeToLive(128)->Run();
+$command = (new PingCommandBuilder('192.168.1.1'))->ttl(128);
+
+$ping = (new Ping($command)->run();
+
 ```
 
-## Sample output
+## Sample outputs
 
 Here you can see a sample of an exit of the command.
 
-### Sample output on Linux based servers
+### Sample output on Windows based server to https://google.com
 
 ``` php
-// Sample output from Linux based server
-$ping = Ping::Create('192.168.1.1')->Run();
+
+$command = (new PingCommandBuilder('https://google.com'))->count(10)->packetSize(200)->ttl(128);
+
+// Sample output from Windows based server
+$ping = (new Ping($command)->run();
 
 dd($ping);
-=> {#1586
-    +"latency": 37.464,
-    +"round_trip_time": [
-		"min" => 36.988,
-		"avg" => 37.464,
-		"max" => 38.19,
-		"mdev" => 0.304,
-	],
-	+"sequence": [
-		2 => 37.4,
-		3 => 37.4,
-		4 => 37.4,
-		5 => 37.4,
-		6 => 37.6,
-		7 => 38.2,
-		8 => 37.4,
-		9 => 37.6,
-		10 => 37.6,
-		12 => 37.3,
-		13 => 36.1,
-    ],
-    +"statistics": [
-		"packets_transmitted" => 13,
-		"packets_received" => 11,
-		"packet_loss" => 15.3846,
-		"time" => 93,
-    ],
+
+=> {#613
+    +"host_status": "Ok",
     +"raw": [
-		"PING www.witigos.es (217.160.0.129) 128(156) bytes of data.",
-		"36 bytes from 217.160.0.129: icmp_seq=2 ttl=53 time=37.4 ms",
-		"36 bytes from 217.160.0.129: icmp_seq=3 ttl=53 time=37.4 ms",
-		"36 bytes from 217.160.0.129: icmp_seq=4 ttl=53 time=37.4 ms",
-		"36 bytes from 217.160.0.129: icmp_seq=5 ttl=53 time=37.4 ms",
-		"36 bytes from 217.160.0.129: icmp_seq=6 ttl=53 time=37.6 ms",
-		"36 bytes from 217.160.0.129: icmp_seq=7 ttl=53 time=38.2 ms",
-		"36 bytes from 217.160.0.129: icmp_seq=8 ttl=53 time=37.4 ms",
-		"36 bytes from 217.160.0.129: icmp_seq=9 ttl=53 time=37.6 ms",
-		"36 bytes from 217.160.0.129: icmp_seq=10 ttl=53 time=37.6 ms",
-		"36 bytes from 217.160.0.129: icmp_seq=12 ttl=53 time=37.3 ms",
-		"36 bytes from 217.160.0.129: icmp_seq=13 ttl=53 time=36.10 ms",
-		"",
-		"-- www.witigos.es ping statistics ---",
-		"13 packets transmitted, 11 received, 15.3846% packet loss, time 93ms",
-		"rtt min/avg/max/mdev = 36.988/37.464/38.190/0.304 ms",
+        "",
+        "Haciendo ping a google.com [216.58.213.142] con 200 bytes de datos:",
+        "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=37ms TTL=115",
+        "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=37ms TTL=115",
+        "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        "",
+        "Estadísticas de ping para 216.58.213.142:",
+        "    Paquetes: enviados = 10, recibidos = 10, perdidos = 0",
+        "    (0% perdidos),",
+        "Tiempos aproximados de ida y vuelta en milisegundos:",
+        "    Mínimo = 36ms, Máximo = 37ms, Media = 36ms",
     ],
-    +"options": {#1587
-		+"count": 13,
-		+"interval": 1,
-		+"packet_size": 128,
-		+"timeout": 5,
-		+"time_to_live": 128,
+    +"latency": 0.036,
+    +"rtt": {#616
+        +"avg": 0.036,
+        +"min": 0.036,
+        +"max": 0.037,
     },
-    +"time_taken": [
-		"start" => "12-04-2020 16:52:54.387000",
-		"stop" => "12-04-2020 16:52:54.387000",
-		"time" => 1.1920928955078E-5,
-	],
+    +"sequence": {#615
+        +"0": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        +"1": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        +"2": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        +"3": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=37ms TTL=115",
+        +"4": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=37ms TTL=115",
+        +"5": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        +"6": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        +"7": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        +"8": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        +"9": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+    },
+    +"statistics": {#614
+        +"packets_transmitted": 10,
+        +"packets_received": 10,
+        +"packets_lost": 0,
+        +"packet_loss": 0,
+    },
+    +"options": {#598
+        +"host": "google.com",
+        +"count": 10,
+        +"packet_size": 200,
+        +"ttl": 120,
+    },
+    +"time": {#610
+        +"start": {#612
+            +"as_float": 1596984650.5006,
+            +"human_readable": "09-08-2020 14:50:50.500600",
+        },
+        +"stop": {#611
+            +"as_float": 1596984659.5802,
+            +"human_readable": "09-08-2020 14:50:59.580200",
+        },
+        +"time": 9.08,
+    },
 }
+
 ```
 
-### Sample output on Windows based servers.
+### Sample output from Windows based server to local gateway IPv4
 
 ``` php
-// Sample output from Windows Based Server
-$ping = Ping::Create('192.168.1.1')->Run();
+
+$command = (new PingCommandBuilder('192.168.10.254'))->count(10)->packetSize(200)->ttl(120);
+
+$ping = (new Ping($command))->run();
 
 dd($ping);
-{#251 ▼
-  +"latency": 0.001
-  +"round_trip_time": array:3 [▼
-    "avg" => 0.001
-    "min" => 0.001
-    "max" => 0.001
-  ]
-  +"sequence": array:4 [▼
-    0 => "Respuesta desde 192.168.1.1: bytes=64 tiempo=1ms TTL=63"
-    1 => "Respuesta desde 192.168.1.1: bytes=64 tiempo=1ms TTL=63"
-    2 => "Respuesta desde 192.168.1.1: bytes=64 tiempo=1ms TTL=63"
-    3 => "Respuesta desde 192.168.1.1: bytes=64 tiempo=1ms TTL=63"
-  ]
-  +"statistics": array:3 [▼
-    "packets_transmitted" => 4
-    "packets_received" => 4
-    "packet_loss" => 0
-  ]
-  +"raw": array:12 [▼
-    0 => ""
-    1 => "Haciendo ping a 192.168.1.1 con 64 bytes de datos:"
-    2 => "Respuesta desde 192.168.1.1: bytes=64 tiempo=1ms TTL=63"
-    3 => "Respuesta desde 192.168.1.1: bytes=64 tiempo=1ms TTL=63"
-    4 => "Respuesta desde 192.168.1.1: bytes=64 tiempo=1ms TTL=63"
-    5 => "Respuesta desde 192.168.1.1: bytes=64 tiempo=1ms TTL=63"
-    6 => ""
-    7 => b"Estad¡sticas de ping para 192.168.1.1:"
-    8 => "    Paquetes: enviados = 4, recibidos = 4, perdidos = 0"
-    9 => "    (0% perdidos),"
-    10 => "Tiempos aproximados de ida y vuelta en milisegundos:"
-    11 => b"    M¡nimo = 1ms, M ximo = 1ms, Media = 1ms"
-  ]
-  +"options": array:6 [▼
-    "count" => 4
-    "interval" => 1
-    "packet_size" => 64
-    "target_ip" => "192.168.1.1"
-    "timeout" => 5
-    "time_to_live" => 128
-  ]
-  +"time_taken": array:3 [▼
-    "start" => "13-04-2020 11:49:38.765600"
-    "stop" => "13-04-2020 11:49:41.822600"
-    "time" => 3.0569541454315
-  ]
+
+=> {#615
+    +"host_status": "Ok",
+    +"raw": [
+        "",
+        "Haciendo ping a 192.168.10.254 con 200 bytes de datos:",
+        "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "",
+        "Estadísticas de ping para 192.168.10.254:",
+        "    Paquetes: enviados = 10, recibidos = 10, perdidos = 0",
+        "    (0% perdidos),",
+        "Tiempos aproximados de ida y vuelta en milisegundos:",
+        "    Mínimo = 0ms, Máximo = 0ms, Media = 0ms",
+    ],
+    +"latency": 0.0,
+    +"rtt": {#618
+        +"avg": 0.0,
+        +"min": 0.0,
+        +"max": 0.0,
+    },
+    +"sequence": {#598
+        +"0": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        +"1": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        +"2": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        +"3": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        +"4": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        +"5": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        +"6": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        +"7": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        +"8": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        +"9": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+    },
+    +"statistics": {#616
+        +"packets_transmitted": 10,
+        +"packets_received": 10,
+        +"packets_lost": 0,
+        +"packet_loss": 0,
+    },
+    +"options": {#619
+        +"host": "192.168.10.254",
+        +"count": 10,
+        +"packet_size": 200,
+        +"ttl": 120,
+        +"version": 4,
+    },
+    +"time": {#612
+    +"start": {#614
+        +"as_float": 1596985359.7592,
+        +"human_readable": "09-08-2020 15:02:39.759200",
+    },
+    +"stop": {#613
+        +"as_float": 1596985368.7952,
+        +"human_readable": "09-08-2020 15:02:48.795200",
+    },
+    +"time": 9.036,
+    },
 }
+
 ```
+
+#### Sample output from Windows based server to link local IPv6 address
+
+``` php
+    
+$command = (new PingCommandBuilder('fe80::6c42:407d:af01:9567'))->count(10)->packetSize(200)->ttl(120);
+
+$ping = (new Ping($command))->run();
+
+dd($ping);
+
+=> {#615
+    +"host_status": "Ok",
+    +"raw": [
+        "",
+        "Haciendo ping a fe80::6c42:407d:af01:9567 con 200 bytes de datos:",
+        "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "",
+        b"Estadísticas de ping para fe80::6c42:407d:af01:9567:",
+        "    Paquetes: enviados = 10, recibidos = 10, perdidos = 0",
+        "    (0% perdidos),",
+        "Tiempos aproximados de ida y vuelta en milisegundos:",
+        b"    Mínimo = 0ms, Máximo = 0ms, Media = 0ms",
+    ],
+    +"latency": 0.0,
+    +"rtt": {#618
+        +"avg": 0.0,
+        +"min": 0.0,
+        +"max": 0.0,
+    },
+    +"sequence": {#598
+        +"0": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        +"1": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        +"2": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        +"3": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        +"4": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        +"5": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        +"6": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        +"7": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        +"8": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        +"9": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+    },
+    +"statistics": {#616
+        +"packets_transmitted": 10,
+        +"packets_received": 10,
+        +"packets_lost": 0,
+        +"packet_loss": 0,
+    },
+    +"options": {#619
+        +"host": "fe80::6c42:407d:af01:9567",
+        +"count": 10,
+        +"packet_size": 200,
+        +"ttl": 120,
+        +"version": 6,
+    },
+    +"time": {#612
+        +"start": {#614
+            +"as_float": 1596985675.4344,
+            +"human_readable": "09-08-2020 15:07:55.434400",
+        },
+        +"stop": {#613
+            +"as_float": 1596985684.4659,
+            +"human_readable": "09-08-2020 15:08:04.465900",
+        },
+        +"time": 9.032,
+    },
+}
+``` 
 
 ### Testing
 
 ``` bash
+
 composer test
+
 ```
 
 ## Changelog
@@ -233,7 +372,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 # Contributing
 
-Thank you for considering to contribute to the improvement of the package. Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+Thank you for considering contributing to the improvement of the package. Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
@@ -241,7 +380,7 @@ If you discover any security related issues, please send an e-mail to Angel Camp
 
 ## Credits
 
-- [Angel Campos](https://github.com/acamposm)
+- [Angel Campos](https://github.com/angelcamposm)
 
 ## License
 
