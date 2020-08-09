@@ -11,7 +11,7 @@ class IPAddress
     const IPV6_SEPARATOR = ':';
 
     /**
-     * Performs the validation of the IP Address
+     * Performs the validation of the IP Address.
      *
      * @param string|null $ip_address
      * @return bool
@@ -20,21 +20,20 @@ class IPAddress
      */
     public static function Validate(?string $ip_address = null): bool
     {
-        if ($ip_address === null) throw new Exception('A host must be specified');
-
+        if ($ip_address === null) {
+            throw new Exception('A host must be specified');
+        }
         if (strpos($ip_address, IPAddress::IPV4_SEPARATOR) > 0) {
-
             return self::validateIPv4Address($ip_address);
-
         } elseif (strpos($ip_address, IPAddress::IPV6_SEPARATOR) > 0) {
-
             return self::validateIPv6Address($ip_address);
-
-        } else throw new InvalidIPAddressException('Unknown format');
+        } else {
+            throw new InvalidIPAddressException('Unknown format');
+        }
     }
 
     /**
-     * Performs a IPv4 validation
+     * Performs a IPv4 validation.
      *
      * Validate an IPv4 address
      *
@@ -51,7 +50,7 @@ class IPAddress
     }
 
     /**
-     * Performs a IPv6 validation
+     * Performs a IPv6 validation.
      *
      * @param string $ip_address
      * @return bool

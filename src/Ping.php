@@ -42,7 +42,7 @@ class Ping
     }
 
     /**
-     * Parse the ping result and return an object
+     * Parse the ping result and return an object.
      *
      * @param array $ping
      * @return object
@@ -69,7 +69,7 @@ class Ping
     {
         exec($this->command->get(), $exec_result);
 
-        if (!is_array($exec_result)) {
+        if (! is_array($exec_result)) {
             throw new Exception('Ping failed');
         }
 

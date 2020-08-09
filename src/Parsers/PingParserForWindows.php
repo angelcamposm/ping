@@ -17,12 +17,12 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
 
         $this->setRoundTripTime($ping[count($ping) - 1]);
         $this->setSequence();
-        $this->setStatistics($ping[count($ping) -4]);
+        $this->setStatistics($ping[count($ping) - 4]);
         $this->setHostStatus();
     }
 
     /**
-     * Get the host status
+     * Get the host status.
      *
      * @return string
      */
@@ -32,7 +32,7 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
     }
 
     /**
-     * Return an array with the Ping sequence and latency
+     * Return an array with the Ping sequence and latency.
      *
      * @return array
      */
@@ -68,7 +68,7 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
     }
 
     /**
-     * Return an object with Ping Round Trip Time
+     * Return an object with Ping Round Trip Time.
      *
      * @param string $row
      * @return array
@@ -89,7 +89,7 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
     }
 
     /**
-     * Return an object with Ping Statistics
+     * Return an object with Ping Statistics.
      *
      * @param string $row
      * @return array
@@ -113,7 +113,7 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
     }
 
     /**
-     * Set the host status
+     * Set the host status.
      */
     private function setHostStatus(): void
     {
@@ -121,7 +121,7 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
     }
 
     /**
-     * Set the Round Trip Time statistics
+     * Set the Round Trip Time statistics.
      *
      * @param string $rtt
      */
@@ -131,7 +131,7 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
     }
 
     /**
-     * Set the Ping sequence
+     * Set the Ping sequence.
      */
     private function setSequence(): void
     {
@@ -139,7 +139,7 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
     }
 
     /**
-     * Set the Statistics
+     * Set the Statistics.
      *
      * @param string $statistics
      */
@@ -149,7 +149,7 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
     }
 
     /**
-     * Return the Ping execution result parsed as object
+     * Return the Ping execution result parsed as object.
      *
      * @return object
      */
