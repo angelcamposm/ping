@@ -29,11 +29,13 @@ ping uses the ICMP protocol's mandatory ECHO_REQUEST datagram to elicit an ICMP 
 
 ## Installation
 
-You can install the package via [composer](https://getcomposer.org/):
+You can install the package via [composer](https://getcomposer.org/) and then publish the assets:
 
 ```bash
 
 composer require acamposm/ping
+
+php artisan vendor:publish --provider="Acamposm\Ping\PingServiceProvider"
 
 ```
 
