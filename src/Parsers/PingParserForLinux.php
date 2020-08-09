@@ -17,12 +17,12 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
 
         $this->setRoundTripTime($ping[count($ping) - 1]);
         $this->setSequence();
-        $this->setStatistics($ping[count($ping) -2]);
+        $this->setStatistics($ping[count($ping) - 2]);
         $this->setHostStatus();
     }
 
     /**
-     * Get the host status
+     * Get the host status.
      *
      * @return string
      */
@@ -32,7 +32,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
     }
 
     /**
-     * Return an array with the Ping sequence and latency
+     * Return an array with the Ping sequence and latency.
      *
      * @return array
      */
@@ -50,9 +50,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
         $sequence = [];
 
         foreach ($ping as $row) {
-
             if (strpos('Unreachable', $row) !== false) {
-
                 $data = explode(': ', str_replace(' ms', '', $row));
                 $items = explode(' ', $data[1]);
 
@@ -67,7 +65,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
     }
 
     /**
-     * Return an object with Ping Round Trip Time
+     * Return an object with Ping Round Trip Time.
      *
      * @param string $row
      * @return array
@@ -90,21 +88,20 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
     }
 
     /**
-     * Return an object with Ping Statistics
+     * Return an object with Ping Statistics.
      *
      * @param string $row
      * @return array
      */
     private function parseStatistics(string $row): array
     {
-        $search = explode('|' ,'packets|transmitted|received|+|errors|%|packet|loss|time|ms');
+        $search = explode('|', 'packets|transmitted|received|+|errors|%|packet|loss|time|ms');
 
         $row = trim(str_replace($search, null, $row));
 
         $statistics = array_map('trim', explode(', ', $row));
 
         if (count($statistics) === 5) {
-
             return [
                 'packets_transmitted' => (int) $statistics[0],
                 'packets_received' => (int) $statistics[1],
@@ -124,7 +121,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
     }
 
     /**
-     * Set the host status
+     * Set the host status.
      */
     private function setHostStatus(): void
     {
@@ -132,7 +129,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
     }
 
     /**
-     * Set the Round Trip Time statistics
+     * Set the Round Trip Time statistics.
      *
      * @param string $rtt
      */
@@ -142,7 +139,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
     }
 
     /**
-     * Set the Ping sequence
+     * Set the Ping sequence.
      */
     private function setSequence(): void
     {
@@ -150,7 +147,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
     }
 
     /**
-     * Set the Statistics
+     * Set the Statistics.
      *
      * @param string $statistics
      */
@@ -160,7 +157,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
     }
 
     /**
-     * Return the Ping execution result parsed as object
+     * Return the Ping execution result parsed as object.
      *
      * @return object
      */

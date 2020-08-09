@@ -16,7 +16,7 @@ class System
      */
     public static function isLinux(): bool
     {
-        return (PHP_OS_FAMILY === 'Linux');
+        return PHP_OS_FAMILY === 'Linux';
     }
 
     /**
@@ -26,7 +26,7 @@ class System
      */
     public static function isOSX(): bool
     {
-        return (PHP_OS_FAMILY === 'OSX');
+        return PHP_OS_FAMILY === 'OSX';
     }
 
     /**
@@ -36,7 +36,7 @@ class System
      */
     public static function isSolaris(): bool
     {
-        return (PHP_OS_FAMILY === 'Solaris');
+        return PHP_OS_FAMILY === 'Solaris';
     }
 
     /**
@@ -46,6 +46,6 @@ class System
      */
     public static function isWindows(): bool
     {
-        return (PHP_OS_FAMILY === 'Windows');
+        return PHP_OS_FAMILY === 'Windows';
     }
 }

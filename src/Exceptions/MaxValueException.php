@@ -2,9 +2,8 @@
 
 namespace Acamposm\Ping\Exceptions;
 
-use \Exception;
+use Exception;
 
 class MaxValueException extends Exception
 {
-
 }

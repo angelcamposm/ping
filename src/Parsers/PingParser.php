@@ -23,7 +23,7 @@ class PingParser implements PingParserInterface
     }
 
     /**
-     * Returns the Ping execution result parsed as object
+     * Returns the Ping execution result parsed as object.
      *
      * @return object
      */
