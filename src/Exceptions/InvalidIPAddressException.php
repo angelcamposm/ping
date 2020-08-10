@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Acamposm\Ping\Exceptions;
 
 use Exception;
