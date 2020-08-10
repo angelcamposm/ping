@@ -2,10 +2,11 @@
 
 namespace Acamposm\Ping;
 
+use Acamposm\Ping\Exceptions\InvalidIPAddressException;
 use Acamposm\Ping\Exceptions\MaxValueException;
 use Acamposm\Ping\Exceptions\NegativeValueException;
+use Acamposm\Ping\Exceptions\UnknownOSException;
 use Acamposm\Ping\Interfaces\PingCommand;
-use Exception;
 
 class PingCommandBuilder implements PingCommand
 {
@@ -21,7 +22,7 @@ class PingCommandBuilder implements PingCommand
      * PingCommand constructor.
      *
      * @param string|null $host
-     * @throws Exception
+     * @throws InvalidIPAddressException
      */
     public function __construct(?string $host = null)
     {
@@ -29,6 +30,9 @@ class PingCommandBuilder implements PingCommand
             $this->host = $host;
             $this->setIPAddressVersion();
         } else {
+
+            // We assume that is an URL...
+            //TODO: Needs URL validation
             $pattern = '/^http:\/\/|^https:\/\//';
 
             if (preg_match($pattern, $host)) {
@@ -38,11 +42,11 @@ class PingCommandBuilder implements PingCommand
             }
         }
 
-        $this->count = config('ping.count');
-        $this->interval = config('ping.interval');
-        $this->packet_size = config('ping.packet_size');
-        $this->timeout = config('ping.timeout');
-        $this->ttl = config('ping.ttl');
+        //$this->count = config('ping.count');
+        //$this->interval = config('ping.interval');
+        //$this->packet_size = config('ping.packet_size');
+        //$this->timeout = config('ping.timeout');
+        //$this->ttl = config('ping.ttl');
     }
 
     /**
@@ -50,7 +54,7 @@ class PingCommandBuilder implements PingCommand
      *
      * @param string|null $ip_address
      * @return bool
-     * @throws Exception
+     * @throws InvalidIPAddressException
      */
     private function isValidIPAddress(?string $ip_address = null): bool
     {
@@ -95,9 +99,7 @@ class PingCommandBuilder implements PingCommand
      */
     public function count(int $count): PingCommandBuilder
     {
-        if ($count < 0) {
-            throw new NegativeValueException('the value of the count parameter must be positive value');
-        }
+        if ($count < 0) throw new NegativeValueException();
 
         $this->count = $count;
 
@@ -143,9 +145,7 @@ class PingCommandBuilder implements PingCommand
      */
     public function ttl(int $ttl): PingCommandBuilder
     {
-        if ($ttl > 255) {
-            throw new MaxValueException('TTL must not exceed 255 value.');
-        }
+        if ($ttl > 255) throw new MaxValueException();
 
         $this->ttl = $ttl;
 
@@ -254,7 +254,7 @@ class PingCommandBuilder implements PingCommand
      * Return the Ping Command.
      *
      * @return string
-     * @throws Exception
+     * @throws UnknownOSException
      */
     public function get(): string
     {
@@ -270,6 +270,6 @@ class PingCommandBuilder implements PingCommand
             return $this->getWindowsCommand();
         }
 
-        throw new Exception('Unknown OS');
+        throw new UnknownOSException();
     }
 }
