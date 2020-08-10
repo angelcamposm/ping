@@ -99,7 +99,9 @@ class PingCommandBuilder implements PingCommand
      */
     public function count(int $count): PingCommandBuilder
     {
-        if ($count < 0) throw new NegativeValueException();
+        if ($count < 0) {
+            throw new NegativeValueException();
+        }
 
         $this->count = $count;
 
@@ -145,7 +147,9 @@ class PingCommandBuilder implements PingCommand
      */
     public function ttl(int $ttl): PingCommandBuilder
     {
-        if ($ttl > 255) throw new MaxValueException();
+        if ($ttl > 255) {
+            throw new MaxValueException();
+        }
 
         $this->ttl = $ttl;
 

@@ -20,7 +20,9 @@ class IPAddress
      */
     public static function Validate(?string $ip_address = null): bool
     {
-        if ($ip_address === null) throw new Exception('A host must be specified');
+        if ($ip_address === null) {
+            throw new Exception('A host must be specified');
+        }
 
         if (strpos($ip_address, IPAddress::IPV4_SEPARATOR) > 0) {
             return self::validateIPv4Address($ip_address);
