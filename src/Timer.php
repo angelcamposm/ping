@@ -1,10 +1,14 @@
 <?php
 
+/**
+ * @author Angel Campos Muñoz <angel.campos.m@outlook.com>
+ * @requires PHP 7.2.0
+ */
+
 namespace Acamposm\Ping;
 
+use Acamposm\Ping\Exceptions\TimerNotStartedException;
 use DateTime;
-use Exception;
-use stdClass;
 
 /**
  * Utility Class to control time elapsed in commands.
@@ -16,22 +20,25 @@ class Timer
      *
      * @var  string
      */
-    protected $format = 'd-m-Y H:i:s.u';
+    protected string $format = 'd-m-Y H:i:s.u';
 
     /**
      * Timer START.
      *
      * @var  float
      */
-    protected $start;
+    protected float $start;
 
     /**
      * Timer END.
      *
      * @var  float
      */
-    protected $stop;
+    protected float $stop;
 
+    /**
+     * Timer constructor.
+     */
     public function __construct()
     {
         return $this;
@@ -50,14 +57,12 @@ class Timer
     /**
      * Stop the Timer.
      *
-     * @throws Exception
+     * @throws TimerNotStartedException
      * @retun  float
      */
     public function Stop(): float
     {
-        if (! isset($this->start)) {
-            throw new Exception('Timer not started.');
-        }
+        if (! isset($this->start)) throw new TimerNotStartedException();
 
         return $this->stop = microtime(true);
     }
@@ -65,9 +70,9 @@ class Timer
     /**
      * Returns an array with the Timer details.
      *
-     * @return  stdClass
+     * @return  object
      */
-    public function GetResults(): stdClass
+    public function GetResults(): object
     {
         if (! isset($this->stop)) {
             $this->stop = microtime(true);
