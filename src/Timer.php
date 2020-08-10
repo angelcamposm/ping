@@ -62,7 +62,9 @@ class Timer
      */
     public function Stop(): float
     {
-        if (! isset($this->start)) throw new TimerNotStartedException();
+        if (! isset($this->start)) {
+            throw new TimerNotStartedException();
+        }
 
         return $this->stop = microtime(true);
     }
