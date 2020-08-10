@@ -42,11 +42,11 @@ class PingCommandBuilder implements PingCommand
             }
         }
 
-        //$this->count = config('ping.count');
-        //$this->interval = config('ping.interval');
-        //$this->packet_size = config('ping.packet_size');
-        //$this->timeout = config('ping.timeout');
-        //$this->ttl = config('ping.ttl');
+        $this->count = config('ping.count');
+        $this->interval = config('ping.interval');
+        $this->packet_size = config('ping.packet_size');
+        $this->timeout = config('ping.timeout');
+        $this->ttl = config('ping.ttl');
     }
 
     /**
