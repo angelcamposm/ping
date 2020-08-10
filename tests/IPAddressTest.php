@@ -3,7 +3,7 @@
 namespace Acamposm\Ping\Tests;
 
 use Acamposm\Ping\IPAddress;
-use \Exception;
+use Exception;
 
 class IPAddressTest extends TestCase
 {
@@ -35,7 +35,7 @@ class IPAddressTest extends TestCase
      */
     public function canDetectInvalidIPv4Addresses()
     {
-        $invalid_ip_address = IPAddressTest::HOST_IP_ADDRESS . '.4';
+        $invalid_ip_address = IPAddressTest::HOST_IP_ADDRESS.'.4';
 
         $this->assertNotTrue(IPAddress::Validate($invalid_ip_address));
     }
@@ -53,7 +53,7 @@ class IPAddressTest extends TestCase
      */
     public function canDetectInvalidIPv6Addresses()
     {
-        $invalid_ip_address = IPAddressTest::HOST_LINK_LOCAL . '::0';
+        $invalid_ip_address = IPAddressTest::HOST_LINK_LOCAL.'::0';
 
         $this->assertNotTrue(IPAddress::Validate($invalid_ip_address));
     }
