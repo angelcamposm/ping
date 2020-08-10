@@ -13,6 +13,7 @@
 
 namespace Acamposm\Ping;
 
+use Acamposm\Ping\Exceptions\UnknownOSException;
 use Acamposm\Ping\Parsers\PingParserForLinux;
 use Acamposm\Ping\Parsers\PingParserForWindows;
 use Exception;
@@ -46,7 +47,7 @@ class Ping
      *
      * @param array $ping
      * @return object
-     * @throws Exception
+     * @throws UnknownOSException
      */
     protected function parse(array $ping): object
     {
@@ -58,7 +59,7 @@ class Ping
             return (new PingParserForWindows($ping))->parse();
         }
 
-        throw new Exception("There's no parser for these results");
+        throw new UnknownOSException();
     }
 
     /**
@@ -68,6 +69,8 @@ class Ping
     public function run(): object
     {
         exec($this->command->get(), $exec_result);
+
+        // TODO: Needs some type of encoding to allow "accents" now it shows as a question mark
 
         if (! is_array($exec_result)) {
             throw new Exception('Ping failed');
