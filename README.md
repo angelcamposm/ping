@@ -378,7 +378,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 # Contributing
 
-Thank you for considering contributing to the improvement of the package. Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+Thank you for considering contributing to the improvement of the package. Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
