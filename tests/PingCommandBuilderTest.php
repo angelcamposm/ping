@@ -15,7 +15,7 @@ class PingCommandBuilderTest extends TestCase
     /**
      * @test
      */
-    public function canGetIPv4Command()
+    public function can_get_IPv4_command()
     {
         $command = (new PingCommandBuilder(PingCommandBuilderTest::HOST_IP_ADDRESS))->get();
 
@@ -25,7 +25,7 @@ class PingCommandBuilderTest extends TestCase
     /**
      * @test
      */
-    public function canGetIPv6Command()
+    public function can_get_IPv6_command()
     {
         $command = (new PingCommandBuilder(PingCommandBuilderTest::HOST_LINK_LOCAL))->get();
 
@@ -35,7 +35,7 @@ class PingCommandBuilderTest extends TestCase
     /**
      * @test
      */
-    public function canGetUrlCommand()
+    public function can_get_URL_command()
     {
         $command = (new PingCommandBuilder(PingCommandBuilderTest::HOST_URL))->get();
 
@@ -45,7 +45,7 @@ class PingCommandBuilderTest extends TestCase
     /**
      * @test
      */
-    public function canChangeCount()
+    public function can_set_count()
     {
         $command = new PingCommandBuilder(PingCommandBuilderTest::HOST_IP_ADDRESS);
 
@@ -59,7 +59,7 @@ class PingCommandBuilderTest extends TestCase
     /**
      * @test
      */
-    public function cantSetNegativeValueToCount()
+    public function can_not_set_a_negative_value_to_count()
     {
         $command = new PingCommandBuilder(PingCommandBuilderTest::HOST_IP_ADDRESS);
 
@@ -73,7 +73,7 @@ class PingCommandBuilderTest extends TestCase
     /**
      * @test
      */
-    public function canChangeInterval()
+    public function can_set_interval()
     {
         $command = new PingCommandBuilder(PingCommandBuilderTest::HOST_IP_ADDRESS);
 
@@ -87,7 +87,7 @@ class PingCommandBuilderTest extends TestCase
     /**
      * @test
      */
-    public function canChangePacketSize()
+    public function can_set_packet_size()
     {
         $command = new PingCommandBuilder(PingCommandBuilderTest::HOST_IP_ADDRESS);
 
@@ -101,7 +101,7 @@ class PingCommandBuilderTest extends TestCase
     /**
      * @test
      */
-    public function canChangeTimeout()
+    public function can_set_timeout()
     {
         $command = new PingCommandBuilder(PingCommandBuilderTest::HOST_IP_ADDRESS);
 
@@ -115,7 +115,7 @@ class PingCommandBuilderTest extends TestCase
     /**
      * @test
      */
-    public function canChangeTtl()
+    public function can_set_ttl()
     {
         $command = new PingCommandBuilder(PingCommandBuilderTest::HOST_IP_ADDRESS);
 
@@ -129,7 +129,7 @@ class PingCommandBuilderTest extends TestCase
     /**
      * @test
      */
-    public function cantSetMaxValue()
+    public function can_not_set_ttl_value_greater_than()
     {
         $command = new PingCommandBuilder(PingCommandBuilderTest::HOST_IP_ADDRESS);
 

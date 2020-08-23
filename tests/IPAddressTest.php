@@ -13,7 +13,7 @@ class IPAddressTest extends TestCase
     /**
      * @test
      */
-    public function requireIPAddress()
+    public function require_IP_address()
     {
         try {
             IPAddress::Validate();
@@ -25,7 +25,7 @@ class IPAddressTest extends TestCase
     /**
      * @test
      */
-    public function canValidateIPAddresses()
+    public function can_validate_IPv4_addresses()
     {
         $this->assertTrue(IPAddress::Validate(IPAddressTest::HOST_IP_ADDRESS));
     }
@@ -33,7 +33,7 @@ class IPAddressTest extends TestCase
     /**
      * @test
      */
-    public function canDetectInvalidIPv4Addresses()
+    public function can_detect_invalid_IPv4_addresses()
     {
         $invalid_ip_address = IPAddressTest::HOST_IP_ADDRESS.'.4';
 
@@ -43,7 +43,7 @@ class IPAddressTest extends TestCase
     /**
      * @test
      */
-    public function canValidateIPv6Addresses()
+    public function can_validate_IPv6_addresses()
     {
         $this->assertTrue(IPAddress::Validate(IPAddressTest::HOST_LINK_LOCAL));
     }
@@ -51,7 +51,7 @@ class IPAddressTest extends TestCase
     /**
      * @test
      */
-    public function canDetectInvalidIPv6Addresses()
+    public function can_detect_invalid_IPv6_addresses()
     {
         $invalid_ip_address = IPAddressTest::HOST_LINK_LOCAL.'::0';
 
