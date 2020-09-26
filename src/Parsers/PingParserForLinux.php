@@ -72,7 +72,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
      */
     private function parseRoundTripTime(string $row): array
     {
-        if (strpos('rtt', $row) === false) {
+        if (strpos($row, 'rtt') === false) {
             return [];
         }
 

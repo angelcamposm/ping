@@ -26,7 +26,9 @@ class IPAddress
 
         if (strpos($ip_address, IPAddress::IPV4_SEPARATOR) > 0) {
             return self::validateIPv4Address($ip_address);
-        } elseif (strpos($ip_address, IPAddress::IPV6_SEPARATOR) > 0) {
+        }
+
+        if (strpos($ip_address, IPAddress::IPV6_SEPARATOR) > 0) {
             return self::validateIPv6Address($ip_address);
         }
 
