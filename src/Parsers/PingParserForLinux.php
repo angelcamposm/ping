@@ -6,6 +6,8 @@ use Acamposm\Ping\Interfaces\PingParserInterface;
 
 final class PingParserForLinux extends PingParser implements PingParserInterface
 {
+    protected bool $is_unreachable;
+
     /**
      * PingParserForLinux constructor.
      *
@@ -15,10 +17,42 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
     {
         parent::__construct($ping);
 
-        $this->setRoundTripTime($ping[count($ping) - 1]);
-        $this->setSequence();
+        $this->is_unreachable = self::isUnreachable($ping);
+
+        $this->host_status = 'Unreachable';
+
         $this->setStatistics($ping[count($ping) - 2]);
-        $this->setHostStatus();
+
+        if ($this->is_unreachable === false) {
+            $this->setRoundTripTime($ping[count($ping) - 1]);
+            $this->setSequence();
+            $this->setHostStatus();
+        }
+    }
+
+    private function cleanStatisticsRecord(string $row): array
+    {
+        $search = explode(
+            '|',
+            'packets|transmitted|received|+|errors|%|packet|loss|time|ms'
+        );
+
+        $row = trim(str_replace($search, null, $row));
+
+        return array_map('trim', explode(', ', $row));
+    }
+
+    private function isUnreachable($ping)
+    {
+        $unreachable = false;
+
+        foreach($ping as $row) {
+            if ($unreachable = strpos($row, '100% packet loss')) {
+                break;
+            }
+        }
+
+        return $unreachable !== false;
     }
 
     /**
@@ -95,29 +129,29 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
      */
     private function parseStatistics(string $row): array
     {
-        $search = explode('|', 'packets|transmitted|received|+|errors|%|packet|loss|time|ms');
+        $statistics = self::cleanStatisticsRecord($row);
 
-        $row = trim(str_replace($search, null, $row));
-
-        $statistics = array_map('trim', explode(', ', $row));
-
-        if (count($statistics) === 5) {
-            return [
-                'packets_transmitted' => (int) $statistics[0],
-                'packets_received' => (int) $statistics[1],
-                'packets_lost' => (int) ($statistics[0] - $statistics[1]),
-                'packet_loss' => (float) $statistics[3],
-                'time' => (int) $statistics[4],
-            ];
-        }
-
-        return [
+        $results = [
             'packets_transmitted' => (int) $statistics[0],
             'packets_received' => (int) $statistics[1],
             'packets_lost' => (int) ($statistics[0] - $statistics[1]),
-            'packet_loss' => (float) $statistics[2],
-            'time' => (int) $statistics[3],
         ];
+
+        if (count($statistics) === 5 && $this->is_unreachable) {
+            $results['errors'] = (int) $statistics[2];
+        }
+
+        if (count($statistics) === 5) {
+            $results['packet_loss'] = (float) $statistics[3];
+            $results['time'] = (int) $statistics[4];
+        }
+
+        if (count($statistics) === 4) {
+            $results['packet_loss'] = (float) $statistics[2];
+            $results['time'] = (int) $statistics[3];
+        }
+
+        return $results;
     }
 
     /**
