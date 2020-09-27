@@ -46,7 +46,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
     {
         $unreachable = false;
 
-        foreach($ping as $row) {
+        foreach ($ping as $row) {
             if ($unreachable = strpos($row, '100% packet loss')) {
                 break;
             }
