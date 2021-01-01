@@ -2,6 +2,16 @@
 
 All notable changes to `ping` will be documented in this file
 
+## 2.1.0 - 2021-01-01
+
+Added package install command, now you can do:
+
+```bash
+php artisan ping:install
+```
+
+To publish the package configuration file.
+
 ## 2.0.0 - 2020-08-09
 
 In this version there are important changes, because I have rewritten the class, adding a class to generate the ping commands. With this class you can also create commands for IPv4 and IPv6 addresses, and it allows you to ping domain names.
