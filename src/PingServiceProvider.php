@@ -2,6 +2,7 @@
 
 namespace Acamposm\Ping;
 
+use Acamposm\Ping\Console\InstallPingPackageCommand;
 use Illuminate\Support\ServiceProvider;
 
 class PingServiceProvider extends ServiceProvider
@@ -15,32 +16,16 @@ class PingServiceProvider extends ServiceProvider
          * Optional methods to load your package assets
          */
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'ping');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'ping');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../config/config.php' => config_path('ping.php'),
             ], 'config');
 
-            // Publishing the views.
-            /*$this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/ping'),
-            ], 'views');*/
-
-            // Publishing assets.
-            /*$this->publishes([
-                __DIR__.'/../resources/assets' => public_path('vendor/ping'),
-            ], 'assets');*/
-
-            // Publishing the translation files.
-            /*$this->publishes([
-                __DIR__.'/../resources/lang' => resource_path('lang/vendor/ping'),
-            ], 'lang');*/
-
             // Registering package commands.
-            // $this->commands([]);
+            $this->commands([
+                InstallPingPackageCommand::class
+            ]);
         }
     }
 
