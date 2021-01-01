@@ -17,8 +17,8 @@ class InstallPingPackageCommand extends Command
         $this->info('Publishing configuration...');
 
         $this->call('vendor:publish', [
-            '--provider' => "Acamposm\Ping\PingServiceProvider",
-            '--tag' => "config",
+            '--provider' => 'Acamposm\Ping\PingServiceProvider',
+            '--tag' => 'config',
         ]);
 
         $this->info('Installed PingPackage');
