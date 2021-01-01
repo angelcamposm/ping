@@ -24,7 +24,7 @@ class PingServiceProvider extends ServiceProvider
 
             // Registering package commands.
             $this->commands([
-                InstallPingPackageCommand::class
+                InstallPingPackageCommand::class,
             ]);
         }
     }
