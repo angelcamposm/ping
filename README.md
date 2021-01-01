@@ -1,7 +1,7 @@
 # PING for Laravel
 
 [![License](https://poser.pugx.org/acamposm/ping/license)](https://packagist.org/packages/acamposm/ping)
-[![Latest Stable Version](https://poser.pugx.org/acamposm/ping/v/stable)](https://packagist.org/packages/acamposm/ping#2.0.0)
+[![Latest Stable Version](https://poser.pugx.org/acamposm/ping/v/stable)](https://packagist.org/packages/acamposm/ping)
 [![Latest Unstable Version](https://poser.pugx.org/acamposm/ping/v/unstable)](https://packagist.org/packages/acamposm/ping)
 [![Build Status](https://travis-ci.com/angelcamposm/ping.svg?branch=master)](https://travis-ci.com/angelcamposm/ping)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/angelcamposm/ping/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/angelcamposm/ping/?branch=master)
