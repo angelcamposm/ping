@@ -6,6 +6,8 @@ use Acamposm\Ping\Interfaces\PingParserInterface;
 
 final class PingParserForWindows extends PingParser implements PingParserInterface
 {
+    private bool $unreachable;
+
     /**
      * PingParserForWindows constructor.
      *
@@ -15,9 +17,16 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
     {
         parent::__construct($ping);
 
-        $this->setRoundTripTime($ping[count($ping) - 1]);
-        $this->setSequence();
-        $this->setStatistics($ping[count($ping) - 4]);
+        $this->unreachable = $this->isUnreachable($ping);
+
+        if ($this->unreachable) {
+            $this->setStatistics($ping[count($ping) - 2]);
+        } else {
+            $this->setRoundTripTime($ping[count($ping) - 1]);
+            $this->setSequence();
+            $this->setStatistics($ping[count($ping) - 4]);
+        }
+
         $this->setHostStatus();
     }
 
@@ -65,6 +74,33 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
         }
 
         return $sequence;
+    }
+
+    /**
+     * Check if the last element of the array has 100% value string.
+     *
+     * @param array $ping
+     * @return bool
+     */
+    private function isUnreachable(array $ping): bool
+    {
+        $needles = 'perdidos|lost';
+
+        $result = $ping[count($ping) - 1];
+
+        $unreachable = false;
+
+        foreach (explode('|', $needles) as $needle) {
+
+            $search = strpos($result, '100% '.$needle);
+
+            if ($search !== false) {
+                $unreachable = true;
+                break;
+            }
+        }
+
+        return $unreachable;
     }
 
     /**
