@@ -58,10 +58,10 @@ php artisan ping:install
 
 For basic usage you only need to create with an ip address as a first argument and run...
 
-``` php
+```php
 
-use Acampos\Ping\Ping;
-use Acampos\Ping\PingCommandBuilder;
+use Acamposm\Ping\Ping;
+use Acamposm\Ping\PingCommandBuilder;
 
 // Create an instance of PingCommand
 $command = (new PingCommandBuilder('192.168.1.1'));
@@ -75,7 +75,10 @@ $ping = (new Ping($command))->run();
 
 Stop after sending count ECHO_REQUEST packets. With deadline option, ping waits for count ECHO_REPLY packets, until the timeout expires.
 
-``` php
+```php
+
+use Acamposm\Ping\Ping;
+use Acamposm\Ping\PingCommandBuilder;
 
 // Change the number of packets to send to 10
 $command = (new PingCommandBuilder('192.168.1.1'))->count(10);
@@ -88,7 +91,10 @@ $ping = (new Ping($command))->run();
 
 Wait interval seconds between sending each packet. The default is to wait for one second between each packet normally, or not to wait in flood mode. Only super-user may set interval to values less than 0.2 seconds.
 
-``` php
+```php
+
+use Acamposm\Ping\Ping;
+use Acamposm\Ping\PingCommandBuilder;
 
 // Change interval to 0.5 seconds between each packet
 $command = (new PingCommandBuilder('192.168.1.1'))->interval(0.5);
@@ -101,12 +107,15 @@ $ping = (new Ping($command))->run();
 
 Specifies the number of data bytes to be sent. The default is 56, which translates into 64 ICMP data bytes when combined with the 8 bytes of ICMP header data.
 
-``` php
+```php
+
+use Acamposm\Ping\Ping;
+use Acamposm\Ping\PingCommandBuilder;
 
 // Change packet size to 128
 $command = (new PingCommandBuilder('192.168.1.1'))->packetSize(128);
 
-$ping = (new Ping($command)->run();
+$ping = (new Ping($command))->run();
 
 ```
 
@@ -114,12 +123,15 @@ $ping = (new Ping($command)->run();
 
 Time to wait for a response, in seconds. The option affects only timeout in absence of any responses, otherwise ping waits for two RTTs.
 
-``` php
+```php
+
+use Acamposm\Ping\Ping;
+use Acamposm\Ping\PingCommandBuilder;
 
 // Change timeout to 10 seconds
 $command = (new PingCommandBuilder('192.168.1.1'))->timeout(10);
 
-$ping = (new Ping($command)->run();
+$ping = (new Ping($command))->run();
 
 ```
 
@@ -127,12 +139,15 @@ $ping = (new Ping($command)->run();
 
 ping only. Set the IP Time to Live.
 
-``` php
+```php
+
+use Acamposm\Ping\Ping;
+use Acamposm\Ping\PingCommandBuilder;
 
 // Change Time To Live to 128
 $command = (new PingCommandBuilder('192.168.1.1'))->ttl(128);
 
-$ping = (new Ping($command)->run();
+$ping = (new Ping($command))->run();
 
 ```
 
@@ -145,15 +160,19 @@ Here you can see three output samples of the ping command...
 
 ### Sample output on Windows based server to https://google.com
 
-``` php
+```php
+
+use Acamposm\Ping\Ping;
+use Acamposm\Ping\PingCommandBuilder;
 
 $command = (new PingCommandBuilder('https://google.com'))->count(10)->packetSize(200)->ttl(128);
 
 // Sample output from Windows based server
-$ping = (new Ping($command)->run();
+$ping = (new Ping($command))->run();
 
 dd($ping);
-
+```
+```
 => {#613
     +"host_status": "Ok",
     +"raw": [
@@ -223,14 +242,18 @@ dd($ping);
 
 ### Sample output from Windows based server to local gateway IPv4
 
-``` php
+```php
+
+use Acamposm\Ping\Ping;
+use Acamposm\Ping\PingCommandBuilder;
 
 $command = (new PingCommandBuilder('192.168.10.254'))->count(10)->packetSize(200)->ttl(120);
 
 $ping = (new Ping($command))->run();
 
 dd($ping);
-
+```
+```
 => {#615
     +"host_status": "Ok",
     +"raw": [
@@ -296,19 +319,22 @@ dd($ping);
     +"time": 9.036,
     },
 }
-
 ```
 
 #### Sample output from Windows based server to link local IPv6 address
 
-``` php
-    
+```php
+
+use Acamposm\Ping\Ping;
+use Acamposm\Ping\PingCommandBuilder;
+
 $command = (new PingCommandBuilder('fe80::6c42:407d:af01:9567'))->count(10)->packetSize(200)->ttl(120);
 
 $ping = (new Ping($command))->run();
 
 dd($ping);
-
+```
+```
 => {#615
     +"host_status": "Ok",
     +"raw": [
@@ -378,7 +404,7 @@ dd($ping);
 
 ### Testing
 
-``` bash
+```bash
 
 composer test
 
