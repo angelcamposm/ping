@@ -2,6 +2,13 @@
 
 All notable changes to `ping` will be documented in this file
 
+## 2.1.1 - 2021-02-07
+
+Small fixes:
+
+- An error in the README.md file has been corrected.
+- Fixed a bug when parsing the result of a ping to an unreachable host.
+
 ## 2.1.0 - 2021-01-01
 
 Added package install command, now you can do:
