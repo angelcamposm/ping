@@ -18,21 +18,21 @@ class Timer
     /**
      * Format for the timestamps.
      *
-     * @var  string
+     * @var string
      */
     protected string $format = 'd-m-Y H:i:s.u';
 
     /**
      * Timer START.
      *
-     * @var  float
+     * @var float
      */
     protected float $start;
 
     /**
      * Timer END.
      *
-     * @var  float
+     * @var float
      */
     protected float $stop;
 
@@ -47,7 +47,7 @@ class Timer
     /**
      * Start the Timer.
      *
-     * @return  float
+     * @return float
      */
     public function Start(): float
     {
@@ -62,7 +62,7 @@ class Timer
      */
     public function Stop(): float
     {
-        if (! isset($this->start)) {
+        if (!isset($this->start)) {
             throw new TimerNotStartedException();
         }
 
@@ -72,11 +72,11 @@ class Timer
     /**
      * Returns an array with the Timer details.
      *
-     * @return  object
+     * @return object
      */
     public function GetResults(): object
     {
-        if (! isset($this->stop)) {
+        if (!isset($this->stop)) {
             $this->stop = microtime(true);
         }
 
@@ -88,11 +88,11 @@ class Timer
 
         return (object) [
             'start' => (object) [
-                'as_float' => $this->start,
+                'as_float'       => $this->start,
                 'human_readable' => $start->format($this->format),
             ],
             'stop' => (object) [
-                'as_float' => $this->stop,
+                'as_float'       => $this->stop,
                 'human_readable' => $stop->format($this->format),
             ],
             'time' => (float) round($time_elapsed, 3, PHP_ROUND_HALF_DOWN),

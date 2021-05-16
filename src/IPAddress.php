@@ -7,16 +7,18 @@ use Exception;
 
 class IPAddress
 {
-    const IPV4_SEPARATOR = '.';
-    const IPV6_SEPARATOR = ':';
+    public const IPV4_SEPARATOR = '.';
+    public const IPV6_SEPARATOR = ':';
 
     /**
      * Performs the validation of the IP Address.
      *
      * @param string|null $ip_address
-     * @return bool
+     *
      * @throws InvalidIPAddressException
      * @throws Exception
+     *
+     * @return bool
      */
     public static function Validate(?string $ip_address = null): bool
     {
@@ -41,6 +43,7 @@ class IPAddress
      * Validate an IPv4 address
      *
      * @param string $ip_address
+     *
      * @return bool
      */
     private static function validateIPv4Address(string $ip_address): bool
@@ -56,6 +59,7 @@ class IPAddress
      * Performs a IPv6 validation.
      *
      * @param string $ip_address
+     *
      * @return bool
      */
     private static function validateIPv6Address(string $ip_address): bool

@@ -7,8 +7,8 @@ use Exception;
 
 class IPAddressTest extends TestCase
 {
-    const HOST_IP_ADDRESS = '127.0.0.1';
-    const HOST_LINK_LOCAL = 'fe80::6c42:407d:af01:9567';
+    public const HOST_IP_ADDRESS = '127.0.0.1';
+    public const HOST_LINK_LOCAL = 'fe80::6c42:407d:af01:9567';
 
     /**
      * @test

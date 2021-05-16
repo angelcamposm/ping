@@ -102,6 +102,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
      * Return an object with Ping Round Trip Time.
      *
      * @param string $row
+     *
      * @return array
      */
     private function parseRoundTripTime(string $row): array
@@ -125,6 +126,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
      * Return an object with Ping Statistics.
      *
      * @param string $row
+     *
      * @return array
      */
     private function parseStatistics(string $row): array
@@ -133,8 +135,8 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
 
         $results = [
             'packets_transmitted' => (int) $statistics[0],
-            'packets_received' => (int) $statistics[1],
-            'packets_lost' => (int) ($statistics[0] - $statistics[1]),
+            'packets_received'    => (int) $statistics[1],
+            'packets_lost'        => (int) ($statistics[0] - $statistics[1]),
         ];
 
         if (count($statistics) === 5 && $this->is_unreachable) {
@@ -199,7 +201,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
     {
         $parsed = [
             'host_status' => $this->host_status,
-            'raw' => (object) $this->raw,
+            'raw'         => (object) $this->raw,
         ];
 
         if (count($this->round_trip_time) > 0) {
