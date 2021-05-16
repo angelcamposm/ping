@@ -1,4 +1,22 @@
-preset: laravel
+version: 8
 
+preset: recommended
+
+tab-width: 4
+use-tabs: false
+
+finder:
+    exclude:
+        - "modules"
+        - "node_modules"
+        - "storage"
+        - "vendor"
+    name: "*.php"
+    not-name: "*.blade.php"
+
+enabled:
+    - const_visibility_required
+    - no_break_comment
+    - psr12_braces
 disabled:
-  - single_class_element_per_statement
+    - symfony_braces
