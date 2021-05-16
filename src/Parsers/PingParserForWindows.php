@@ -80,6 +80,7 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
      * Check if the last element of the array has 100% value string.
      *
      * @param array $ping
+     *
      * @return bool
      */
     private function isUnreachable(array $ping): bool
@@ -91,7 +92,6 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
         $unreachable = false;
 
         foreach (explode('|', $needles) as $needle) {
-
             $search = strpos($result, '100% '.$needle);
 
             if ($search !== false) {
@@ -107,6 +107,7 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
      * Return an object with Ping Round Trip Time.
      *
      * @param string $row
+     *
      * @return array
      */
     private function parseRoundTripTime(string $row): array
@@ -128,6 +129,7 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
      * Return an object with Ping Statistics.
      *
      * @param string $row
+     *
      * @return array
      */
     private function parseStatistics(string $row): array
@@ -142,9 +144,9 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
 
         return [
             'packets_transmitted' => $transmitted,
-            'packets_received' => $received,
-            'packets_lost' => $lost,
-            'packet_loss' => (int) (100 - (($received * 100) / $transmitted)),
+            'packets_received'    => $received,
+            'packets_lost'        => $lost,
+            'packet_loss'         => (int) (100 - (($received * 100) / $transmitted)),
         ];
     }
 
@@ -193,7 +195,7 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
     {
         $parsed = [
             'host_status' => $this->host_status,
-            'raw' => $this->raw,
+            'raw'         => $this->raw,
         ];
 
         if (count($this->round_trip_time) > 0) {

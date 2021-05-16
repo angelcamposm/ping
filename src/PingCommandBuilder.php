@@ -53,8 +53,10 @@ class PingCommandBuilder implements PingCommand
      * Validates an IP Address.
      *
      * @param string|null $ip_address
-     * @return bool
+     *
      * @throws InvalidIPAddressException
+     *
+     * @return bool
      */
     private function isValidIPAddress(?string $ip_address = null): bool
     {
@@ -94,8 +96,10 @@ class PingCommandBuilder implements PingCommand
      * waits for count ECHO_REPLY packets, until the timeout expires.
      *
      * @param int $count
-     * @return PingCommandBuilder
+     *
      * @throws NegativeValueException
+     *
+     * @return PingCommandBuilder
      */
     public function count(int $count): PingCommandBuilder
     {
@@ -114,6 +118,7 @@ class PingCommandBuilder implements PingCommand
      * Only super-user may set interval to values less than 0.2 seconds.
      *
      * @param float $interval
+     *
      * @return PingCommandBuilder
      */
     public function interval(float $interval): PingCommandBuilder
@@ -129,6 +134,7 @@ class PingCommandBuilder implements PingCommand
      * header data.
      *
      * @param int $packet_size
+     *
      * @return PingCommandBuilder
      */
     public function packetSize(int $packet_size): PingCommandBuilder
@@ -142,8 +148,10 @@ class PingCommandBuilder implements PingCommand
      * ping only. Set the IP Time to Live.
      *
      * @param int $ttl
-     * @return PingCommandBuilder
+     *
      * @throws MaxValueException
+     *
+     * @return PingCommandBuilder
      */
     public function ttl(int $ttl): PingCommandBuilder
     {
@@ -162,6 +170,7 @@ class PingCommandBuilder implements PingCommand
      * (Seconds for Linux OS, Milliseconds for Windows).
      *
      * @param int $timeout
+     *
      * @return PingCommandBuilder
      */
     public function timeout(int $timeout): PingCommandBuilder
@@ -180,12 +189,12 @@ class PingCommandBuilder implements PingCommand
     {
         $command = ['ping -n'];
 
-        (! isset($this->version)) ?: array_push($command, '-'.$this->version);
-        (! isset($this->count)) ?: array_push($command, '-c '.$this->count);
-        (! isset($this->interval)) ?: array_push($command, '-i '.$this->interval);
-        (! isset($this->packet_size)) ?: array_push($command, '-s '.$this->packet_size);
-        (! isset($this->timeout)) ?: array_push($command, '-W '.$this->timeout);
-        (! isset($this->ttl)) ?: array_push($command, '-t '.$this->ttl);
+        (!isset($this->version)) ?: array_push($command, '-'.$this->version);
+        (!isset($this->count)) ?: array_push($command, '-c '.$this->count);
+        (!isset($this->interval)) ?: array_push($command, '-i '.$this->interval);
+        (!isset($this->packet_size)) ?: array_push($command, '-s '.$this->packet_size);
+        (!isset($this->timeout)) ?: array_push($command, '-W '.$this->timeout);
+        (!isset($this->ttl)) ?: array_push($command, '-t '.$this->ttl);
 
         array_push($command, $this->host);
 
@@ -201,12 +210,12 @@ class PingCommandBuilder implements PingCommand
     {
         $command = ['ping'];
 
-        (! isset($this->version)) ?: array_push($command, '-'.$this->version);
-        (! isset($this->count)) ?: array_push($command, '-c '.$this->count);
-        (! isset($this->interval)) ?: array_push($command, '-i '.$this->interval);
-        (! isset($this->packet_size)) ?: array_push($command, '-s '.$this->packet_size);
-        (! isset($this->timeout)) ?: array_push($command, '-t '.($this->timeout * 1000));
-        (! isset($this->ttl)) ?: array_push($command, '-m '.$this->ttl);
+        (!isset($this->version)) ?: array_push($command, '-'.$this->version);
+        (!isset($this->count)) ?: array_push($command, '-c '.$this->count);
+        (!isset($this->interval)) ?: array_push($command, '-i '.$this->interval);
+        (!isset($this->packet_size)) ?: array_push($command, '-s '.$this->packet_size);
+        (!isset($this->timeout)) ?: array_push($command, '-t '.($this->timeout * 1000));
+        (!isset($this->ttl)) ?: array_push($command, '-m '.$this->ttl);
 
         array_push($command, $this->host);
 
@@ -222,11 +231,11 @@ class PingCommandBuilder implements PingCommand
     {
         $command = ['ping'];
 
-        (! isset($this->version)) ?: array_push($command, '-'.$this->version);
-        (! isset($this->count)) ?: array_push($command, '-n '.$this->count);
-        (! isset($this->packet_size)) ?: array_push($command, '-l '.$this->packet_size);
-        (! isset($this->timeout)) ?: array_push($command, '-w '.($this->timeout * 1000));
-        (! isset($this->ttl)) ?: array_push($command, '-i '.$this->ttl);
+        (!isset($this->version)) ?: array_push($command, '-'.$this->version);
+        (!isset($this->count)) ?: array_push($command, '-n '.$this->count);
+        (!isset($this->packet_size)) ?: array_push($command, '-l '.$this->packet_size);
+        (!isset($this->timeout)) ?: array_push($command, '-w '.($this->timeout * 1000));
+        (!isset($this->ttl)) ?: array_push($command, '-i '.$this->ttl);
 
         array_push($command, $this->host);
 
@@ -244,12 +253,12 @@ class PingCommandBuilder implements PingCommand
             'host' => $this->host,
         ];
 
-        (! isset($this->count)) ?: $options['count'] = $this->count;
-        (! isset($this->interval)) ?: $options['interval'] = $this->interval;
-        (! isset($this->packet_size)) ?: $options['packet_size'] = $this->packet_size;
-        (! isset($this->timeout)) ?: $options['timeout'] = $this->timeout;
-        (! isset($this->ttl)) ?: $options['ttl'] = $this->ttl;
-        (! isset($this->version)) ?: $options['version'] = $this->version;
+        (!isset($this->count)) ?: $options['count'] = $this->count;
+        (!isset($this->interval)) ?: $options['interval'] = $this->interval;
+        (!isset($this->packet_size)) ?: $options['packet_size'] = $this->packet_size;
+        (!isset($this->timeout)) ?: $options['timeout'] = $this->timeout;
+        (!isset($this->ttl)) ?: $options['ttl'] = $this->ttl;
+        (!isset($this->version)) ?: $options['version'] = $this->version;
 
         return (object) $options;
     }
@@ -257,8 +266,9 @@ class PingCommandBuilder implements PingCommand
     /**
      * Return the Ping Command.
      *
-     * @return string
      * @throws UnknownOSException
+     *
+     * @return string
      */
     public function get(): string
     {

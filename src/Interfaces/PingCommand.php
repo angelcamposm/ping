@@ -14,8 +14,10 @@ interface PingCommand
      * waits for count ECHO_REPLY packets, until the timeout expires.
      *
      * @param int $count
-     * @return PingCommandBuilder
+     *
      * @throws NegativeValueException
+     *
+     * @return PingCommandBuilder
      */
     public function count(int $count): PingCommandBuilder;
 
@@ -25,6 +27,7 @@ interface PingCommand
      * Only super-user may set interval to values less than 0.2 seconds.
      *
      * @param float $interval
+     *
      * @return PingCommandBuilder
      */
     public function interval(float $interval): PingCommandBuilder;
@@ -35,6 +38,7 @@ interface PingCommand
      * header data.
      *
      * @param int $packet_size
+     *
      * @return PingCommandBuilder
      */
     public function packetSize(int $packet_size): PingCommandBuilder;
@@ -43,8 +47,10 @@ interface PingCommand
      * ping only. Set the IP Time to Live.
      *
      * @param int $ttl
-     * @return PingCommandBuilder
+     *
      * @throws MaxValueException
+     *
+     * @return PingCommandBuilder
      */
     public function ttl(int $ttl): PingCommandBuilder;
 
@@ -54,6 +60,7 @@ interface PingCommand
      * (Seconds for Linux OS, Milliseconds for Windows).
      *
      * @param int $timeout
+     *
      * @return PingCommandBuilder
      */
     public function timeout(int $timeout): PingCommandBuilder;
@@ -61,8 +68,9 @@ interface PingCommand
     /**
      * Return the Ping Command.
      *
-     * @return string
      * @throws UnknownOSException
+     *
+     * @return string
      */
     public function get(): string;
 }

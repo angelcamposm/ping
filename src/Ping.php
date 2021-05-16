@@ -8,6 +8,7 @@
  * Ping uses the ICMP protocol's mandatory ECHO_REQUEST datagram to elicit an ICMP ECHO_RESPONSE from a host or gateway.
  *
  * @version  0.2.0
+ *
  * @author  Angel Campos <angel.campos.m@outlook.com>
  */
 
@@ -32,6 +33,7 @@ class Ping
 
     /**
      * Ping constructor.
+     *
      * @param PingCommandBuilder $command
      */
     public function __construct(PingCommandBuilder $command)
@@ -46,8 +48,10 @@ class Ping
      * Parse the ping result and return an object.
      *
      * @param array $ping
-     * @return object
+     *
      * @throws UnknownOSException
+     *
+     * @return object
      */
     protected function parse(array $ping): object
     {
@@ -63,8 +67,9 @@ class Ping
     }
 
     /**
-     * @return object
      * @throws Exception
+     *
+     * @return object
      */
     public function run(): object
     {
@@ -72,7 +77,7 @@ class Ping
 
         // TODO: Needs some type of encoding to allow "accents" now it shows as a question mark
 
-        if (! is_array($exec_result)) {
+        if (!is_array($exec_result)) {
             throw new Exception('Ping failed');
         }
 

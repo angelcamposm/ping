@@ -22,11 +22,11 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function getEnvironmentSetUp($app)
     {
         $app['config']->set('ping', [
-            'count' => 5,
-            'interval' => 1,
+            'count'       => 5,
+            'interval'    => 1,
             'packet_size' => 64,
-            'timeout' => 8,
-            'ttl' => 60,
+            'timeout'     => 8,
+            'ttl'         => 60,
         ]);
     }
 }
