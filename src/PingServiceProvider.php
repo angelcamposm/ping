@@ -39,7 +39,7 @@ class PingServiceProvider extends ServiceProvider
 
         // Register the main class to use with the facade
         $this->app->singleton('ping', function () {
-            return new Ping;
+            return new Ping();
         });
     }
 }
