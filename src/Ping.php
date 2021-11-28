@@ -70,6 +70,7 @@ class Ping
      * Remove binary casting from the beginning of the strings.
      *
      * @param array $ping
+     *
      * @return array
      */
     private function cleanBinaryString(array $ping): array
@@ -108,8 +109,9 @@ class Ping
     /**
      * Return the result of the execution of ping command.
      *
-     * @return array
      * @throws Exception
+     *
+     * @return array
      */
     private function executePing(): array
     {
