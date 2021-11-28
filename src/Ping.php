@@ -67,30 +67,58 @@ class Ping
     }
 
     /**
+     * Remove binary casting from the beginning of the strings.
+     *
+     * @param array $ping
+     * @return array
+     */
+    private function cleanBinaryString(array $ping): array
+    {
+        $cleaned = [];
+
+        foreach($ping as $row) {
+            $cleaned[] = preg_replace('/[[:^print:]]/', '', $row);
+        }
+
+        return $cleaned;
+    }
+
+    /**
      * @throws Exception
      *
      * @return object
      */
     public function run(): object
     {
-        exec($this->command->get(), $exec_result);
+        $ping = $this->executePing();
 
         // Return the result if lines count are less than three.
-        if (count($exec_result) < 3) {
-            return (object) $exec_result;
+        if (count($ping) < 3) {
+            return (object) $ping;
         }
 
-        // TODO: Needs some type of encoding to allow "accents" now it shows as a question mark
-
-        if (!is_array($exec_result)) {
-            throw new Exception('Ping failed');
-        }
-
-        $ping_object = ($this->parse($exec_result));
+        $ping_object = ($this->parse($ping));
 
         $ping_object->options = $this->command->getOptions();
         $ping_object->time = $this->timer->getResults();
 
         return $ping_object;
+    }
+
+    /**
+     * Return the result of the execution of ping command.
+     *
+     * @return array
+     * @throws Exception
+     */
+    private function executePing(): array
+    {
+        exec($this->command->get(), $exec_result);
+
+        if (!is_array($exec_result)) {
+            throw new Exception('Ping failed');
+        }
+
+        return $this->cleanBinaryString($exec_result);
     }
 }
