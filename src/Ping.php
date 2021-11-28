@@ -75,6 +75,11 @@ class Ping
     {
         exec($this->command->get(), $exec_result);
 
+        // Return the result if lines count are less than three.
+        if (count($exec_result) < 3) {
+            return (object) $exec_result;
+        }
+
         // TODO: Needs some type of encoding to allow "accents" now it shows as a question mark
 
         if (!is_array($exec_result)) {
