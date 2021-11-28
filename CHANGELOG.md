@@ -2,6 +2,13 @@
 
 All notable changes to `ping` will be documented in this file
 
+## 2.1.2 - 2021-11-28
+
+Small fixes:
+
+- Removed ending slash on url hosts.
+- Sanitized ping command execution results.
+
 ## 2.1.1 - 2021-02-07
 
 Small fixes:
