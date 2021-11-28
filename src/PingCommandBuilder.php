@@ -30,7 +30,6 @@ class PingCommandBuilder implements PingCommand
             $this->host = $host;
             $this->setIPAddressVersion();
         } else {
-
             if (str_ends_with($host, '/')) {
                 $host = substr($host, 0, strlen($host) - 1);
             }
