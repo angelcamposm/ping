@@ -76,7 +76,7 @@ class Ping
     {
         $cleaned = [];
 
-        foreach($ping as $row) {
+        foreach ($ping as $row) {
             $cleaned[] = preg_replace('/[[:^print:]]/', '', $row);
         }
 
