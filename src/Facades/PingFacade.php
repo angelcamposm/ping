@@ -12,7 +12,7 @@
  * @version  2.1.2
  */
 
-namespace Acamposm\Ping;
+namespace Acamposm\Ping\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
