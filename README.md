@@ -14,19 +14,19 @@ ping uses the ICMP protocol's mandatory ECHO_REQUEST datagram to elicit an ICMP 
 
 - [Installation](#installation)
 - [Usage](#usage)
-	- [Change Count](#change-count)
-	- [Change Interval](#change-interval)
-	- [Change Packet Size](#change-packet-size)
-	- [Change Timeout](#change-timeout)
-	- [Change Time To Live](#change-time-to-live)
+    - [Change Count](#change-count)
+    - [Change Interval](#change-interval)
+    - [Change Packet Size](#change-packet-size)
+    - [Change Timeout](#change-timeout)
+    - [Change Time To Live](#change-time-to-live)
 - [Sample output](#sample-outputs)
 - [Testing](#testing)
 - [Changelog](#changelog)
 - [Contributing](#contributing)
-- [Security](#security-vulnerabilities)
+- [Security & Vulnerabilities](#security-&-vulnerabilities)
+- [Standards](#standards)
 - [Credits](#credits)
 - [License](#license)
-- [Laravel Package Boilerplate](#laravel-package-boilerplate)
 
 ## Installation
 
@@ -404,10 +404,10 @@ dd($ping);
 
 ### Testing
 
+For running the tests, in the console run:
+
 ```bash
-
 composer test
-
 ```
 
 ## Changelog
@@ -418,9 +418,17 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 Thank you for considering contributing to the improvement of the package. Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
-## Security Vulnerabilities
+## Security & Vulnerabilities
 
 If you discover any security related issues, please send an e-mail to Angel Campos via angel.campos.m@outlook.com instead of using the issue tracker. All security vulnerabilities will be promptly addressed.
+
+## Standards
+
+The php package IPv4 Address Converter, comply with the next standards:
+
+- [PSR-1 - Basic Coding Standard](http://www.php-fig.org/psr/psr-1/)
+- [PSR-4 - Autoloading Standard](http://www.php-fig.org/psr/psr-4/)
+- [PSR-12 - Extended Coding Style Guide](https://www.php-fig.org/psr/psr-12/)
 
 ## Credits
 
@@ -429,7 +437,3 @@ If you discover any security related issues, please send an e-mail to Angel Camp
 ## License
 
 The package Ping is open-source package and is licensed under The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-## Laravel Package Boilerplate
-
-This package was generated using the [Laravel Package Boilerplate](https://laravelpackageboilerplate.com).
