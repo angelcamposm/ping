@@ -26,20 +26,9 @@ class PingServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        /*
-         * Optional methods to load your package assets
-         */
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'ping');
-
         if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__ . '/../../config/config.php' => config_path('ping.php'),
-            ], 'config');
-
-            // Registering package commands.
-            $this->commands([
-                InstallPingPackageCommand::class,
-            ]);
+            $this->publishCommands();
+            $this->publishConfiguration();
         }
     }
 
@@ -55,5 +44,31 @@ class PingServiceProvider extends ServiceProvider
         $this->app->singleton('ping', function () {
             return new Ping();
         });
+    }
+
+    /**
+     * Publishes console commands.
+     *
+     * @return void
+     */
+    private function publishCommands(): void
+    {
+        if (!file_exists(config_path('ping.php'))) {
+            $this->commands([
+                InstallPingPackageCommand::class,
+            ]);
+        }
+    }
+
+    /**
+     * Publishes package configuration files.
+     *
+     * @return void
+     */
+    private function publishConfiguration(): void
+    {
+        $this->publishes([
+            __DIR__ . '/../../config/config.php' => config_path('ping.php'),
+        ], 'config');
     }
 }
