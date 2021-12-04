@@ -76,7 +76,7 @@ class Timer
     }
 
     /**
-     * Returns an array with the Timer details.
+     * Returns an object with the Timer details.
      *
      * @return object
      */
@@ -86,22 +86,49 @@ class Timer
             $this->stop = microtime(true);
         }
 
-        $start = DateTime::createFromFormat('U.u', $this->start);
+        return (object) [
+            'start' => $this->getTimeObject($this->start),
+            'stop' => $this->getTimeObject($this->stop),
+            'time' => $this->getTimeElapsed(),
+        ];
+    }
 
-        $stop = DateTime::createFromFormat('U.u', $this->stop);
+    /**
+     * Returns a DateTime instance from timestamp.
+     *
+     * @param float $timestamp
+     * @return DateTime
+     */
+    private static function getDateTimeObjectFromTimeStamp(float $timestamp): DateTime
+    {
+        return DateTime::createFromFormat('U.u', $timestamp);
+    }
 
-        $time_elapsed = $this->stop - $this->start;
+    /**
+     * Returns an object with the timestamp as a float and as a human-readable.
+     *
+     * @param float $timestamp
+     * @return object
+     */
+    private function getTimeObject(float $timestamp): object
+    {
+        $date_time = self::getDateTimeObjectFromTimeStamp($timestamp);
 
         return (object) [
-            'start' => (object) [
-                'as_float'       => $this->start,
-                'human_readable' => $start->format($this->format),
-            ],
-            'stop' => (object) [
-                'as_float'       => $this->stop,
-                'human_readable' => $stop->format($this->format),
-            ],
-            'time' => round($time_elapsed, 3, PHP_ROUND_HALF_DOWN),
+            'as_float'       => $timestamp,
+            'human_readable' => $date_time->format($this->format),
         ];
+    }
+
+    /**
+     * Returns the elapsed time between start and stop.
+     *
+     * @return float
+     */
+    private function getTimeElapsed(): float
+    {
+        $time_elapsed = $this->stop - $this->start;
+
+        return round($time_elapsed, 3, PHP_ROUND_HALF_DOWN);
     }
 }
