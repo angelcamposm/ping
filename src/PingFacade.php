@@ -16,9 +16,6 @@ namespace Acamposm\Ping;
 
 use Illuminate\Support\Facades\Facade;
 
-/**
- * @see \Acamposm\Ping\Skeleton\SkeletonClass
- */
 class PingFacade extends Facade
 {
     /**
@@ -26,7 +23,7 @@ class PingFacade extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return 'ping';
     }
