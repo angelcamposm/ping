@@ -23,7 +23,7 @@ ping uses the ICMP protocol's mandatory ECHO_REQUEST datagram to elicit an ICMP 
 - [Testing](#testing)
 - [Changelog](#changelog)
 - [Contributing](#contributing)
-- [Security & Vulnerabilities](#security-&-vulnerabilities)
+- [Security & Vulnerabilities](#security--vulnerabilities)
 - [Standards](#standards)
 - [Credits](#credits)
 - [License](#license)
