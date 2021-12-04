@@ -414,7 +414,7 @@ composer test
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
-# Contributing
+## Contributing
 
 Thank you for considering contributing to the improvement of the package. Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
