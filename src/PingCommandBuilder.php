@@ -212,7 +212,7 @@ class PingCommandBuilder implements PingCommand
         (!isset($this->timeout)) ?: array_push($command, '-W '.$this->timeout);
         (!isset($this->ttl)) ?: array_push($command, '-t '.$this->ttl);
 
-        array_push($command, $this->host);
+        $command[] = $this->host;
 
         return implode(' ', $command);
     }
@@ -233,7 +233,7 @@ class PingCommandBuilder implements PingCommand
         (!isset($this->timeout)) ?: array_push($command, '-t '.($this->timeout * 1000));
         (!isset($this->ttl)) ?: array_push($command, '-m '.$this->ttl);
 
-        array_push($command, $this->host);
+        $command[] = $this->host;
 
         return implode(' ', $command);
     }
@@ -253,7 +253,7 @@ class PingCommandBuilder implements PingCommand
         (!isset($this->timeout)) ?: array_push($command, '-w '.($this->timeout * 1000));
         (!isset($this->ttl)) ?: array_push($command, '-i '.$this->ttl);
 
-        array_push($command, $this->host);
+        $command[] = $this->host;
 
         return implode(' ', $command);
     }
