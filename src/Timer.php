@@ -102,7 +102,7 @@ class Timer
                 'as_float'       => $this->stop,
                 'human_readable' => $stop->format($this->format),
             ],
-            'time' => (float) round($time_elapsed, 3, PHP_ROUND_HALF_DOWN),
+            'time' => round($time_elapsed, 3, PHP_ROUND_HALF_DOWN),
         ];
     }
 }
