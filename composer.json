@@ -22,7 +22,7 @@
         "php": "^8.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^5.3",
+        "orchestra/testbench": "^6.23",
         "phpunit/phpunit": "^9"
     },
     "autoload": {
@@ -37,7 +37,10 @@
     },
     "scripts": {
         "test": "phpunit --colors=always --testdox",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+        "test-coverage": "phpunit --coverage-html coverage",
+        "post-autoload-dump": [
+            "@php ./vendor/bin/testbench package:discover --ansi"
+        ]
     },
     "config": {
         "sort-packages": true
@@ -45,10 +48,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Acamposm\\Ping\\PingServiceProvider"
+                "Acamposm\\Ping\\ServiceProviders\\PingServiceProvider"
             ],
             "aliases": {
-                "Ping": "Acamposm\\Ping\\PingFacade"
+                "Ping": "Acamposm\\Ping\\Facades\\PingFacade"
             }
         }
     }
