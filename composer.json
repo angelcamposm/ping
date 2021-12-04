@@ -1,5 +1,6 @@
 {
     "name": "acamposm/ping",
+    "version": "2.1.3",
     "description": "Ping uses the ICMP protocol's mandatory ECHO_REQUEST datagram to elicit an ICMP ECHO_RESPONSE from a host or gateway.",
     "keywords": [
         "icmp",
