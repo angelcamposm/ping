@@ -96,7 +96,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
         $sequence = [];
 
         foreach ($ping as $row) {
-            if (strpos('Unreachable', $row) !== false) {
+            if (str_contains('Unreachable', $row)) {
                 $data = explode(': ', str_replace(' ms', '', $row));
                 $items = explode(' ', $data[1]);
 
@@ -119,7 +119,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
      */
     private function parseRoundTripTime(string $row): array
     {
-        if (strpos($row, 'rtt') === false) {
+        if (!str_contains($row, 'rtt')) {
             return [];
         }
 
