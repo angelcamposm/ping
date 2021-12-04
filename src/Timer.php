@@ -26,7 +26,7 @@ class Timer
     /**
      * Format for the timestamps.
      */
-    const FORMAT = 'd-m-Y H:i:s.u';
+    public const FORMAT = 'd-m-Y H:i:s.u';
 
     /**
      * Timer START.
@@ -88,8 +88,8 @@ class Timer
 
         return (object) [
             'start' => $this->getTimeObject($this->start),
-            'stop' => $this->getTimeObject($this->stop),
-            'time' => $this->getTimeElapsed(),
+            'stop'  => $this->getTimeObject($this->stop),
+            'time'  => $this->getTimeElapsed(),
         ];
     }
 
@@ -97,6 +97,7 @@ class Timer
      * Returns a DateTime instance from timestamp.
      *
      * @param float $timestamp
+     *
      * @return DateTime
      */
     private static function getDateTimeObjectFromTimeStamp(float $timestamp): DateTime
@@ -108,6 +109,7 @@ class Timer
      * Returns an object with the timestamp as a float and as a human-readable.
      *
      * @param float $timestamp
+     *
      * @return object
      */
     private function getTimeObject(float $timestamp): object
