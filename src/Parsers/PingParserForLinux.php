@@ -54,7 +54,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
         return array_map('trim', explode(', ', $row));
     }
 
-    private function isUnreachable($ping)
+    private function isUnreachable($ping): bool
     {
         $unreachable = false;
 
