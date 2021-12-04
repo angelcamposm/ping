@@ -38,7 +38,7 @@ class PingServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__ . '/../../config/config.php', 'ping');
+        $this->mergeConfigFrom(__DIR__.'/../../config/config.php', 'ping');
 
         // Register the main class to use with the facade
         $this->app->singleton('ping', function () {
@@ -68,7 +68,7 @@ class PingServiceProvider extends ServiceProvider
     private function publishConfiguration(): void
     {
         $this->publishes([
-            __DIR__ . '/../../config/config.php' => config_path('ping.php'),
+            __DIR__.'/../../config/config.php' => config_path('ping.php'),
         ], 'config');
     }
 }
