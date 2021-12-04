@@ -15,6 +15,7 @@
 
 namespace Acamposm\Ping\Console;
 
+use Acamposm\Ping\ServiceProviders\PingServiceProvider;
 use Illuminate\Console\Command;
 
 class InstallPingPackageCommand extends Command
@@ -30,7 +31,7 @@ class InstallPingPackageCommand extends Command
         $this->info('Publishing configuration...');
 
         $this->call('vendor:publish', [
-            '--provider' => 'Acamposm\Ping\PingServiceProvider',
+            '--provider' => PingServiceProvider::class,
             '--tag'      => 'config',
         ]);
 
