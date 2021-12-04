@@ -24,6 +24,7 @@ class IPAddressTest extends TestCase
 
     /**
      * @test
+     *
      * @throws \acamposm\Ping\Exceptions\InvalidIPAddressException
      */
     public function can_validate_IPv4_addresses()
@@ -33,6 +34,7 @@ class IPAddressTest extends TestCase
 
     /**
      * @test
+     *
      * @throws \acamposm\Ping\Exceptions\InvalidIPAddressException
      */
     public function can_detect_invalid_IPv4_addresses()
@@ -44,6 +46,7 @@ class IPAddressTest extends TestCase
 
     /**
      * @test
+     *
      * @throws \acamposm\Ping\Exceptions\InvalidIPAddressException
      */
     public function can_validate_IPv6_addresses()
@@ -53,6 +56,7 @@ class IPAddressTest extends TestCase
 
     /**
      * @test
+     *
      * @throws \acamposm\Ping\Exceptions\InvalidIPAddressException
      */
     public function can_detect_invalid_IPv6_addresses()
