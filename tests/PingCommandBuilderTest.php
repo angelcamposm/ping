@@ -14,6 +14,7 @@ class PingCommandBuilderTest extends TestCase
 
     /**
      * @test
+     * @throws \Acamposm\Ping\Exceptions\UnknownOSException
      */
     public function can_get_IPv4_command()
     {
@@ -24,6 +25,7 @@ class PingCommandBuilderTest extends TestCase
 
     /**
      * @test
+     * @throws \Acamposm\Ping\Exceptions\UnknownOSException
      */
     public function can_get_IPv6_command()
     {
@@ -34,6 +36,7 @@ class PingCommandBuilderTest extends TestCase
 
     /**
      * @test
+     * @throws \Acamposm\Ping\Exceptions\UnknownOSException
      */
     public function can_get_URL_command()
     {
@@ -44,6 +47,7 @@ class PingCommandBuilderTest extends TestCase
 
     /**
      * @test
+     * @throws NegativeValueException
      */
     public function can_set_count()
     {
@@ -114,6 +118,7 @@ class PingCommandBuilderTest extends TestCase
 
     /**
      * @test
+     * @throws MaxValueException
      */
     public function can_set_ttl()
     {
