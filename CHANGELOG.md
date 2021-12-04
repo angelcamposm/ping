@@ -2,6 +2,14 @@
 
 All notable changes to `ping` will be documented in this file
 
+## 2.1.3 - 2021-12-04
+
+Small fixes:
+
+- Fixed ping:install command, now when ping configuration is published the ping:install is not displayed.
+
+Small refactoring
+
 ## 2.1.2 - 2021-11-28
 
 Small fixes:
