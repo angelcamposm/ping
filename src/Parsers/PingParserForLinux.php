@@ -84,7 +84,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
      */
     private function getSequence(): array
     {
-        $ping = $this->raw;
+        $ping = $this->results;
 
         // Remove unnecessary index
         unset($ping[0]);
@@ -213,7 +213,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
     {
         $parsed = [
             'host_status' => $this->host_status,
-            'raw'         => (object) $this->raw,
+            'raw'         => (object) $this->results,
         ];
 
         if (count($this->round_trip_time) > 0) {

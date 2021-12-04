@@ -18,7 +18,6 @@ use Acamposm\Ping\Interfaces\PingParserInterface;
 
 class PingParser implements PingParserInterface
 {
-    protected array $raw = [];
     protected string $host_status = '';
     protected array $sequence = [];
     protected array $statistics = [];
@@ -27,11 +26,10 @@ class PingParser implements PingParserInterface
     /**
      * PingParser constructor.
      *
-     * @param array $ping
+     * @param array $results
      */
-    public function __construct(array $ping)
+    public function __construct(protected array $results = [])
     {
-        $this->raw = $ping;
     }
 
     /**
@@ -41,6 +39,6 @@ class PingParser implements PingParserInterface
      */
     public function parse(): object
     {
-        return (object) $this->raw;
+        return (object) $this->results;
     }
 }

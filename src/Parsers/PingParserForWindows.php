@@ -59,7 +59,7 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
      */
     private function getSequence(): array
     {
-        $ping = $this->raw;
+        $ping = $this->results;
 
         $items_count = count($ping);
 
@@ -207,7 +207,7 @@ final class PingParserForWindows extends PingParser implements PingParserInterfa
     {
         $parsed = [
             'host_status' => $this->host_status,
-            'raw'         => $this->raw,
+            'raw'         => $this->results,
         ];
 
         if (count($this->round_trip_time) > 0) {
