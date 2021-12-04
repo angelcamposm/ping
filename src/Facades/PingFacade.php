@@ -9,6 +9,7 @@
  *
  * @author  Angel Campos <angel.campos.m@outlook.com>
  * @requires PHP 8.0
+ *
  * @version  2.1.2
  */
 
