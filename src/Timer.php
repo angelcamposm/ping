@@ -24,10 +24,8 @@ class Timer
 {
     /**
      * Format for the timestamps.
-     *
-     * @var string
      */
-    protected string $format = 'd-m-Y H:i:s.u';
+    const FORMAT = 'd-m-Y H:i:s.u';
 
     /**
      * Timer START.
@@ -46,7 +44,7 @@ class Timer
     /**
      * Timer constructor.
      */
-    public function __construct()
+    public function __construct(protected string $format = self::FORMAT)
     {
         return $this;
     }
