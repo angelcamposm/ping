@@ -39,8 +39,11 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
+      - run: printenv
       - run: pwd
       - run: ls
+      - run: cat build/clover.xml
+      - run: cat build/junit.xml
 
       - name: Run test suite
         env:
