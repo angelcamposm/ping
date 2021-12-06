@@ -4,7 +4,7 @@ namespace Acamposm\Ping\Tests\Unit;
 
 use Acamposm\Ping\IPAddress;
 use Acamposm\Ping\Tests\TestCase;
-use Exception;
+use ArgumentCountError;
 
 class IPAddressTest extends TestCase
 {
@@ -23,50 +23,50 @@ class IPAddressTest extends TestCase
     /**
      * @test
      */
-    public function require_IP_address()
+    public function it_require_an_IP_address()
     {
-        $this->expectException(Exception::class);
+        $this->expectException(ArgumentCountError::class);
 
         IPAddress::Validate();
     }
 
     /**
      * @test
-     *
-     * @throws \acamposm\Ping\Exceptions\InvalidIPAddressException
      */
-    public function can_validate_IPv4_addresses()
+    public function it_can_validate_an_IPv4_addresses()
     {
         $this->assertTrue(IPAddress::Validate(self::HOST_IP_ADDRESS));
     }
 
     /**
      * @test
-     *
-     * @throws \acamposm\Ping\Exceptions\InvalidIPAddressException
      */
-    public function can_detect_invalid_IPv4_addresses()
-    {
-        $this->assertNotTrue(IPAddress::Validate($this->invalidIPv4Address));
-    }
-
-    /**
-     * @test
-     *
-     * @throws \acamposm\Ping\Exceptions\InvalidIPAddressException
-     */
-    public function can_validate_IPv6_addresses()
+    public function it_can_validate_an_IPv6_addresses()
     {
         $this->assertTrue(IPAddress::Validate(self::HOST_LINK_LOCAL));
     }
 
     /**
      * @test
-     *
-     * @throws \acamposm\Ping\Exceptions\InvalidIPAddressException
      */
-    public function can_detect_invalid_IPv6_addresses()
+    public function it_can_detect_an_invalid_IPv4_addresses()
+    {
+        $this->assertNotTrue(IPAddress::Validate($this->invalidIPv4Address));
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_detect_an_invalid_IPv6_addresses()
     {
         $this->assertNotTrue(IPAddress::Validate($this->invalidIPv6Address));
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_detect_an_invalid_ip_address()
+    {
+        $this->assertFalse(IPAddress::Validate('not a valid address'));
     }
 }
