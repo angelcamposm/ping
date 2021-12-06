@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: PHP-CI
 
 on:
   push:
@@ -13,13 +13,39 @@ on:
   workflow_dispatch:
 
 jobs:
-  sonarcloud:
-    name: SonarCloud
+
+  tests:
+
+    name: PHP-Unit
     runs-on: ubuntu-latest
     steps:
+
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run test suite
+        env:
+            XDEBUG_MODE: coverage
+        run: composer run-script test
+
+  sonarcloud:
+
+    name: SonarCloud
+    steps:
+
+      - name: Prepare for SonarCloud Scan - sed on clover.xml
+        run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace@g' build/clover.xml
+
+      - name: Prepare for SonarCloud Scan - sed on junit.xml
+        run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace@g' build/junit.xml
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
