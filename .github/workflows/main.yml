@@ -44,19 +44,11 @@ jobs:
             XDEBUG_MODE: coverage
         run: composer run-script test
 
-      - run: printenv
-      - run: pwd
-      - run: ls
-
       - name: Prepare for SonarCloud Scan - sed on clover.xml
-        run: cat build/clover.xml
-      - run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace@g' build/clover.xml
-      - run: cat build/clover.xml
+        run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace@g' build/clover.xml
 
       - name: Prepare for SonarCloud Scan - sed on junit.xml
-        run: cat build/junit.xml
-      - run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace@g' build/junit.xml
-      - run: cat build/junit.xml
+        run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace@g' build/junit.xml
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
