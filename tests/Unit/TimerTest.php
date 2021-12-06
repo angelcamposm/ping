@@ -43,6 +43,7 @@ class TimerTest extends TestCase
 
     /**
      * @test
+     *
      * @throws TimerNotStartedException
      */
     public function it_throws_an_exception()
