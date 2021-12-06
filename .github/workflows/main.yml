@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
+      - run: pwd
+      - run: ls
+
       - name: Run test suite
         env:
             XDEBUG_MODE: coverage
