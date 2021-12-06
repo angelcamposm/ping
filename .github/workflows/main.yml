@@ -39,16 +39,16 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
+      - name: Run test suite
+        env:
+            XDEBUG_MODE: coverage
+        run: composer run-script test
+
       - run: printenv
       - run: pwd
       - run: ls
       - run: cat build/clover.xml
       - run: cat build/junit.xml
-
-      - name: Run test suite
-        env:
-            XDEBUG_MODE: coverage
-        run: composer run-script test
 
       - name: Prepare for SonarCloud Scan - sed on clover.xml
         run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace@g' build/clover.xml
