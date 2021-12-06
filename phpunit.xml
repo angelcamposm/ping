@@ -15,6 +15,11 @@
     <include>
       <directory suffix=".php">src/</directory>
     </include>
+    <exclude>
+      <directory>src/Console</directory>
+      <directory>src/Exceptions</directory>
+      <directory>src/Facades</directory>
+    </exclude>
     <report>
       <html outputDirectory="build/coverage/html-coverage"/>
       <text outputFile="build/coverage.txt"/>
