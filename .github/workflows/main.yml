@@ -35,11 +35,6 @@ jobs:
             XDEBUG_MODE: coverage
         run: composer run-script test
 
-  sonarcloud:
-
-    name: SonarCloud
-    steps:
-
       - name: Prepare for SonarCloud Scan - sed on clover.xml
         run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace@g' build/clover.xml
 
