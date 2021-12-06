@@ -2,11 +2,12 @@
 
 [![License](https://poser.pugx.org/acamposm/ping/license)](https://packagist.org/packages/acamposm/ping)
 [![Latest Stable Version](https://poser.pugx.org/acamposm/ping/v/stable)](https://packagist.org/packages/acamposm/ping)
-[![Latest Unstable Version](https://poser.pugx.org/acamposm/ping/v/unstable)](https://packagist.org/packages/acamposm/ping)
-[![Build Status](https://travis-ci.com/angelcamposm/ping.svg?branch=master)](https://travis-ci.com/angelcamposm/ping)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/angelcamposm/ping/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/angelcamposm/ping/?branch=master)
 [![StyleCI](https://github.styleci.io/repos/255138468/shield?branch=master)](https://github.styleci.io/repos/255138468)
 [![Total Downloads](https://poser.pugx.org/acamposm/ping/downloads)](https://packagist.org/packages/acamposm/ping)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ping&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ping)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ping&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ping)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=ping&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=ping)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=ping&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=ping)
 
 This ping class allow making ping request from Laravel applications, it is based on PING command from the linux iputils package.
 
