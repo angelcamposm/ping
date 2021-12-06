@@ -47,15 +47,15 @@ jobs:
       - run: printenv
       - run: pwd
       - run: ls
-      - run: cat build/clover.xml
-      - run: cat build/junit.xml
 
       - name: Prepare for SonarCloud Scan - sed on clover.xml
-        run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace@g' build/clover.xml
+        run: cat build/clover.xml
+      - run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace@g' build/clover.xml
+      - run: cat build/clover.xml
 
       - name: Prepare for SonarCloud Scan - sed on junit.xml
-        run: sed -i 's@'$GITHUB_WORKSPACE'@@g' build/junit.xml
-
+        run: cat build/junit.xml
+      - run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace@g' build/junit.xml
       - run: cat build/junit.xml
 
       - name: SonarCloud Scan
