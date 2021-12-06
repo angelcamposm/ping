@@ -1,10 +1,11 @@
 <?php
 
-namespace Acamposm\Ping\Tests;
+namespace Acamposm\Ping\Tests\Unit;
 
 use Acamposm\Ping\Exceptions\MaxValueException;
 use Acamposm\Ping\Exceptions\NegativeValueException;
 use Acamposm\Ping\PingCommandBuilder;
+use Acamposm\Ping\Tests\TestCase;
 
 class PingCommandBuilderTest extends TestCase
 {
