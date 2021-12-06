@@ -17,10 +17,10 @@ namespace Acamposm\Ping\Exceptions;
 
 use Exception;
 
-class InvalidIPAddressException extends Exception
+class PingFailedException extends Exception
 {
-    public function __construct(string $message)
+    public function __construct()
     {
-        parent::__construct('Unknown format for this IP address: '.$message);
+        parent::__construct('Ping execution failed.');
     }
 }
