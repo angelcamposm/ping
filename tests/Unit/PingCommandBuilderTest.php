@@ -28,6 +28,7 @@ class PingCommandBuilderTest extends TestCase
     /**
      * @test
      * @depends it_can_create_an_ipv4_instance
+     *
      * @throws \Acamposm\Ping\Exceptions\UnknownOSException
      */
     public function can_get_IPv4_command(PingCommandBuilder $command)
@@ -62,6 +63,7 @@ class PingCommandBuilderTest extends TestCase
     /**
      * @test
      * @depends it_can_create_an_ipv4_instance
+     *
      * @throws NegativeValueException
      */
     public function can_set_count(PingCommandBuilder $command)
@@ -122,6 +124,7 @@ class PingCommandBuilderTest extends TestCase
     /**
      * @test
      * @depends it_can_create_an_ipv4_instance
+     *
      * @throws MaxValueException
      */
     public function it_can_set_ttl(PingCommandBuilder $command)
