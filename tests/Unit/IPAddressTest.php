@@ -1,8 +1,9 @@
 <?php
 
-namespace Acamposm\Ping\Tests;
+namespace Acamposm\Ping\Tests\Unit;
 
 use Acamposm\Ping\IPAddress;
+use Acamposm\Ping\Tests\TestCase;
 use Exception;
 
 class IPAddressTest extends TestCase
@@ -10,16 +11,23 @@ class IPAddressTest extends TestCase
     public const HOST_IP_ADDRESS = '127.0.0.1';
     public const HOST_LINK_LOCAL = 'fe80::6c42:407d:af01:9567';
 
+    public string $invalidIPv4Address;
+    public string $invalidIPv6Address;
+
+    public function setUp(): void
+    {
+        $this->invalidIPv4Address = self::HOST_IP_ADDRESS.'.4';
+        $this->invalidIPv6Address = self::HOST_LINK_LOCAL.'::0';
+    }
+
     /**
      * @test
      */
     public function require_IP_address()
     {
-        try {
-            IPAddress::Validate();
-        } catch (Exception $e) {
-            $this->assertInstanceOf(Exception::class, $e);
-        }
+        $this->expectException(Exception::class);
+
+        IPAddress::Validate();
     }
 
     /**
@@ -29,7 +37,7 @@ class IPAddressTest extends TestCase
      */
     public function can_validate_IPv4_addresses()
     {
-        $this->assertTrue(IPAddress::Validate(IPAddressTest::HOST_IP_ADDRESS));
+        $this->assertTrue(IPAddress::Validate(self::HOST_IP_ADDRESS));
     }
 
     /**
@@ -39,9 +47,7 @@ class IPAddressTest extends TestCase
      */
     public function can_detect_invalid_IPv4_addresses()
     {
-        $invalid_ip_address = IPAddressTest::HOST_IP_ADDRESS.'.4';
-
-        $this->assertNotTrue(IPAddress::Validate($invalid_ip_address));
+        $this->assertNotTrue(IPAddress::Validate($this->invalidIPv4Address));
     }
 
     /**
@@ -51,7 +57,7 @@ class IPAddressTest extends TestCase
      */
     public function can_validate_IPv6_addresses()
     {
-        $this->assertTrue(IPAddress::Validate(IPAddressTest::HOST_LINK_LOCAL));
+        $this->assertTrue(IPAddress::Validate(self::HOST_LINK_LOCAL));
     }
 
     /**
@@ -61,8 +67,6 @@ class IPAddressTest extends TestCase
      */
     public function can_detect_invalid_IPv6_addresses()
     {
-        $invalid_ip_address = IPAddressTest::HOST_LINK_LOCAL.'::0';
-
-        $this->assertNotTrue(IPAddress::Validate($invalid_ip_address));
+        $this->assertNotTrue(IPAddress::Validate($this->invalidIPv6Address));
     }
 }
