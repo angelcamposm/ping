@@ -50,11 +50,11 @@ jobs:
       - run: cat build/clover.xml
       - run: cat build/junit.xml
 
-      - name: Prepare for SonarCloud Scan - sed on clover.xml
-        run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace@g' build/clover.xml
+      #- name: Prepare for SonarCloud Scan - sed on clover.xml
+      #  run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace@g' build/clover.xml
 
-      - name: Prepare for SonarCloud Scan - sed on junit.xml
-        run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace@g' build/junit.xml
+      #- name: Prepare for SonarCloud Scan - sed on junit.xml
+      #  run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace@g' build/junit.xml
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
