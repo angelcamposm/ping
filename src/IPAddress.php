@@ -15,9 +15,6 @@
 
 namespace Acamposm\Ping;
 
-use acamposm\Ping\Exceptions\InvalidIPAddressException;
-use Exception;
-
 class IPAddress
 {
     public const IPV4_SEPARATOR = '.';
@@ -26,28 +23,21 @@ class IPAddress
     /**
      * Performs the validation of the IP Address.
      *
-     * @param string|null $ip_address
-     *
-     * @throws InvalidIPAddressException
-     * @throws Exception
+     * @param string $ip_address
      *
      * @return bool
      */
-    public static function Validate(?string $ip_address = null): bool
+    public static function Validate(string $ip_address): bool
     {
-        if ($ip_address === null) {
-            throw new Exception('A host must be specified');
-        }
-
-        if (strpos($ip_address, IPAddress::IPV4_SEPARATOR) > 0) {
+        if (str_contains($ip_address, IPAddress::IPV4_SEPARATOR)) {
             return self::validateIPv4Address($ip_address);
         }
 
-        if (strpos($ip_address, IPAddress::IPV6_SEPARATOR) > 0) {
+        if (str_contains($ip_address, IPAddress::IPV6_SEPARATOR)) {
             return self::validateIPv6Address($ip_address);
         }
 
-        throw new InvalidIPAddressException($ip_address);
+        return false;
     }
 
     /**
