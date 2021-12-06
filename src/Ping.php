@@ -15,6 +15,7 @@
 
 namespace Acamposm\Ping;
 
+use Acamposm\Ping\Exceptions\PingFailedException;
 use Acamposm\Ping\Exceptions\UnknownOSException;
 use Acamposm\Ping\Parsers\PingParserForLinux;
 use Acamposm\Ping\Parsers\PingParserForWindows;
@@ -119,7 +120,7 @@ class Ping
         exec($this->command->get(), $exec_result);
 
         if (!is_array($exec_result)) {
-            throw new Exception('Ping failed');
+            throw new PingFailedException();
         }
 
         return $this->cleanBinaryString($exec_result);
