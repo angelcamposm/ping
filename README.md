@@ -155,7 +155,7 @@ $ping = (new Ping($command))->run();
 
 dd($ping);
 ```
-```
+```json
 => {#613
     +"host_status": "Ok",
     +"raw": [
@@ -235,7 +235,7 @@ $ping = (new Ping($command))->run();
 
 dd($ping);
 ```
-```
+```json
 => {#615
     +"host_status": "Ok",
     +"raw": [
@@ -315,7 +315,7 @@ $ping = (new Ping($command))->run();
 
 dd($ping);
 ```
-```
+```json
 => {#615
     +"host_status": "Ok",
     +"raw": [
@@ -332,11 +332,11 @@ dd($ping);
         "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
         "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
         "",
-        b"Estadísticas de ping para fe80::6c42:407d:af01:9567:",
+        "Estadísticas de ping para fe80::6c42:407d:af01:9567:",
         "    Paquetes: enviados = 10, recibidos = 10, perdidos = 0",
         "    (0% perdidos),",
         "Tiempos aproximados de ida y vuelta en milisegundos:",
-        b"    Mínimo = 0ms, Máximo = 0ms, Media = 0ms",
+        "    Mínimo = 0ms, Máximo = 0ms, Media = 0ms",
     ],
     +"latency": 0.0,
     +"rtt": {#618
