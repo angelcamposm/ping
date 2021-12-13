@@ -156,9 +156,9 @@ $ping = (new Ping($command))->run();
 dd($ping);
 ```
 ```json
-=> {#613
-    +"host_status": "Ok",
-    +"raw": [
+=> {
+    "host_status": "Ok",
+    "raw": [
         "",
         "Haciendo ping a google.com [216.58.213.142] con 200 bytes de datos:",
         "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
@@ -178,46 +178,46 @@ dd($ping);
         "Tiempos aproximados de ida y vuelta en milisegundos:",
         "    Mínimo = 36ms, Máximo = 37ms, Media = 36ms",
     ],
-    +"latency": 0.036,
-    +"rtt": {#616
-        +"avg": 0.036,
-        +"min": 0.036,
-        +"max": 0.037,
+    "latency": 0.036,
+    "rtt": {
+        "avg": 0.036,
+        "min": 0.036,
+        "max": 0.037,
     },
-    +"sequence": {#615
-        +"0": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
-        +"1": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
-        +"2": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
-        +"3": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=37ms TTL=115",
-        +"4": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=37ms TTL=115",
-        +"5": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
-        +"6": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
-        +"7": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
-        +"8": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
-        +"9": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+    "sequence": {
+        "0": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        "1": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        "2": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        "3": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=37ms TTL=115",
+        "4": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=37ms TTL=115",
+        "5": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        "6": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        "7": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        "8": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
+        "9": "Respuesta desde 216.58.213.142: bytes=68 (enviados 200) tiempo=36ms TTL=115",
     },
-    +"statistics": {#614
-        +"packets_transmitted": 10,
-        +"packets_received": 10,
-        +"packets_lost": 0,
-        +"packet_loss": 0,
+    "statistics": {
+        "packets_transmitted": 10,
+        "packets_received": 10,
+        "packets_lost": 0,
+        "packet_loss": 0,
     },
-    +"options": {#598
-        +"host": "google.com",
-        +"count": 10,
-        +"packet_size": 200,
-        +"ttl": 120,
+    "options": {
+        "host": "google.com",
+        "count": 10,
+        "packet_size": 200,
+        "ttl": 120,
     },
-    +"time": {#610
-        +"start": {#612
-            +"as_float": 1596984650.5006,
-            +"human_readable": "09-08-2020 14:50:50.500600",
+    "time": {
+        "start": {
+            "as_float": 1596984650.5006,
+            "human_readable": "09-08-2020 14:50:50.500600",
         },
-        +"stop": {#611
-            +"as_float": 1596984659.5802,
-            +"human_readable": "09-08-2020 14:50:59.580200",
+        "stop": {
+            "as_float": 1596984659.5802,
+            "human_readable": "09-08-2020 14:50:59.580200",
         },
-        +"time": 9.08,
+        "time": 9.08,
     },
 }
 
