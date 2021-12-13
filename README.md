@@ -156,7 +156,7 @@ $ping = (new Ping($command))->run();
 dd($ping);
 ```
 ```json
-=> {
+{
     "host_status": "Ok",
     "raw": [
         "",
@@ -236,9 +236,9 @@ $ping = (new Ping($command))->run();
 dd($ping);
 ```
 ```json
-=> {#615
-    +"host_status": "Ok",
-    +"raw": [
+{
+    "host_status": "Ok",
+    "raw": [
         "",
         "Haciendo ping a 192.168.10.254 con 200 bytes de datos:",
         "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
@@ -258,47 +258,47 @@ dd($ping);
         "Tiempos aproximados de ida y vuelta en milisegundos:",
         "    Mínimo = 0ms, Máximo = 0ms, Media = 0ms",
     ],
-    +"latency": 0.0,
-    +"rtt": {#618
-        +"avg": 0.0,
-        +"min": 0.0,
-        +"max": 0.0,
+    "latency": 0.0,
+    "rtt": {
+        "avg": 0.0,
+        "min": 0.0,
+        "max": 0.0,
     },
-    +"sequence": {#598
-        +"0": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
-        +"1": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
-        +"2": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
-        +"3": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
-        +"4": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
-        +"5": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
-        +"6": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
-        +"7": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
-        +"8": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
-        +"9": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+    "sequence": {#598
+        "0": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "1": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "2": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "3": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "4": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "5": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "6": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "7": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "8": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
+        "9": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
     },
-    +"statistics": {#616
-        +"packets_transmitted": 10,
-        +"packets_received": 10,
-        +"packets_lost": 0,
-        +"packet_loss": 0,
+    "statistics": {
+        "packets_transmitted": 10,
+        "packets_received": 10,
+        "packets_lost": 0,
+        "packet_loss": 0,
     },
-    +"options": {#619
-        +"host": "192.168.10.254",
-        +"count": 10,
-        +"packet_size": 200,
-        +"ttl": 120,
-        +"version": 4,
+    "options": {
+        "host": "192.168.10.254",
+        "count": 10,
+        "packet_size": 200,
+        "ttl": 120,
+        "version": 4,
     },
-    +"time": {#612
-    +"start": {#614
-        +"as_float": 1596985359.7592,
-        +"human_readable": "09-08-2020 15:02:39.759200",
+    "time": {
+    "start": {
+        "as_float": 1596985359.7592,
+        "human_readable": "09-08-2020 15:02:39.759200",
     },
-    +"stop": {#613
-        +"as_float": 1596985368.7952,
-        +"human_readable": "09-08-2020 15:02:48.795200",
+    "stop": {
+        "as_float": 1596985368.7952,
+        "human_readable": "09-08-2020 15:02:48.795200",
     },
-    +"time": 9.036,
+    "time": 9.036,
     },
 }
 ```
@@ -316,9 +316,9 @@ $ping = (new Ping($command))->run();
 dd($ping);
 ```
 ```json
-=> {#615
-    +"host_status": "Ok",
-    +"raw": [
+{
+    "host_status": "Ok",
+    "raw": [
         "",
         "Haciendo ping a fe80::6c42:407d:af01:9567 con 200 bytes de datos:",
         "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
@@ -338,47 +338,47 @@ dd($ping);
         "Tiempos aproximados de ida y vuelta en milisegundos:",
         "    Mínimo = 0ms, Máximo = 0ms, Media = 0ms",
     ],
-    +"latency": 0.0,
-    +"rtt": {#618
-        +"avg": 0.0,
-        +"min": 0.0,
-        +"max": 0.0,
+    "latency": 0.0,
+    "rtt": {
+        "avg": 0.0,
+        "min": 0.0,
+        "max": 0.0,
     },
-    +"sequence": {#598
-        +"0": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
-        +"1": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
-        +"2": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
-        +"3": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
-        +"4": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
-        +"5": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
-        +"6": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
-        +"7": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
-        +"8": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
-        +"9": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+    "sequence": {
+        "0": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "1": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "2": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "3": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "4": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "5": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "6": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "7": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "8": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
+        "9": "Respuesta desde fe80::6c42:407d:af01:9567: tiempo<1m",
     },
-    +"statistics": {#616
-        +"packets_transmitted": 10,
-        +"packets_received": 10,
-        +"packets_lost": 0,
-        +"packet_loss": 0,
+    "statistics": {
+        "packets_transmitted": 10,
+        "packets_received": 10,
+        "packets_lost": 0,
+        "packet_loss": 0,
     },
-    +"options": {#619
-        +"host": "fe80::6c42:407d:af01:9567",
-        +"count": 10,
-        +"packet_size": 200,
-        +"ttl": 120,
-        +"version": 6,
+    "options": {
+        "host": "fe80::6c42:407d:af01:9567",
+        "count": 10,
+        "packet_size": 200,
+        "ttl": 120,
+        "version": 6,
     },
-    +"time": {#612
-        +"start": {#614
-            +"as_float": 1596985675.4344,
-            +"human_readable": "09-08-2020 15:07:55.434400",
+    "time": {
+        "start": {
+            "as_float": 1596985675.4344,
+            "human_readable": "09-08-2020 15:07:55.434400",
         },
-        +"stop": {#613
-            +"as_float": 1596985684.4659,
-            +"human_readable": "09-08-2020 15:08:04.465900",
+        "stop": {
+            "as_float": 1596985684.4659,
+            "human_readable": "09-08-2020 15:08:04.465900",
         },
-        +"time": 9.032,
+        "time": 9.032,
     },
 }
 ``` 
