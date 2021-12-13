@@ -264,7 +264,7 @@ dd($ping);
         "min": 0.0,
         "max": 0.0,
     },
-    "sequence": {#598
+    "sequence": {
         "0": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
         "1": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
         "2": "Respuesta desde 192.168.10.254: bytes=200 tiempo<1m TTL=255",
