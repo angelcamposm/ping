@@ -15,9 +15,7 @@
 
 namespace Acamposm\Ping\Parsers;
 
-use Acamposm\Ping\Interfaces\PingParserInterface;
-
-final class PingParserForLinux extends PingParser implements PingParserInterface
+final class PingParserForLinux extends PingParser
 {
     protected bool $is_unreachable;
 
@@ -30,7 +28,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
     {
         parent::__construct($ping);
 
-        $this->is_unreachable = self::isUnreachable($ping);
+        $this->is_unreachable = $this->isUnreachable($ping);
 
         $this->host_status = 'Unreachable';
 
@@ -144,7 +142,7 @@ final class PingParserForLinux extends PingParser implements PingParserInterface
      */
     private function parseStatistics(string $row): array
     {
-        $statistics = self::cleanStatisticsRecord($row);
+        $statistics = $this->cleanStatisticsRecord($row);
 
         $results = [
             'packets_transmitted' => (int) $statistics[0],

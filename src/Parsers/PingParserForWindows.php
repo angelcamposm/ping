@@ -15,9 +15,7 @@
 
 namespace Acamposm\Ping\Parsers;
 
-use Acamposm\Ping\Interfaces\PingParserInterface;
-
-final class PingParserForWindows extends PingParser implements PingParserInterface
+final class PingParserForWindows extends PingParser
 {
     private bool $unreachable;
 
