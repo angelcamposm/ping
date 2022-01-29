@@ -44,7 +44,7 @@ class PingCommandBuilder implements PingCommand
             $this->setIPAddressVersion();
         } else {
             if (str_ends_with($host, '/')) {
-                $host = substr($host, 0, strlen($host) - 1);
+                $host = substr($host, 0, -1);
             }
 
             // We assume that is an URL...
