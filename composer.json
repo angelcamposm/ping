@@ -38,10 +38,7 @@
     },
     "scripts": {
         "test": "phpunit --colors=always --testdox",
-        "test-coverage": "phpunit --coverage-html coverage",
-        "post-autoload-dump": [
-            "@php ./vendor/bin/testbench package:discover --ansi"
-        ]
+        "test-coverage": "phpunit --coverage-html coverage"
     },
     "config": {
         "sort-packages": true
