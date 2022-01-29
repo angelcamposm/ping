@@ -63,12 +63,9 @@ final class PingParserForWindows extends PingParser
         $items_count = count($ping);
 
         // First remove items from final of the array
-        unset($ping[$items_count - 6]);
-        unset($ping[$items_count - 5]);
-        unset($ping[$items_count - 4]);
-        unset($ping[$items_count - 3]);
-        unset($ping[$items_count - 2]);
-        unset($ping[$items_count - 1]);
+        for ($i = 6; $i > 0; $i--) {
+            unset($ping[$items_count - $i]);
+        }
 
         // Then remove first items
         unset($ping[1]);
