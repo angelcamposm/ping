@@ -224,13 +224,12 @@ class PingCommandBuilder implements PingCommand
      */
     private function getOSXCommand(): string
     {
-        $command = ['ping'];
-
-        (!isset($this->version)) ?: array_push($command, '-'.$this->version);
+        $command = ['ping -n'];
+        
         (!isset($this->count)) ?: array_push($command, '-c '.$this->count);
         (!isset($this->interval)) ?: array_push($command, '-i '.$this->interval);
         (!isset($this->packet_size)) ?: array_push($command, '-s '.$this->packet_size);
-        (!isset($this->timeout)) ?: array_push($command, '-t '.($this->timeout * 1000));
+        (!isset($this->timeout)) ?: array_push($command, '-t '.($this->timeout));
         (!isset($this->ttl)) ?: array_push($command, '-m '.$this->ttl);
 
         $command[] = $this->host;
