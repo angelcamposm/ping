@@ -34,7 +34,7 @@ class System
      */
     public static function isOSX(): bool
     {
-        return PHP_OS_FAMILY === 'OSX';
+        return PHP_OS_FAMILY === 'Darwin';
     }
 
     /**
