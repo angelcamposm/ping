@@ -95,7 +95,7 @@ final class PingParserForLinux extends PingParser
         $sequence = [];
 
         foreach ($ping as $row) {
-            if (str_contains($row, 'Unreachable')) {
+            if (str_contains($row, 'Unreachable') && !empty($row)) {
                 $data = explode(': ', str_replace(' ms', '', $row));
                 $items = explode(' ', $data[1]);
 
