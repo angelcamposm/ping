@@ -17,7 +17,7 @@ namespace Acamposm\Ping;
 
 use Acamposm\Ping\Exceptions\PingFailedException;
 use Acamposm\Ping\Exceptions\UnknownOSException;
-use Acamposm\Ping\Parsers\PingParserForLinux;
+use Acamposm\Ping\Parsers\PingParserForNix;
 use Acamposm\Ping\Parsers\PingParserForWindows;
 use Exception;
 
@@ -57,8 +57,8 @@ class Ping
      */
     protected function parse(array $ping): object
     {
-        if (System::isLinux()) {
-            return (new PingParserForLinux($ping))->parse();
+        if (System::isLinux() || System::isOSX()) {
+            return (new PingParserForNix($ping))->parse();
         }
 
         if (System::isWindows()) {

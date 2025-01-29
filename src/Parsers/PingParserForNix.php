@@ -15,12 +15,14 @@
 
 namespace Acamposm\Ping\Parsers;
 
-final class PingParserForLinux extends PingParser
+use Acamposm\Ping\System;
+
+final class PingParserForNix extends PingParser
 {
     protected bool $is_unreachable;
 
     /**
-     * PingParserForLinux constructor.
+     * PingParserForNix constructor.
      *
      * @param array $ping
      */
@@ -73,7 +75,7 @@ final class PingParserForLinux extends PingParser
      */
     private function getHostStatus(): string
     {
-        return ($this->statistics['packet_loss'] < 100) ? 'Ok' : 'Unreachable';
+        return ($this->statistics[(System::isLinux() ? 'packet_loss' : 'packets_lost')] < 100) ? 'Ok' : 'Unreachable';
     }
 
     /**
