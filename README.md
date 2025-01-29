@@ -200,7 +200,7 @@ dd($ping);
         "packets_transmitted": 10,
         "packets_received": 10,
         "packets_lost": 0,
-        "packet_loss": 0,
+        "packets_lost": 0,
     },
     "options": {
         "host": "google.com",
@@ -280,7 +280,7 @@ dd($ping);
         "packets_transmitted": 10,
         "packets_received": 10,
         "packets_lost": 0,
-        "packet_loss": 0,
+        "packets_lost": 0,
     },
     "options": {
         "host": "192.168.10.254",
@@ -360,7 +360,7 @@ dd($ping);
         "packets_transmitted": 10,
         "packets_received": 10,
         "packets_lost": 0,
-        "packet_loss": 0,
+        "packets_lost": 0,
     },
     "options": {
         "host": "fe80::6c42:407d:af01:9567",

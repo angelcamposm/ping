@@ -86,7 +86,9 @@ final class PingParserForNix extends PingParser
      */
     private function getHostStatus(): string
     {
-        return ($this->statistics[System::isLinux() ? 'packet_loss' : 'packets_lost'] < 100) ? 'Ok' : 'Unreachable';
+        return ($this->statistics['packets_received'] == $this->statistics['packets_transmitted']) ? 'Ok'
+            : ($this->statistics['packets_lost'] == $this->statistics['packets_transmitted']
+                ? 'Unreachable' : 'High Latency');
     }
 
     /**
@@ -168,12 +170,12 @@ final class PingParserForNix extends PingParser
         }
 
         if (count($statistics) === 5) {
-            $results['packet_loss'] = (float) $statistics[3];
+            $results['packets_lost'] = (float) $statistics[3];
             $results['time'] = (int) $statistics[4];
         }
 
         if (count($statistics) === 4) {
-            $results['packet_loss'] = (float) $statistics[2];
+            $results['packets_lost'] = (float) $statistics[2];
             $results['time'] = (int) $statistics[3];
         }
 
