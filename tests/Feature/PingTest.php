@@ -32,9 +32,9 @@ class PingTest extends TestCase
      *
      * @param PingCommandBuilder $command
      *
-     * @return object
-     *
      * @throws Exception
+     *
+     * @return object
      */
     public function it_can_make_ping(PingCommandBuilder $command): object
     {
