@@ -35,7 +35,7 @@ final class PingParserForNix extends PingParser
 
         $this->host_status = 'Unreachable';
 
-        if(preg_match('/^--- (.+) ---$/i', $ping[count($ping) - 2])) {
+        if (preg_match('/^--- (.+) ---$/i', $ping[count($ping) - 2])) {
             $this->setStatistics($ping[count($ping) - 1]);
 
             if ($this->is_unreachable === false) {
@@ -47,7 +47,7 @@ final class PingParserForNix extends PingParser
             $this->setStatistics($ping[count($ping) - 2]);
 
             if ($this->is_unreachable === false) {
-                $this->setRoundTripTime($ping[count($ping)-1]);
+                $this->setRoundTripTime($ping[count($ping) - 1]);
                 $this->setSequence();
                 $this->setHostStatus();
             }

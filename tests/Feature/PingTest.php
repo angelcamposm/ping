@@ -13,6 +13,7 @@ class PingTest extends TestCase
 
     /**
      * @test
+     *
      * @return PingCommandBuilder
      */
     public function it_can_create_a_builder(): PingCommandBuilder
@@ -26,9 +27,13 @@ class PingTest extends TestCase
 
     /**
      * @test
+     *
      * @depends it_can_create_a_builder
+     *
      * @param PingCommandBuilder $command
+     *
      * @return object
+     *
      * @throws Exception
      */
     public function it_can_make_ping(PingCommandBuilder $command): object
@@ -42,8 +47,11 @@ class PingTest extends TestCase
 
     /**
      * @test
+     *
      * @depends it_can_make_ping
+     *
      * @param object $ping
+     *
      * @return void
      */
     public function it_can_read_host_status_from_result(object $ping)
@@ -53,8 +61,11 @@ class PingTest extends TestCase
 
     /**
      * @test
+     *
      * @depends it_can_make_ping
+     *
      * @param object $ping
+     *
      * @return void
      */
     public function it_can_read_raw_from_result(object $ping)
@@ -66,8 +77,11 @@ class PingTest extends TestCase
 
     /**
      * @test
+     *
      * @depends it_can_make_ping
+     *
      * @param object $ping
+     *
      * @return void
      */
     public function it_can_read_options_from_result(object $ping)
