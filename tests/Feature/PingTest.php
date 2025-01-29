@@ -48,7 +48,7 @@ class PingTest extends TestCase
      */
     public function it_can_read_host_status_from_result(object $ping)
     {
-        $this->assertObjectHasAttribute('host_status', $ping);
+        $this->assertObjectHasProperty('host_status', $ping);
     }
 
     /**
@@ -59,9 +59,9 @@ class PingTest extends TestCase
      */
     public function it_can_read_raw_from_result(object $ping)
     {
-        $this->assertObjectHasAttribute('raw', $ping);
+        $this->assertObjectHasProperty('raw', $ping);
 
-        $this->assertIsArray($ping->raw);
+        $this->assertIsObject($ping->raw);
     }
 
     /**
@@ -72,7 +72,7 @@ class PingTest extends TestCase
      */
     public function it_can_read_options_from_result(object $ping)
     {
-        $this->assertObjectHasAttribute('raw', $ping);
+        $this->assertObjectHasProperty('raw', $ping);
 
         $this->assertIsObject($ping->options);
     }

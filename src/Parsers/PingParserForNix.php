@@ -35,12 +35,22 @@ final class PingParserForNix extends PingParser
 
         $this->host_status = 'Unreachable';
 
-        $this->setStatistics($ping[count($ping) - 2]);
+        if(preg_match('/^--- (.+) ---$/i', $ping[count($ping) - 2])) {
+            $this->setStatistics($ping[count($ping) - 1]);
 
-        if ($this->is_unreachable === false) {
-            $this->setRoundTripTime($ping[count($ping) - 1]);
-            $this->setSequence();
-            $this->setHostStatus();
+            if ($this->is_unreachable === false) {
+                // $this->setRoundTripTime($ping[count($ping)-1]);
+                $this->setSequence();
+                $this->setHostStatus();
+            }
+        } else {
+            $this->setStatistics($ping[count($ping) - 2]);
+
+            if ($this->is_unreachable === false) {
+                $this->setRoundTripTime($ping[count($ping)-1]);
+                $this->setSequence();
+                $this->setHostStatus();
+            }
         }
     }
 
@@ -125,7 +135,7 @@ final class PingParserForNix extends PingParser
             return [];
         }
 
-        $row = trim(str_replace(['ms', 'rtt'], '', $row));
+        $row = trim(str_replace(['ms', System::isLinux() ? 'rtt' : 'round-trip'], '', $row));
 
         $rtt = explode(' = ', $row);
 
