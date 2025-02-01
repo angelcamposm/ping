@@ -48,7 +48,9 @@ final class PingParserForWindows extends PingParser
      */
     private function getHostStatus(): string
     {
-        return ($this->statistics['packet_loss'] < 100) ? 'Ok' : 'Unreachable';
+        return ($this->statistics['packets_received'] == $this->statistics['packets_transmitted']) ? 'Ok'
+            : ($this->statistics['packets_lost'] == $this->statistics['packets_transmitted']
+                ? 'Unreachable' : 'High Latency');
     }
 
     /**
@@ -154,7 +156,7 @@ final class PingParserForWindows extends PingParser
             'packets_transmitted' => $transmitted,
             'packets_received'    => $received,
             'packets_lost'        => $lost,
-            'packet_loss'         => (int) (100 - (($received * 100) / $transmitted)),
+            'packets_lost'         => (int) (100 - (($received * 100) / $transmitted)),
         ];
     }
 

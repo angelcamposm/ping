@@ -8,6 +8,7 @@
  * Ping uses the ICMP protocol's mandatory ECHO_REQUEST datagram to elicit an ICMP ECHO_RESPONSE from a host or gateway.
  *
  * @author  Angel Campos <angel.campos.m@outlook.com>
+ *
  * @requires PHP 8.0
  *
  * @version  2.1.2
@@ -15,12 +16,14 @@
 
 namespace Acamposm\Ping\Parsers;
 
-final class PingParserForLinux extends PingParser
+use Acamposm\Ping\System;
+
+final class PingParserForNix extends PingParser
 {
     protected bool $is_unreachable;
 
     /**
-     * PingParserForLinux constructor.
+     * PingParserForNix constructor.
      *
      * @param array $ping
      */
@@ -32,12 +35,22 @@ final class PingParserForLinux extends PingParser
 
         $this->host_status = 'Unreachable';
 
-        $this->setStatistics($ping[count($ping) - 2]);
+        if (preg_match('/^--- (.+) ---$/i', $ping[count($ping) - 2])) {
+            $this->setStatistics($ping[count($ping) - 1]);
 
-        if ($this->is_unreachable === false) {
-            $this->setRoundTripTime($ping[count($ping) - 1]);
-            $this->setSequence();
-            $this->setHostStatus();
+            if ($this->is_unreachable === false) {
+                // $this->setRoundTripTime($ping[count($ping)-1]);
+                $this->setSequence();
+                $this->setHostStatus();
+            }
+        } else {
+            $this->setStatistics($ping[count($ping) - 2]);
+
+            if ($this->is_unreachable === false) {
+                $this->setRoundTripTime($ping[count($ping) - 1]);
+                $this->setSequence();
+                $this->setHostStatus();
+            }
         }
     }
 
@@ -73,7 +86,9 @@ final class PingParserForLinux extends PingParser
      */
     private function getHostStatus(): string
     {
-        return ($this->statistics['packet_loss'] < 100) ? 'Ok' : 'Unreachable';
+        return ($this->statistics['packets_received'] == $this->statistics['packets_transmitted']) ? 'Ok'
+            : ($this->statistics['packets_lost'] == $this->statistics['packets_transmitted']
+                ? 'Unreachable' : 'High Latency');
     }
 
     /**
@@ -122,7 +137,7 @@ final class PingParserForLinux extends PingParser
             return [];
         }
 
-        $row = trim(str_replace(['ms', 'rtt'], '', $row));
+        $row = trim(str_replace(['ms', System::isLinux() ? 'rtt' : 'round-trip'], '', $row));
 
         $rtt = explode(' = ', $row);
 
@@ -155,12 +170,12 @@ final class PingParserForLinux extends PingParser
         }
 
         if (count($statistics) === 5) {
-            $results['packet_loss'] = (float) $statistics[3];
+            $results['packets_lost'] = (float) $statistics[3];
             $results['time'] = (int) $statistics[4];
         }
 
         if (count($statistics) === 4) {
-            $results['packet_loss'] = (float) $statistics[2];
+            $results['packets_lost'] = (float) $statistics[2];
             $results['time'] = (int) $statistics[3];
         }
 

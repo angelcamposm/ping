@@ -8,6 +8,7 @@
  * Ping uses the ICMP protocol's mandatory ECHO_REQUEST datagram to elicit an ICMP ECHO_RESPONSE from a host or gateway.
  *
  * @author  Angel Campos <angel.campos.m@outlook.com>
+ *
  * @requires PHP 8.0
  *
  * @version  2.1.2
@@ -226,11 +227,11 @@ class PingCommandBuilder implements PingCommand
     {
         $command = ['ping'];
 
-        (!isset($this->version)) ?: array_push($command, '-'.$this->version);
+        // (!isset($this->version)) ?: array_push($command, '-'.$this->version);
         (!isset($this->count)) ?: array_push($command, '-c '.$this->count);
         (!isset($this->interval)) ?: array_push($command, '-i '.$this->interval);
         (!isset($this->packet_size)) ?: array_push($command, '-s '.$this->packet_size);
-        (!isset($this->timeout)) ?: array_push($command, '-t '.($this->timeout * 1000));
+        (!isset($this->timeout)) ?: array_push($command, '-t '.$this->timeout);
         (!isset($this->ttl)) ?: array_push($command, '-m '.$this->ttl);
 
         $command[] = $this->host;
